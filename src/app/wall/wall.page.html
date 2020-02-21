@@ -1,0 +1,104 @@
+<mat-spinner class="spinner" *ngIf="!load"></mat-spinner>
+<div *ngIf="load" class="body">
+  <div class="header-image"></div>
+  <!-- <img class="" src="assets/dermatology.jpg"> -->
+  <div class="cardList">
+    <ng-container fxLayoutAlign="start start" fxLayout="row">
+      <div class="cardListItem" fxFlex="33">
+        <full-calendar style="height: 100%;flex-flow: row wrap; margin: auto" id="calendar"
+          (eventClick)="handleDateClick($event)" defaultView="dayGridMonth" [locale]="huLocale" [weekends]="true"
+          [plugins]="calendarPlugins" [weekends]="false" [events]="calendarEvents" (eventMouseEnter)="mouseOver($event)"
+          [eventLimit]="3">
+        </full-calendar>
+      </div>
+      <div class="cardListItem" fxFlex="33">
+        <mat-card style="width:100%;flex-flow: row wrap;">
+          <mat-card-header *ngIf="!textAreaOpen">
+            <div mat-card-avatar class="textarea-header-image"></div>
+            <mat-card-subtitle (click)="share()" class="depth">
+              <p id="shareParagh" style="padding-top: 1.5ex">Osszon meg valamit a a munkacsoport többi tagjával...</p>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content *ngIf="textAreaOpen">
+            <div style="float:right">
+              <button id="resetShare" mat-flat-button (click)="close()">
+                <mat-icon>clear</mat-icon>
+              </button>
+            </div>
+            <p>
+              <mat-form-field>
+                <mat-select [formControl]="practitionersMultiCtrl" placeholder="Kikkel szeretné megosztani?"
+                  [multiple]="true" #multiSelect>
+                  <ngx-mat-select-search [formControl]="practitionersMultiFilterCtrl" [placeholderLabel]="'Keresés...'"
+                    [noEntriesFoundLabel]="'Nincs találat'"></ngx-mat-select-search>
+                  <mat-option *ngFor="let staff of filteredPractitionersMulti | async" [value]="staff">
+                    {{staff.prefix}} {{staff.family}} {{staff.given}} {{staff.suffix}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <mat-form-field style="width:100%">
+              <textarea id="whatToShare" [formControl]="contentCtrl" matInput placeholder="Mit szeretne megosztani?"
+                rows="2"></textarea>
+            </mat-form-field>
+            <mat-card-actions align="end">
+              <button id="shareButton" mat-raised-button color="primary"
+                (click)="createNotification()">Megosztás</button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-card>
+        <ul>
+          <li *ngFor="let news of events; let i=index" style="padding-top: 2%">
+            <div *ngIf="news.patientName!=undefined" class="text-inside-grid">
+              <mat-card style="width:95%; flex-flow: row wrap; display: inline-flex;">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image">
+                    <mat-icon>assignment</mat-icon>
+                  </div>
+                  <mat-card-subtitle style="color:black">
+                    <div>
+                      <p style="float:left"><strong>{{practitioners[i]}}</strong> új vizsgálatok hozott létre</p>
+                      <p id="examLink" class="fake-link" (click)="openVisit(news.examinationID)">{{news.examinationID}}
+                      </p>
+                      <p style="display:inline-block; padding-left:1ex">azonosítóval.</p>
+                      <br>
+                      <p style="padding-top: 1ex">{{news.creationDate}}</p>
+                    </div>
+                  </mat-card-subtitle>
+                </mat-card-header>
+              </mat-card>
+            </div>
+            <div *ngIf="news.patientName==undefined" class="text-inside-grid">
+              <mat-card style="width:95%; flex-flow: row wrap; display: inline-flex;">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image">
+                    <mat-icon>mail_outline</mat-icon>
+                  </div>
+                  <mat-card-subtitle style="color:black">
+                    <div>
+                      <p style="display:inline-block;font-weight: bold">Létrehozta: </p>
+                      <p id="authLink" class="fake-link" style="padding-left: 2ex" (click)="openStaff(news.author)">
+                        {{practitioners[i]}}</p>
+                      <p style="display:inline-block; padding-left: 2ex">{{news.creationDate}} </p>
+                      <br>
+                      <p style="float: left; font-weight: bold;">Megosztva velük: </p>
+                      <div style="display: inline-block" *ngFor="let ember of news.shareWith; let j=index ">
+                        <p class="fake-link2" matTooltip="{{getMoreInformation(i)}}" matTooltipClass="test"
+                          *ngIf="j > 0"> + {{events[i].shareWith.length - j}} ember </p>
+                        <p style="display: inline-block; padding-left: 1ex;" (click)="openStaff(news.author)"
+                          *ngIf="j == 0 && j < 1">
+                          {{ember}},
+                        </p>
+                      </div>
+                      <p style="padding-top: 1ex;">{{news.content}}</p>
+                    </div>
+                  </mat-card-subtitle>
+                </mat-card-header>
+              </mat-card>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
+</div>
