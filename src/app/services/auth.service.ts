@@ -32,7 +32,7 @@ export class AuthService {
 
   canChangePermissions(): boolean {
     const allowed = ['admin'];
-    return this.checkAuthorization(this.loggedUser, allowed)
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   canReadFills(): boolean {
@@ -41,37 +41,37 @@ export class AuthService {
   }
 
   canAddHistoDiagnosis(): boolean {
-    const allowed = ['administrator', 'specialist', 'admin']
-    return this.checkAuthorization(this.loggedUser, allowed)
+    const allowed = ['administrator', 'specialist', 'admin'];
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   canAddClinicalDiagnosis(): boolean {
-    const allowed = ['specialst', 'admin']
-    return this.checkAuthorization(this.loggedUser, allowed)
+    const allowed = ['specialst', 'admin'];
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   canSeePersonalData(): boolean {
-    const allowed = ['specialst', 'admin', 'administrator']
-    return this.checkAuthorization(this.loggedUser, allowed)
+    const allowed = ['specialst', 'admin', 'administrator'];
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   canReadAll(): boolean {
-    const allowed = ['specialist', 'admin']
-    return this.checkAuthorization(this.loggedUser, allowed)
+    const allowed = ['specialist', 'admin'];
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   onlyRead() {
-    const allowed = ['basic', 'specialist', 'admin', 'administrator']
-    return this.checkAuthorization(this.loggedUser, allowed)
+    const allowed = ['basic', 'specialist', 'admin', 'administrator'];
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   canAddFill() {
-    const allowed = ['basic', 'administrator', 'admin']
-    return this.checkAuthorization(this.loggedUser, allowed)
+    const allowed = ['basic', 'administrator', 'admin'];
+    return this.checkAuthorization(this.loggedUser, allowed);
   }
 
   checkAuthorization(user: Practitioner, allowedRoles: string[]): boolean {
-    if (!user) return false
+    if (!user) { return false; }
     let q = 0;
     for (const role of allowedRoles) {
       user.roles.forEach(element => {
@@ -83,11 +83,12 @@ export class AuthService {
     if (q === 0) {
       return false;
     } else {
-      return true
+      return true;
     }
   }
 
   get authenticated(): boolean {
+    // tslint:disable-next-line: variable-name
     let boolean = false;
     if (this.user !== undefined) {
       boolean = true;
@@ -96,7 +97,7 @@ export class AuthService {
   }
 
   get currentUserObservable(): any {
-    return this.afAuth.authState
+    return this.afAuth.authState;
   }
 
   async getUser() {
@@ -110,6 +111,7 @@ export class AuthService {
               this.loggedUser = element.data() as Practitioner;
               this.loggedUser.practitonerID = element.id;
               localStorage.setItem('loggedIn', JSON.stringify(this.loggedUser));
+              // tslint:disable-next-line: max-line-length
               this.lgUserName = this.loggedUser.prefix + ' ' + this.loggedUser.family + ' ' + this.loggedUser.given + ' ' + this.loggedUser.suffix;
               resolve();
             });

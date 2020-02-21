@@ -1,4 +1,3 @@
-import { WallPageModule } from './wall/wall.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -10,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainPageModule } from './main/main.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    WallPageModule
+    MainPageModule
   ],
   providers: [
     StatusBar,

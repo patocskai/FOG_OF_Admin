@@ -5,8 +5,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'wall', pathMatch: 'full' },
   {
     path: 'wall',
-    loadChildren: () => import('./wall/wall.module').then( m => m.WallPageModule)
+    loadChildren: () => import('./main/wall/wall.module').then( m => m.WallPageModule)
   },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+  },
+
 
 ];
 
