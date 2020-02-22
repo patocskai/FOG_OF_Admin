@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Practitioner } from 'src/app/interfaces/practitioner.interface';
 import { FillService } from 'src/app/services/fill.service';
 import { Fill } from 'src/app/interfaces/fill.interface';
-// import { NewsDialogComponent } from '../news-dialog/news-dialog.component';
+import { NewsDialogPage } from '../news-dialog/news-dialog.page';
 
 @Component({
   selector: 'app-header',
@@ -60,12 +60,12 @@ export class HeaderPage implements OnInit {
     this.sidenav.close();
   }
 
-  // openNewsDialog(): void {
-  //   this._bottomSheet.open(NewsDialogComponent, {
-  //     data: this.fills,
-  //     panelClass: 'news-dialog'
-  //   });
-  // }
+   openNewsDialog(): void {
+     this._bottomSheet.open(NewsDialogPage, {
+       data: this.fills,
+       panelClass: 'news-dialog'
+     });
+   }
 
   async getUserFills() {
     let promise = new Promise((resolve, reject) => {

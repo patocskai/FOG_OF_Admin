@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { FormControl } from '@angular/forms';
 import { ReplaySubject, Subject } from 'rxjs';
-import { MatSelect } from '@angular/material';
+import { MatSelect, MatFormFieldControl } from '@angular/material';
 import { takeUntil } from 'rxjs/operators';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Noti } from 'src/app/interfaces/noti.interface';
@@ -25,7 +25,7 @@ export interface CalendarEvents {
 @Component({
   selector: 'app-wall',
   templateUrl: './wall.page.html',
-  styleUrls: ['./wall.page.scss'],
+  styleUrls: ['./wall.page.scss']
 })
 export class WallPage implements OnInit {
 

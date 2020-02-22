@@ -1,3 +1,4 @@
+import { NewsDialogPageModule } from './news-dialog/news-dialog.module';
 import { SidenavMenuPageModule } from './sidenav-menu/sidenav-menu.module';
 import { HeaderPageModule } from './header/header.module';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { MainPageRoutingModule } from './main-routing.module';
 import { MainPage } from './main.page';
 import { WallPageModule } from './wall/wall.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatInputModule, MatFormFieldModule, MatFormFieldControl } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,7 +24,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     WallPageModule,
     MatSidenavModule,
     HeaderPageModule,
-    SidenavMenuPageModule
+    SidenavMenuPageModule,
+    NewsDialogPageModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   declarations: [
     MainPage
