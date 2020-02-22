@@ -1,9 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>main</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="example-container" #sidenav role="navigation" [style.backgroundColor]="'#2d323e'"
+      [style.color]="'white'">
+      <app-sidenav-menu (sidenavClose)="sidenav.close()"></app-sidenav-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <main class="page-wrapper">
+          <router-outlet></router-outlet>
+      </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -38,7 +38,7 @@ export class WallPage implements OnInit {
   workgroups: Workgroup[] = [];
   calendarEvents: CalendarEvents[] = [];
   calendarPlugins = [dayGridPlugin]; // important!
-  load = false;
+  load = true;
   workGroupsName = [];
   notifications = [];
   events = [];

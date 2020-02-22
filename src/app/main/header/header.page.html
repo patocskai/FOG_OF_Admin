@@ -1,0 +1,34 @@
+<mat-toolbar [style.backgroundColor]="'#44318D'" [style.color]="'white'">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="onToggleSidenav()" *ngIf="sidenave">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span *ngIf="sidenave">DermIQ</span>
+    <span class="menu-spacer"></span>
+    <nav mat-tab-nav-bar class="center" *ngIf="!sidenave" [backgroundColor]="'#44318D'">
+      <span style="padding-top: 1ex">DermIQ</span>
+      <div style="width: 100%;padding-left: 5%">
+        <a style="color: white" mat-tab-link *ngFor="let link of dataService.navLinks; let i = index"
+          [routerLink]="link.link" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="{exact: true}"
+          [active]="rla.isActive" (click)="setExamination(link)">
+          {{link.label}}
+        </a>
+      </div>
+    </nav>
+    <div *ngIf="!sidenave" style="color:white; position: absolute; top: 19px; right: 15px; font-size: medium">
+      <button mat-icon-button matTooltip="Profil">
+        <a (click)="openProfile()" style="color:white;">
+          <mat-icon>person</mat-icon>
+        </a>
+      </button>
+      <button mat-icon-button matTooltip="Értesítések">
+        <a style="color:white;" (click)="openNewsDialog()">
+          <mat-icon [matBadge]="numberOfNews" matBadgeColor="warn">new_releases</mat-icon>
+        </a>
+      </button>
+      <button id="logout" mat-icon-button matTooltip="Kijelentkezés"><a (click)="logout()" style="color:white;">
+          <mat-icon>power_settings_new</mat-icon>
+        </a></button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

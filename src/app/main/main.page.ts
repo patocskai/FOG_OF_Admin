@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ExaminationService } from '../services/examination.service';
+import { AuthService } from '../services/auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPage implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  loadSite = '';
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private examinationService: ExaminationService,
+    private auth: AuthService,
+    private firestore: AngularFirestore) { }
+
+  async ngOnInit() {
   }
 
+
+  loadChild(siteName: any) {
+    this.router.navigateByUrl('/' + siteName);
+  }
 }

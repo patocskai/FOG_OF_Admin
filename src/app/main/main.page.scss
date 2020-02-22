@@ -1,0 +1,44 @@
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+main {
+    padding: 10px;
+}
+
+body {
+    background-color: white !important;
+}
+
+.page-wrapper {
+    background-color: white;
+    padding: 0;
+}
+
+@media only screen and (min-width:851px) {
+    ::ng-deep .mat-drawer {
+        width: 25% !important;
+    }
+}
+
+@media only screen and (min-width:701px) and (max-width:850px) {
+    ::ng-deep .mat-drawer {
+        width: 35% !important;
+    }
+}
+
+@media only screen and (min-width:501px) and (max-width:700px) {
+    ::ng-deep .mat-drawer {
+        width: 45% !important;
+    }
+}
+
+@media only screen and (min-width:0px) and (max-width:500px) {
+    ::ng-deep .mat-drawer {
+        width: 60% !important;
+    }
+}
