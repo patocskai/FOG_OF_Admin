@@ -55,7 +55,7 @@ export class WallPage implements OnInit {
   public contentCtrl: FormControl = new FormControl();
   public practitionersMultiFilterCtrl: FormControl = new FormControl();
   public filteredPractitionersMulti: ReplaySubject<Practitioner[]> = new ReplaySubject<Practitioner[]>(1);
-  @ViewChild('multiSelect') multiSelect: MatSelect;
+  @ViewChild('multiSelect', {static: false}) multiSelect: MatSelect;
   protected _onDestroy = new Subject<void>();
   @Input() placeholderLabel = 'Keresés';
 
@@ -80,7 +80,7 @@ export class WallPage implements OnInit {
 
   handleDateClick(event) {
     this.dataService.selectedVisit = event.el.innerText;
-    this._router.navigateByUrl('/examination')
+    this._router.navigateByUrl('/examination');
   }
 
   createNotification() {
@@ -106,7 +106,7 @@ export class WallPage implements OnInit {
       creationDate: converted,
       shareWith: practID,
       workgroupID: this.auth.loggedUser.workgroup
-    }
+    };
     this.notiService.addNotification(notification, id);
   }
 
@@ -118,10 +118,10 @@ export class WallPage implements OnInit {
         let i = 0;
         querySnapshot.forEach(function (doc) {
           examinations.push(doc.data());
-          examinations[i].examinationID = doc.id
-          i++
+          examinations[i].examinationID = doc.id;
+          i++;
         });
-        resolve(examinations)
+        resolve(examinations);
       });
     });
     this.examinations = await promise as Examination[];
@@ -130,6 +130,7 @@ export class WallPage implements OnInit {
   async getExaminationsData() {
     this.todayEvents = [];
     this.calendarEvents = [];
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.examinations.length; i++) {
       const date = this.examinations[i].expirationDate;
       const today = new Date();
@@ -147,7 +148,7 @@ export class WallPage implements OnInit {
       let asd = {
         title: this.examinations[i].examinationID,
         date: this.examinations[i].expirationDate
-      }
+      };
       this.calendarEvents.push(asd);
       i++;
     });
@@ -156,7 +157,7 @@ export class WallPage implements OnInit {
   async getWorkgroups() {
     this.workgroups = this.workgroupService.workgroups;
     this.workgroups.forEach(element => {
-      this.workGroupsName.push(element.name)
+      this.workGroupsName.push(element.name);
     });
   }
 
@@ -190,7 +191,7 @@ export class WallPage implements OnInit {
     let i = 0;
     this.events[index].shareWith.forEach(element => {
       if (i !== 0) {
-        tooltipString = tooltipString + element + '\n'
+        tooltipString = tooltipString + element + '\n';
       }
       i++;
     });
@@ -227,9 +228,10 @@ export class WallPage implements OnInit {
         this.staff.splice(i, 1);
       }
       i++;
-    })
+    });
   }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
     this._onDestroy.next();
     this._onDestroy.complete();
