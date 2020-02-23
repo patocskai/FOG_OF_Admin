@@ -4,11 +4,7 @@ import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { NewsDialogPageRoutingModule } from './news-dialog-routing.module';
-
 import { NewsDialogPage } from './news-dialog.page';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 
@@ -17,7 +13,6 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/ma
     CommonModule,
     FormsModule,
     IonicModule,
-    NewsDialogPageRoutingModule,
     MatListModule,
     MatCardModule,
     MatInputModule,

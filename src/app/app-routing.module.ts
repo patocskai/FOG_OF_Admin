@@ -2,14 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'wall', pathMatch: 'full' },
-  {
-    path: 'wall',
-    loadChildren: () => import('./main/wall/wall.module').then( m => m.WallPageModule)
-  }
-
-
-
+  { path: '', loadChildren: './main/main.module#MainPageModule' }
 ];
 
 @NgModule({

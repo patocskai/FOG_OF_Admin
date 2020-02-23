@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { WallPageRoutingModule } from './wall-routing.module';
-
 import { WallPage } from './wall.page';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -21,7 +19,6 @@ import { MatFormFieldControl } from '@angular/material';
     CommonModule,
     FormsModule,
     IonicModule,
-    WallPageRoutingModule,
     MatProgressSpinnerModule,
     FullCalendarModule,
     MatCardModule,
