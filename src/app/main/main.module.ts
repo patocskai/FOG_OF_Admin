@@ -9,9 +9,9 @@ import { MatInputModule, MatFormFieldModule, MatFormFieldControl } from '@angula
 import { HeaderPageModule } from '../header/header.module';
 import { SidenavMenuPageModule } from '../sidenav-menu/sidenav-menu.module';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './core/auth.guard';
+import { AuthGuard } from '../core/auth.guard';
+
 const routes: Routes = [
-  { path: '', redirectTo: 'main/wall', pathMatch: 'full' },
   { path: 'main', redirectTo: 'main/wall', pathMatch: 'full' },
   {
     path: 'main',
@@ -20,8 +20,7 @@ const routes: Routes = [
       {
         path: 'wall', loadChildren: './../wall/wall.module#WallPageModule'
       },
-    ],
-    canActivateChild: [AuthGuard]
+    ]
   }
 
 ];

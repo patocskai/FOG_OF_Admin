@@ -1,3 +1,5 @@
+import { AuthGuard } from './core/auth.guard';
+import { LoginPageModule } from './login/login.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -27,12 +29,12 @@ import { environment } from 'src/environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    MainPageModule,
     AngularFireModule.initializeApp(environment.firebase, 'dermiq-management'),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    LoginPageModule
   ],
   providers: [
     StatusBar,
@@ -41,7 +43,8 @@ import { environment } from 'src/environments/environment';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-    DatePipe
+    DatePipe,
+    AuthGuard
   ],
   bootstrap: [
     AppComponent

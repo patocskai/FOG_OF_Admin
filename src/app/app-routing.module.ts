@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LoginPage } from './login/login.page';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
-  { path: '', loadChildren: './main/main.module#MainPageModule' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  {
+    path: '', loadChildren: './main/main.module#MainPageModule',
+    canActivateChild: [AuthGuard]
+  },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   {
     path: '**',
     redirectTo: '',
   },
-  { path: 'login', component: LoginPage, data: { title: 'Bejelentkezés - FOG_OF-Admin' } },
-  { path: 'login/:routeTo', component: LoginPage, data: { title: 'Bejelentkezés - FOG_OF-Admin' } },
 ];
 
 @NgModule({
