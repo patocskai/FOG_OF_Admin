@@ -10,6 +10,7 @@ import { HeaderPageModule } from '../header/header.module';
 import { SidenavMenuPageModule } from '../sidenav-menu/sidenav-menu.module';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../core/auth.guard';
+import { WallPageModule } from '../wall/wall.module';
 
 const routes: Routes = [
   { path: 'main', redirectTo: 'main/wall', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes = [
     HeaderPageModule,
     SidenavMenuPageModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    WallPageModule
   ],
   declarations: [
     MainPage

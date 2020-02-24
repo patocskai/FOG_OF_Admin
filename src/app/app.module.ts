@@ -1,3 +1,4 @@
+import { WallPageModule } from './wall/wall.module';
 import { AuthGuard } from './core/auth.guard';
 import { LoginPageModule } from './login/login.module';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -34,7 +35,8 @@ import { environment } from 'src/environments/environment';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    LoginPageModule
+    LoginPageModule,
+    MainPageModule
   ],
   providers: [
     StatusBar,

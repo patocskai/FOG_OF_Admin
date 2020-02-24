@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { WallPage } from './wall.page';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -12,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatFormFieldControl } from '@angular/material';
+import { MatBottomSheetModule } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -26,7 +25,7 @@ import { MatFormFieldControl } from '@angular/material';
     MatSelectModule,
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
-    MatTooltipModule,
+    MatTooltipModule
   ],
   declarations: [WallPage]
 })
