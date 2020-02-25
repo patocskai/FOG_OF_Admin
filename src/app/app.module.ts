@@ -1,3 +1,4 @@
+import { ProfilePageModule } from './profile/profile.module';
 import { WallPageModule } from './wall/wall.module';
 import { AuthGuard } from './core/auth.guard';
 import { LoginPageModule } from './login/login.module';
@@ -36,7 +37,8 @@ import { environment } from 'src/environments/environment';
     AngularFireStorageModule,
     AngularFireAuthModule,
     LoginPageModule,
-    MainPageModule
+    MainPageModule,
+    ProfilePageModule
   ],
   providers: [
     StatusBar,

@@ -1,3 +1,4 @@
+import { ProfilePage } from './profile/profile.page';
 import { LoginPage } from './login/login.page';
 import { WallPage } from './wall/wall.page';
 import { NgModule } from '@angular/core';
@@ -11,8 +12,18 @@ const routes: Routes = [
       { path: '', component: WallPage, canActivate: [AuthGuard] },
     ]
   },
+  {
+    path: 'profile', component: MainPage, children: [
+      { path: '', component: ProfilePage, canActivate: [AuthGuard] },
+    ]
+  },
   { path: 'login', component: LoginPage },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  }
+
+
 ];
 
 @NgModule({

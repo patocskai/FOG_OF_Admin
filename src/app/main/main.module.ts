@@ -41,6 +41,7 @@ const routes: Routes = [
   ],
   declarations: [
     MainPage
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
