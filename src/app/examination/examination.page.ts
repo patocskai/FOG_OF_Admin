@@ -10,9 +10,7 @@ import { ReplaySubject, Subject } from 'rxjs';
 import { MatSelect } from '@angular/material';
 import { takeUntil } from 'rxjs/operators';
 import { PractitionerService } from 'src/app/services/practitioner.service';
-import { Moment } from 'moment';
 import { DatePipe } from '@angular/common';
-import { NgxDateRangePickerOptions } from 'ngx-daterangepicker';
 import { DiagnosisService } from 'src/app/services/diagnosis.service';
 
 export class DynamicFlatNode {
@@ -52,7 +50,7 @@ export class ExaminationPage implements OnInit {
   tempDiagnoses = [];
   histoData = [];
   slider = false;
-  options: NgxDateRangePickerOptions;
+  // options: NgxDateRangePickerOptions;
   protected staff: Practitioner[] = [];
   public practitionersMultiCtrl: FormControl = new FormControl();
   public contentCtrl: FormControl = new FormControl();
@@ -61,7 +59,7 @@ export class ExaminationPage implements OnInit {
   @ViewChild('multiSelect', {static: false}) multiSelect: MatSelect;
   protected _onDestroy = new Subject<void>();
   @Input() placeholderLabel = 'Keresés';
-  selected: { startDate: Moment, endDate: Moment };
+  // selected: { startDate: Moment, endDate: Moment };
   filterOptions = [];
   dateRange = { from: new Date(), to: new Date() };
   startDate: string;
@@ -80,25 +78,25 @@ export class ExaminationPage implements OnInit {
     private datePipe: DatePipe,
     private diagService: DiagnosisService
   ) {
-    this.options = {
-      theme: 'default',
-      labels: ['Kezdete', 'Vége'],
-      menu: [
-        { alias: 'td', text: 'Ma', operation: '0d' },
-        { alias: 'tw', text: 'Ezen a héten', operation: '0w' },
-        { alias: 'lw', text: 'Múlt héten', operation: '-1w' },
-        { alias: 'tm', text: 'Ebben a hónapban', operation: '0m' },
-        { alias: 'lm', text: 'Múlt hónapban', operation: '-1m' },
-        { alias: 'ty', text: 'Ebben az évben', operation: '0y' },
-        { alias: 'ly', text: 'Előző évben', operation: '-1y' }
-      ],
-      dateFormat: 'YYYY-MM-DD',
-      outputFormat: 'YYYY-MM-DD',
-      startOfWeek: 0,
-      outputType: 'object',
-      locale: 'hu',
-      date: this.dateRange
-    };
+    // this.options = {
+    //   theme: 'default',
+    //   labels: ['Kezdete', 'Vége'],
+    //   menu: [
+    //     { alias: 'td', text: 'Ma', operation: '0d' },
+    //     { alias: 'tw', text: 'Ezen a héten', operation: '0w' },
+    //     { alias: 'lw', text: 'Múlt héten', operation: '-1w' },
+    //     { alias: 'tm', text: 'Ebben a hónapban', operation: '0m' },
+    //     { alias: 'lm', text: 'Múlt hónapban', operation: '-1m' },
+    //     { alias: 'ty', text: 'Ebben az évben', operation: '0y' },
+    //     { alias: 'ly', text: 'Előző évben', operation: '-1y' }
+    //   ],
+    //   dateFormat: 'YYYY-MM-DD',
+    //   outputFormat: 'YYYY-MM-DD',
+    //   startOfWeek: 0,
+    //   outputType: 'object',
+    //   locale: 'hu',
+    //   date: this.dateRange
+    // };
 
     // tslint:disable-next-line: max-line-length
     // var basediags = ['Melanóma', 'Naevus', 'Basalioma', 'Laphámcarcinoma in situ/invazív', 'Dermatofibroma', 'Verruca seborrhoica/solaris lentigo', 'Éreredetű elváltozás', 'Egyéb-itt: fertőző betegség', 'Papulosquamosus/ekzematifotm', 'Dermatosisok', 'Egyéb malignus elváltozás', 'Egyéb jóindulatú elváltozás', 'Eltérések/mechanikus irritatio okozta eltérések', 'Fertőző betegség', 'Papulosquamosus/ekzematifotm dermatosisok', 'Pigmentációs eltérések/mechanikus irritatio okozta eltérése'];

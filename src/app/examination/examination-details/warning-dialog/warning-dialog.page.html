@@ -1,0 +1,7 @@
+<div style="padding-left: 5ex" mat-dialog-content>
+  <p>Biztosan törli a vizsgálatot?</p>
+</div>
+<div style="padding-left: 4ex" mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Nem</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="delete" cdkFocusInitial>Törlés</button>
+</div>

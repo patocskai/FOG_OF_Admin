@@ -28,7 +28,19 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },  {
+    path: 'examination-details',
+    loadChildren: () => import('./examination/examination-details/examination-details.module').then( m => m.ExaminationDetailsPageModule)
   },
+  {
+    path: 'fill-details',
+    loadChildren: () => import('./examination/examination-details/fill-details/fill-details.module').then( m => m.FillDetailsPageModule)
+  },
+  {
+    path: 'warning-dialog',
+    loadChildren: () => import('./examination/examination-details/warning-dialog/warning-dialog.module').then( m => m.WarningDialogPageModule)
+  },
+
 
 
 ];

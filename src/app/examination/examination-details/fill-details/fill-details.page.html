@@ -1,0 +1,39 @@
+<mat-card class="fill-mat-card">
+  <mat-card-header>
+    <div mat-card-avatar class="textarea-header-image"></div>
+    <mat-card-subtitle style="color:slategray; padding-top: 3%">
+      <div>
+        <h3>{{person.name}}</h3>
+        <h4 style="padding-top:1%">{{person.diagnose}}</h4>
+      </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div style="float:right">
+      <button mat-flat-button><a (click)="ocFillDetails()" matTooltip="Kitöltés részleteinek elrejtése"
+          style="color:blue;">
+          <mat-icon>clear</mat-icon>
+        </a></button>
+    </div>
+    <mat-card (click)="share()" style="width:80%">
+      <mat-card-header>
+        <div *ngIf="!textAreaOpen">
+          <mat-card-subtitle>
+            <p style="padding-top: 1.5ex">Adjon meg hozzászólást...</p>
+          </mat-card-subtitle>
+        </div>
+        <div *ngIf="textAreaOpen" style="width:90%">
+          <mat-form-field style="width:100%;padding-top:50%">
+            <textarea matInput placeholder="Adjon meg hozzászólást" rows="4"></textarea>
+          </mat-form-field>
+          <div style="float:right">
+            <button mat-raised-button (click)="closeTextArea()">Vissza</button>
+            <button mat-raised-button color="primary" (click)="closeTextArea()">Küldés</button>
+          </div>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

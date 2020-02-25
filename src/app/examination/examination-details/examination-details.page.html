@@ -1,0 +1,476 @@
+<div *ngIf="!selectedExamination && !practitioner && !allFill && !imgUrls">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="selectedExamination && practitioner && allFill && imgUrls && load | async">
+  <mat-tab-group style="width:100%">
+    <mat-tab label="Vizsgálat részletei" style="width:100%">
+      <div class="details-class">
+        <mat-card class="mat-elevation-z6">
+          <mat-card-header>
+            <mat-card-title>
+              <button mat-icon-button (click)="closeDetails()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="cardList">
+              <ng-container fxLayoutAlign="start start" fxLayout="row">
+                <div class="cardListItem" fxFlex="33">
+                  <mat-list [ngSwitch]="true" role="list">
+                    <mat-list-item role="listitem">
+                      <p style="font-weight: bold">
+                        Határidő:
+                      </p>
+                      <p style="padding-left: 1ex">
+                        {{selectedExamination.expirationDate}}
+                      </p>
+                    </mat-list-item>
+                    <mat-list-item role="listitem">
+                      <p style="font-weight: bold">
+                        Létrehozva:
+                      </p>
+                      <p style="padding-left: 1ex">
+                        {{practitioner.prefix}} {{practitioner.family}} {{practitioner.given}}
+                      </p>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="showName" role="listitem">
+                      <p style="font-weight: bold">
+                        Páciens neve:
+                      </p>
+                      <p style="padding-left: 1ex">
+                        {{selectedExamination.patientName}}
+                      </p>
+                    </mat-list-item>
+                    <mat-list-item role="listitem">
+                      <p style="font-weight: bold">
+                        Státusz
+                      </p>
+                      <p *ngIf="selectedExamination.diagnostics != 'none'"
+                        style="color:red; font-size: medium; padding-left: 1ex;padding-top: .5ex">
+                        Lezárt</p>
+                      <p *ngIf="selectedExamination.diagnostics == 'none'"
+                        style="color:limegreen;font-size: medium; padding-left: 1ex;padding-top: .5ex">Aktív
+                      </p>
+                    </mat-list-item>
+                    <mat-list-item role="listitem">
+                      <p style="font-weight: bold">
+                        Időszak:
+                      </p>
+                      <p style="padding-left: 1ex">
+                        {{selectedExamination.creationDate}} -
+                        {{selectedExamination.expirationDate}}
+                      </p>
+                    </mat-list-item>
+                    <mat-list-item role="listitem" *ngIf="auth.canAddClinicalDiagnosis()">
+                      <p style="font-weight:bold; ">Klinikai diagnózis:</p>
+                      <p *ngIf="selectedExamination.clinicalDiagnose!='none' && !clinicalDiagnose"
+                        style="padding-left:1em">
+                        {{selectedExamination.clinicalDiagnose}}</p>
+                      <p *ngIf="selectedExamination.clinicalDiagnose =='none' && !clinicalDiagnose"
+                        style="padding-left:1em">
+                        Nincs</p>
+                      <p *ngIf="clinicalDiagnose" style="padding-left:1em">
+                        {{clinicalDiagnose}}</p>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="selectedExamination.diagnostics != 'none'" role="listitem">
+                      <p style="font-weight:bold; ">Szövettani diagnózis:</p>
+                      <p style="padding-left:1em"> {{selectedExamination.diagnostics}}</p>
+                    </mat-list-item>
+                    <mat-list-item role="listitem"
+                      *ngIf="auth.canAddClinicalDiagnosis() && selectedExamination.diagnostics == 'none'">
+                      <mat-form-field>
+                        <mat-select placeholder="Adja meg a diagnózist">
+                          <mat-option *ngFor="let dg of diagnoses" [value]="dg"
+                            (click)="updateClinicalDiagnoseValue(dg)" ngDefaultControl>
+                            {{dg}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </mat-list-item>
+                    <mat-list-item role="listitem" *ngIf="auth.canAddFill()">
+                      <p style="font-weight:bold; "> Diagnózis:</p>
+                      <p *ngIf="userFill && userFill.diagnose !='none'" style="padding-left:1em">
+                        {{userFill.diagnose}}</p>
+                      <p *ngIf="userFill && userFill.diagnose =='none'" style="padding-left:1em">
+                        Nincs</p>
+                    </mat-list-item>
+                    <mat-list-item role="listitem"
+                      *ngIf="auth.canAddFill() && selectedExamination.diagnostics == 'none'">
+                      <mat-form-field>
+                        <mat-select placeholder="Adja meg a diagnózist">
+                          <mat-option *ngFor="let dg of diagnoses" [value]="dg" (click)="updatePersonalDiagnose(dg)"
+                            ngDefaultControl>
+                            {{dg}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </mat-list-item>
+                    <br />
+                    <div *ngSwitchCase="scoreType==='7PCL' || scoreType==='new7PCL'">
+                      <mat-list-item>
+                        <mat-label>
+                          <p>7PS: {{ps}}</p>
+                        </mat-label>
+                      </mat-list-item>
+                    </div>
+                    <div
+                      *ngSwitchCase="scoreType==='7PCL' || scoreType==='new7PCL' || scoreType==='iDScore' || scoreType==='3-point-checklist'">
+                      <mat-list-item>
+                        <mat-label *ngIf="scoreLabel != ''">
+                          <p>Algoritmus ajánlata: </p>
+                          <p><b>{{scoreLabel}}</b></p>
+                        </mat-label>
+                      </mat-list-item>
+                    </div>
+                  </mat-list>
+                </div>
+                <div class="cardListItem" fxFlex="33">
+                  <!-- <mat-list *ngIf="selectedExamination.diagnostics != 'none'" role="list">
+                    <mat-list-item role="listitem">
+                      <p style="font-weight: bold">
+                        {{selectedExamination.scoreType}}:
+                      </p>
+                    </mat-list-item>
+                    <div *ngFor="let score of selectedExamination.score; let i = index">
+                      <mat-list-item role="listitem">
+                        <p style="font-size: medium">{{score}}</p>
+                      </mat-list-item>
+                    </div>
+                  </mat-list> -->
+                  <mat-list role="list">
+                    <mat-list-item role="listitem" *ngIf="auth.canAddFill()">
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="scoreType" placeholder="Score - rendszer:">
+                          <mat-option value="none" (click)="scoreAlgorithm()" ngDefaultControl>Nincs</mat-option>
+                          <mat-option value="7PCL" (click)="scoreAlgorithm()" ngDefaultControl>7PCL</mat-option>
+                          <mat-option value="new7PCL" (click)="scoreAlgorithm()" ngDefaultControl>Új 7PCL</mat-option>
+                          <mat-option value="iDScore" (click)="scoreAlgorithm()" ngDefaultControl>iDScore</mat-option>
+                          <mat-option value="3-point-checklist" (click)="scoreAlgorithm()" ngDefaultControl>3 pontos
+                            lista</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </mat-list-item>
+                  </mat-list>
+                  <form [formGroup]="scoreForm">
+                    <mat-list [ngSwitch]="true" role="list">
+                      <div *ngSwitchCase="scoreType==='7PCL' || scoreType==='new7PCL'">
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Atypical pigment network:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="apn" name="apn" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Blue-whitish veil:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="bwv" name="bwv" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Atypical vascular pattern:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="avp" name="avp" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Irregular bands:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="ib" name="ib" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Irregular sluts:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="is" name="is" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Irregular dots and globules:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="idg" name="idg" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Regression structures:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="rs" name="rs" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                      </div>
+                      <div *ngSwitchCase="scoreType==='iDScore'">
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Atypical pigment network:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="apn" name="apn" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Blue-whitish veil:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="bwv" name="bwv" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Atypical vascular pattern:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="avp" name="avp" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Irregular bands:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="ib" name="ib" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Irregular sluts:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="is" name="is" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Irregular dots and globules:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="idg" name="idg" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Regression structures:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="rs" name="rs" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Lokalizáció:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="loc" name="loc" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="Felső végtagok">Felső végtagok</mat-radio-button>
+                            <mat-radio-button value="Alsó végtagok">Alsó végtagok</mat-radio-button>
+                            <mat-radio-button value="Felsőtest">Felsőtest</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Maximum átmérő:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="max_d" name="max_d" aria-label="Válasszon"
+                            (change)="scores()">
+                            <mat-radio-button value="6 - 10mm">6 - 10mm</mat-radio-button>
+                            <mat-radio-button value="nagyobb mint 11 mm">nagyobb mint 11 mm</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Korcsoport:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="ages" name="ages" aria-label="Válasszon"
+                            (change)="scores()">
+                            <mat-radio-button value="30-40 éves">30-40 éves</mat-radio-button>
+                            <mat-radio-button value="41-60 éves">41-60 éves</mat-radio-button>
+                            <mat-radio-button value="több mint 61 éves">több mint 61 éves</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                      </div>
+                      <div *ngSwitchCase="scoreType==='3-point-checklist'">
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Atypical pigment network:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="apn" name="apn" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Blue-whitish veil:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="bwv" name="bwv" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-label>
+                            <p>Asymmetry:</p>
+                          </mat-label>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <mat-radio-group formControlName="asy" name="asy" aria-label="Válasszon" (change)="scores()">
+                            <mat-radio-button value="no">Nem</mat-radio-button>
+                            <mat-radio-button value="yes">Igen</mat-radio-button>
+                          </mat-radio-group>
+                        </mat-list-item>
+                      </div>
+                    </mat-list>
+                  </form>
+                </div>
+                <div *ngIf="imgUrls.length > 0" class="cardListItemImg" fxFlex="33">
+                  <div class="img-div">
+                    <!-- <ngx-image-viewer [src]="imgUrls"></ngx-image-viewer> -->
+                  </div>
+                </div>
+                <div *ngIf="imgUrls.length == 0" class="cardListItemImg" fxFlex="33">
+                  <a>Nincs megjeleníthető kép</a>
+                </div>
+              </ng-container>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end" style="padding-right: 3ex">
+            <button mat-raised-button *ngIf="selectedExamination.diagnostics == 'none'" (click)="save()"
+              color="primary">Mentés</button>
+            <button mat-raised-button *ngIf="selectedExamination.diagnostics == 'none'" (click)="closeDetails()"
+              color="warn">Elvetés</button>
+            <button mat-raised-button *ngIf="showDelete" (click)="deleteExam()" color="warn">Törlés</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Kitöltések" class="fills-tab" *ngIf="auth.canReadFills()">
+      <div class="fills" style="float:left;">
+        <ul>
+          <li *ngFor="let person of allFill; let i=index"
+            style="width: 100%;float: left; padding-top: 1ex; height: 35%;">
+            <mat-card (click)=openFillDetails(person) class="fill-card">
+              <mat-card-content>
+                <span style="padding-left: 5%;">{{person.practitionerName}}</span>
+                <img src="../../../../assets/user.png" style="float:left; width:4ex; height:4ex;">
+                <span *ngIf="allFill[i].practitionerDiagnose != 'none' && selectedExamination.diagnostics == 'none'"
+                  style="color:limegreen; float:right">{{person.practitionerDiagnose}}</span>
+                <span
+                  *ngIf="allFill[i].practitionerDiagnose != 'none' && allFill[i].practitionerDiagnose == selectedExamination.diagnostics"
+                  style="color:limegreen; float:right">{{person.practitionerDiagnose}}</span>
+                <span *ngIf="allFill[i].practitionerDiagnose == 'none' && selectedExamination.diagnostics == 'none' "
+                  style="color:#EE8013; float:right">Nincs diagnózis</span>
+                <span *ngIf="allFill[i].practitionerDiagnose == 'none' && selectedExamination.diagnostics !== 'none' "
+                  style="color:#EE8013; float:right">Nem adott meg diagnózist</span>
+                <span
+                  *ngIf="allFill[i].practitionerDiagnose != 'none' && selectedExamination.diagnostics !== 'none' && allFill[i].practitionerDiagnose != selectedExamination.diagnostics"
+                  style="color:red; float:right">{{person.practitionerDiagnose}}</span>
+                <br>
+              </mat-card-content>
+            </mat-card>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="!fillDetails" class="fill-details">
+        <mat-card style="width:100%" class="fill-details-card">
+          <h3 style="color:#3c4043; padding-top: 1%"></h3>
+          <div style="color:#3c4043">
+            <table style="margin-left:auto; margin-right: auto">
+              <tr>
+                <td align="right" style="border-right: 0.1ex solid silver; padding-right: 1ex; width: 50%">
+                  <h1>{{undiagnosed}}</h1>
+                </td>
+                <td style="padding-left:1ex;width: 50%">
+                  <h1>{{diagnosed}}</h1>
+                </td>
+              </tr>
+              <tr>
+                <td align="right" style="padding-right:1ex">
+                  <p>Nem kitöltött</p>
+                </td>
+                <td>
+                  <p style="padding-left:1ex">Kitöltött</p>
+                </td>
+              </tr>
+            </table>
+            <div style=" margin-left: auto; margin-right: auto; padding-top:5%;" class="bar-chart"
+              *ngIf="pieChartData.length !=0">
+              <!-- <canvas style="padding-top: 1%" [options]="pieChart1" baseChart width="100%" height="100%"
+                [data]="pieChartData" [labels]="pieChartCategories" [chartType]="pieChartType"></canvas> -->
+            </div>
+            <div *ngIf="selectedExamination.diagnostics!='none'" style="margin-left: auto; margin-right: auto"
+              class="bar-chart">
+              <!-- <canvas style="padding-top: 1%" baseChart width="100%" height="100%" [options]="pieChart2"
+                [data]="diagnosedPieChartData" [labels]="diagnosedPieChartCategories"
+                [chartType]="pieChartType"></canvas> -->
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

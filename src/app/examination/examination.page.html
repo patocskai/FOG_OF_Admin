@@ -13,17 +13,17 @@
       </div>
       <div
           [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
-          <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
-          </ngx-daterangepicker>
+          <!-- <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
+          </ngx-daterangepicker> -->
       </div>
       <div
           [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
           <mat-form-field class="filter-by-pr">
               <mat-select (selectionChange)="addPractitionerToFilter()" [formControl]="practitionersMultiCtrl"
                   placeholder="Szűrés felvevő orvos alapján" [multiple]="true" #multiSelect>
-                  <ngx-mat-select-search [formControl]="practitionersMultiFilterCtrl"
+                  <!-- <ngx-mat-select-search [formControl]="practitionersMultiFilterCtrl"
                       [placeholderLabel]="'Keresés...'" [noEntriesFoundLabel]="'Nincs találat'">
-                  </ngx-mat-select-search>
+                  </ngx-mat-select-search> -->
                   <mat-option *ngFor="let staff of filteredPractitionersMulti | async" [value]="staff">
                       {{staff.prefix}} {{staff.family}} {{staff.given}} {{staff.suffix}}
                   </mat-option>
