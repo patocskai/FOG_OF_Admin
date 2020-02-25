@@ -1,0 +1,204 @@
+.example-header-image {
+    background-size: contain;
+    padding-top: 1ex;
+}
+
+.unclickable {
+    pointer-events: none;
+}
+
+.mat-card-avatar {
+    padding-top: 2.5ex;
+}
+
+@media only screen and (min-width: 1101px) {
+    .cardListItem {
+        padding-top: 2%;
+        flex: 0 1 calc(33.3% - 32px);
+    }
+    .filterItem {
+        flex: 0 1 calc(25% - 32px);
+        width: 100%;
+    }
+    .filterItem2 {
+        flex: 0 1 calc(33.3% - 32px);
+        width: 100%;
+    }
+    .filterList {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 3%;
+    }
+    .filter-by-pr {
+        width: 80%
+    }
+}
+
+@media only screen and (min-width: 881px) and (max-width: 1100) {
+    .cardListItem {
+        padding-top: 2%;
+        flex: 0 1 calc(33.3% - 32px);
+    }
+    .filterItem {
+        flex: 0 1 calc(25% - 32px);
+        width: 100%;
+    }
+    .filterItem2 {
+        flex: 0 1 calc(33.3% - 32px);
+        width: 100%;
+    }
+    .filterList {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 3%;
+    }
+    .filter-by-pr {
+        width: 80%
+    }
+    .cardList>*:not(:last-child) {
+        margin-right: 32px;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 880px) {
+    .cardListItem {
+        padding-top: 2%;
+        flex: 0 1 calc(50% - 32px);
+    }
+    .filterItem {
+        flex: 0 1 calc(50% - 32px);
+        padding-top: 3%;
+        width: 100%;
+    }
+    .filterItem2 {
+        flex: 0 1 calc(50% - 32px);
+        width: 100%;
+    }
+    .filterList {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .filter-by-pr {
+        width: 80%
+    }
+    .cardList>*:not(:last-child) {
+        margin-right: 32px;
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+    .cardListItem {
+        padding-top: 2%;
+        flex: 0 1 calc(100% - 32px);
+    }
+    .filterItem {
+        flex: 0 1 calc(100% - 32px);
+        padding-top: 3%;
+        width: 100%;
+    }
+    .filterItem2 {
+        flex: 0 1 calc(100% - 32px);
+        width: 100%;
+    }
+    ::ng-deep .mat-expansion-panel-body {
+        padding: 0 2px !important;
+    }
+    ul {
+        padding: 0 !important;
+    }
+    .fake-link {
+        padding: 0 !important;
+    }
+    .diagnose-p {
+        padding: 0 !important;
+    }
+    .filterList {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .filter-by-pr {
+        width: 100%
+    }
+}
+
+.mat-tab-header {
+    background-color: white(45, 50, 62) !important;
+    color: white !important;
+}
+
+.filterItem {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mat-button-toggle-checked {
+    background-color: #44318D;
+    color: white;
+}
+
+.form-control {
+    color: black;
+    cursor: pointer;
+}
+
+.cardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.mat-list-item {
+    height: 24px !important;
+}
+
+.cardList>* {
+    box-sizing: border-box;
+    margin-bottom: 2%;
+    margin-left: 1%
+}
+
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+    padding-top: 2ex;
+}
+
+.categories-button:hover {
+    cursor: pointer;
+}
+
+p {
+    margin: 0.2rem !important;
+}
+
+ul {
+    list-style-type: none;
+    display: inline-block;
+}
+
+mat-card {
+    min-height: 5%;
+}

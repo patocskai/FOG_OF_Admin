@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
 import { MainPage } from './main/main.page';
+import { ExaminationPage } from './examination/examination.page';
 
 const routes: Routes = [
   {
@@ -13,15 +14,21 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'examination', component: MainPage, children: [
+      { path: '', component: ExaminationPage, canActivate: [AuthGuard] },
+    ]
+  },
+  {
     path: 'profile', component: MainPage, children: [
       { path: '', component: ProfilePage, canActivate: [AuthGuard] },
     ]
   },
   { path: 'login', component: LoginPage },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },  {
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
-  }
+  },
 
 
 ];

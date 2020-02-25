@@ -1,3 +1,4 @@
+import { ExaminationPageModule } from './examination/examination.module';
 import { ProfilePageModule } from './profile/profile.module';
 import { WallPageModule } from './wall/wall.module';
 import { AuthGuard } from './core/auth.guard';
@@ -38,7 +39,8 @@ import { environment } from 'src/environments/environment';
     AngularFireAuthModule,
     LoginPageModule,
     MainPageModule,
-    ProfilePageModule
+    ProfilePageModule,
+    ExaminationPageModule
   ],
   providers: [
     StatusBar,
