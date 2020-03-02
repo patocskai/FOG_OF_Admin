@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { HeaderPage } from './header.page';
-import { MatToolbarModule, MatBottomSheetModule } from '@angular/material';
+import { MatToolbarModule, MatBottomSheetModule, MatDialogModule } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatMenuModule} from '@angular/material/menu';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -21,7 +21,8 @@ import {RouterTestingModule} from '@angular/router/testing';
     MatMenuModule,
     MatBadgeModule,
     MatBottomSheetModule,
-    RouterTestingModule
+    RouterTestingModule,
+    MatDialogModule
   ],
   declarations: [HeaderPage]
 })
