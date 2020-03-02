@@ -1,0 +1,37 @@
+@media only screen and (min-width: 0px) and (max-width:500px) {
+    .name-cell {
+      width: 40%;
+    }
+  }
+  
+  ::ng-deep .mat-table {
+    width: 100% !important;
+  }
+  
+  .fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .mat-table-sticky:first-child {
+    border-right: 1px solid #e0e0e0;
+    padding-left: 1%;
+  }
+  
+  .mat-table-sticky {
+    padding-left: 1%;
+  }
+  
+  .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  }
+  
+  .center {
+    text-align: center !important;
+  }
+  
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }

@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>analyzes</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<div *ngIf="drawCharts">
+  <div class="bar-chart" style="float:left">
+    <!-- <canvas width="500%" height="400%" style="margin-left: auto; margin-right: auto;" baseChart
+      [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+      [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas> -->
+  </div>
+  <div *ngIf="drawCorrectChart" class="bar-chart" style="float: left;">
+    <!-- <canvas width="500%" height="400%" baseChart [options]="correctPieChartOption" [data]="pieChartData"
+      [labels]="pieChartLabels" [chartType]="pieChartType"></canvas> -->
+  </div>
+  <div *ngIf="drawUncorrectChart" class="bar-chart" style="display: block;float: left;">
+    <!-- <canvas width="500%" height="400%" baseChart [options]="uncorrectPieChartOption" [data]="uncorrectPieChartData"
+      [labels]="uncorrectPieChartLabels" [chartType]="pieChartType"></canvas> -->
+  </div>
+</div>

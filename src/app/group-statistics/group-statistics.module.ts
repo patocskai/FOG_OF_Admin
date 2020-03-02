@@ -1,20 +1,25 @@
+import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { RankingsPageModule } from './rankings/rankings.module';
-import { AnalyzesPageModule } from './analyzes/analyzes.module';
 import { RankingsPage } from './rankings/rankings.page';
 import { AnalyzesPage } from './analyzes/analyzes.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { GroupStatisticsPage } from './group-statistics.page';
+import { MatInputModule, MatFormFieldModule, MatTableModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatTableModule
   ],
   declarations: [
     GroupStatisticsPage,
