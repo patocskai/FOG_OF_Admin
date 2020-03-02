@@ -11,6 +11,8 @@ import { SidenavMenuPageModule } from '../sidenav-menu/sidenav-menu.module';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../core/auth.guard';
 import { WallPageModule } from '../wall/wall.module';
+import { ExaminationPageModule } from '../examination/examination.module';
+import { GroupStatisticsPageModule } from '../group-statistics/group-statistics.module';
 
 const routes: Routes = [
   { path: 'main', redirectTo: 'main/wall', pathMatch: 'full' },
@@ -20,6 +22,12 @@ const routes: Routes = [
     children: [
       {
         path: 'wall', loadChildren: './../wall/wall.module#WallPageModule'
+      },
+      {
+        path: 'examination', loadChildren: './../examination/examination.module#ExaminationPageModule'
+      },
+      {
+        path: 'group-statistics', loadChildren: './../group-statistics/group-statistics.module#GroupStatisticsPageModule'
       },
     ]
   }
@@ -37,7 +45,9 @@ const routes: Routes = [
     SidenavMenuPageModule,
     MatInputModule,
     MatFormFieldModule,
-    WallPageModule
+    WallPageModule,
+    ExaminationPageModule,
+    GroupStatisticsPageModule
   ],
   declarations: [
     MainPage

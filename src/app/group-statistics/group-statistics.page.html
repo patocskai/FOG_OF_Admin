@@ -1,0 +1,17 @@
+<mat-tab-group (selectedTabChange)="tabChanged($event)" #tabGroup color="primary">
+  <mat-tab label="Elemzések" style="color: white">
+    <div style="width:95%; padding-top:2%; padding-left: 5%">
+      <app-analyzes></app-analyzes>
+    </div>
+  </mat-tab>
+  <mat-tab label="Országos rangsor" value="global">
+    <div style="width:100%;">
+      <app-rankings></app-rankings>
+    </div>
+  </mat-tab>
+  <mat-tab label="Munkacsoport rangsor" value="global">
+    <div style="width:100%;">
+      <app-rankings></app-rankings>
+    </div>
+  </mat-tab>
+</mat-tab-group>

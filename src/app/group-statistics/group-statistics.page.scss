@@ -1,0 +1,27 @@
+.mat-button-toggle-checked {
+    background-color: #3377FF;
+    color: white;
+  }
+  
+  mat-button-toggle-group {
+    width: 40%;
+  }
+  
+  mat-button-toggle {
+    width: 50%;
+    color: #3377FF;
+  }
+  
+  ::ng-deep .mat-tab-header {
+    background-color: rgb(45, 50, 62) !important;
+    color: white !important;
+  }
+  
+  ::ng-deep .mat-tab-label {
+    color: white;
+  }
+  
+  ::ng-deep .mat-tabs .mat-ink-bar {
+    color: green !important;
+    background-color: green !important;
+  }

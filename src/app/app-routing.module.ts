@@ -6,6 +6,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
 import { MainPage } from './main/main.page';
 import { ExaminationPage } from './examination/examination.page';
+import { GroupStatisticsPage } from './group-statistics/group-statistics.page';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'group-statistics', component: MainPage, children: [
+      { path: '', component: GroupStatisticsPage, canActivate: [AuthGuard] },
+    ]
+  },
+  {
     path: 'profile', component: MainPage, children: [
       { path: '', component: ProfilePage, canActivate: [AuthGuard] },
     ]
@@ -28,7 +34,8 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
-  },  {
+  },
+  {
     path: 'examination-details',
     loadChildren: () => import('./examination/examination-details/examination-details.module').then( m => m.ExaminationDetailsPageModule)
   },
@@ -40,6 +47,18 @@ const routes: Routes = [
     path: 'warning-dialog',
     loadChildren: () => import('./examination/examination-details/warning-dialog/warning-dialog.module').then( m => m.WarningDialogPageModule)
   },
+  {
+    path: 'group-statistics',
+    loadChildren: () => import('./group-statistics/group-statistics.module').then( m => m.GroupStatisticsPageModule)
+  },  {
+    path: 'analyzes',
+    loadChildren: () => import('./group-statistics/analyzes/analyzes.module').then( m => m.AnalyzesPageModule)
+  },
+  {
+    path: 'rankings',
+    loadChildren: () => import('./group-statistics/rankings/rankings.module').then( m => m.RankingsPageModule)
+  },
+
 
 
 

@@ -39,8 +39,7 @@ import { environment } from 'src/environments/environment';
     AngularFireAuthModule,
     LoginPageModule,
     MainPageModule,
-    ProfilePageModule,
-    ExaminationPageModule
+    ProfilePageModule
   ],
   providers: [
     StatusBar,
