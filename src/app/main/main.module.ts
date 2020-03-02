@@ -1,3 +1,4 @@
+import { NewsDialogPage } from './../news-dialog/news-dialog.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +14,7 @@ import { AuthGuard } from '../core/auth.guard';
 import { WallPageModule } from '../wall/wall.module';
 import { ExaminationPageModule } from '../examination/examination.module';
 import { GroupStatisticsPageModule } from '../group-statistics/group-statistics.module';
+import { StaffPageModule } from '../staff/staff.module';
 
 const routes: Routes = [
   { path: 'main', redirectTo: 'main/wall', pathMatch: 'full' },
@@ -28,6 +30,12 @@ const routes: Routes = [
       },
       {
         path: 'group-statistics', loadChildren: './../group-statistics/group-statistics.module#GroupStatisticsPageModule'
+      },
+      {
+        path: 'staff', loadChildren: './../staff/staff.module#StaffPageModule'
+      },
+      {
+        path: 'histological', loadChildren: './../examination/examination.module#ExaminationPageModule'
       },
     ]
   }
@@ -47,11 +55,11 @@ const routes: Routes = [
     MatFormFieldModule,
     WallPageModule,
     ExaminationPageModule,
-    GroupStatisticsPageModule
+    GroupStatisticsPageModule,
+    StaffPageModule
   ],
   declarations: [
     MainPage
-
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

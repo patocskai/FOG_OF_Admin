@@ -1,0 +1,83 @@
+<div class="spinner" *ngIf="!staff">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="staff && filteredItems && !this.dataService.personDetails" style="padding-top: 2%">
+  <div class="filter">
+    <form class="example-form">
+      <mat-form-field style="width:100%">
+        <input #myInput type="text" placeholder="Keresés név szerint" aria-label="Assignee" matInput
+          [formControl]="myControl" [matAutocomplete]="auto" (input)="filterItem(myInput.value)">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="filterItem(option.name)">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div *ngIf="!auth.canChangePermissions()" class="basic-layout">
+    <ul style="width:100%">
+      <li *ngFor="let element of filteredItems; let i = index;" style="padding-top: 1%;">
+        <mat-card class="z-depth" (click)="openPersonDetails(element)">
+          <mat-card-header>
+            <mat-card-title>
+              {{element.prefix}} {{element.family}} {{element.given}}
+              {{element.suffix}}
+            </mat-card-title>
+          </mat-card-header>
+        </mat-card>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="auth.canChangePermissions()" style="width: 98%;margin-left:auto;margin-right:auto">
+    <table>
+      <tr>
+        <td align="left" style="width: 20%">
+          <p>
+            Név
+          </p>
+        </td>
+        <td align="center" style="width: 20%" *ngFor="let column of columnsToDisplay; let j = index;">
+          <p>
+            {{column}}
+          </p>
+          <p style="margin: 0rem">
+            <mat-icon [matTooltip]="getMoreInformation(j)" matTooltipPosition="after">help_outline</mat-icon>
+          </p>
+        </td>
+      </tr>
+      <tr class="border_bottom" style="width: 100%" *ngFor="let element of filteredItems; let i = index;">
+        <td align="left" style="width: 20%">
+          <p style="margin-top: 1rem">{{element.name}}</p>
+        </td>
+        <td align="center" style="width: 20%">
+          <mat-checkbox color="primary" disabled [(ngModel)]="roles[i].roles[0].basic"></mat-checkbox>
+        </td>
+        <td align="center" style="width: 20%">
+          <mat-checkbox color="primary" [disabled]="i == adminIndex" [(ngModel)]="roles[i].roles[2].administrator">
+          </mat-checkbox>
+        </td>
+        <td align="center" style="width: 20%">
+          <mat-checkbox color="primary" [disabled]="i == adminIndex" [(ngModel)]="roles[i].roles[3].specialist">
+          </mat-checkbox>
+        </td>
+        <td align="center" style="width: 20%">
+          <mat-checkbox color="primary" disabled [(ngModel)]="roles[i].roles[1].admin"></mat-checkbox>
+        </td>
+      </tr>
+    </table>
+    <div *ngIf="auth.canChangePermissions()" style='float: right;padding-right: 2%;padding-top: 1%'>
+      <a>
+        <mat-icon class="add-button" (click)="addStaffMember()">edit</mat-icon>
+      </a>
+    </div>
+    <div *ngIf="auth.canChangePermissions()" style="float:right; padding-top: 5%">
+      <button style="margin: 0.5rem" mat-raised-button (click)="changePermissions()" color="primary">Mentés</button>
+      <button style="margin: 0.5rem" mat-raised-button (click)="rejectPermissionChanges()">Elvetés</button>
+    </div>
+  </div>
+</div>
+<div>
+  <app-data style="padding-top: 5%" *ngIf="this.dataService.personDetails" (closePersonDetails)="closeDetails($event)">
+  </app-data>
+</div>

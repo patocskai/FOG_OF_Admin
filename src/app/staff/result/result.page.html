@@ -1,0 +1,22 @@
+<div style="width: 100%">
+  <div *ngIf="drawCorrectChart" class="bar-chart" style="float: left;">
+    <!-- <canvas width="100%" height="100%" baseChart [options]="correctPieChartOption" [data]="pieChartData"
+      [labels]="pieChartLabels" [chartType]="pieChartType"></canvas> -->
+  </div>
+  <div *ngIf="drawUncorrectChart" class="bar-chart" style="float: left;">
+    <!-- <canvas width="100%" height="100%" baseChart [options]="uncorrectPieChartOption" [data]="uncorrectPieChartData"
+      [labels]="uncorrectPieChartLabels" [chartType]="pieChartType"></canvas> -->
+  </div>
+</div>
+
+<!-- <div style="width: 50%; height: 50ex; float: left;">
+      <h3 style="padding-left: 2ex; color: grey">DIAGNÓZIS1 HELYES DIAGNOSZTIZÁLÁSÁNAK ARÁNYA</h3>
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </div> -->

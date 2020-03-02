@@ -1,3 +1,4 @@
+import { StaffPage } from './staff/staff.page';
 import { ProfilePage } from './profile/profile.page';
 import { LoginPage } from './login/login.page';
 import { WallPage } from './wall/wall.page';
@@ -25,43 +26,22 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'staff', component: MainPage, children: [
+      { path: '', component: StaffPage, canActivate: [AuthGuard] },
+    ]
+  },
+  {
     path: 'profile', component: MainPage, children: [
       { path: '', component: ProfilePage, canActivate: [AuthGuard] },
     ]
   },
+  {
+    path: 'histological', component: MainPage, children: [
+      { path: '', component: ExaminationPage, canActivate: [AuthGuard] },
+    ]
+  },
   { path: 'login', component: LoginPage },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
-  {
-    path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
-  },
-  {
-    path: 'examination-details',
-    loadChildren: () => import('./examination/examination-details/examination-details.module').then( m => m.ExaminationDetailsPageModule)
-  },
-  {
-    path: 'fill-details',
-    loadChildren: () => import('./examination/examination-details/fill-details/fill-details.module').then( m => m.FillDetailsPageModule)
-  },
-  {
-    path: 'warning-dialog',
-    loadChildren: () => import('./examination/examination-details/warning-dialog/warning-dialog.module').then( m => m.WarningDialogPageModule)
-  },
-  {
-    path: 'group-statistics',
-    loadChildren: () => import('./group-statistics/group-statistics.module').then( m => m.GroupStatisticsPageModule)
-  },  {
-    path: 'analyzes',
-    loadChildren: () => import('./group-statistics/analyzes/analyzes.module').then( m => m.AnalyzesPageModule)
-  },
-  {
-    path: 'rankings',
-    loadChildren: () => import('./group-statistics/rankings/rankings.module').then( m => m.RankingsPageModule)
-  },
-
-
-
-
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

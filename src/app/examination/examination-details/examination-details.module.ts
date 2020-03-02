@@ -1,3 +1,4 @@
+import { WarningDialogPage } from './warning-dialog/warning-dialog.page';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
@@ -26,6 +27,11 @@ import { MatOptionModule, MatButtonModule, MatRadioModule } from '@angular/mater
     MatRadioModule,
     MatTabsModule
   ],
-  declarations: [ExaminationDetailsPage]
+  declarations: [
+    ExaminationDetailsPage
+  ],
+  entryComponents: [
+    WarningDialogPage
+  ]
 })
-export class ExaminationDetailsPageModule {}
+export class ExaminationDetailsPageModule { }

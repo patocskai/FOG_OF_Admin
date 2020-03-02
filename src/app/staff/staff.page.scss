@@ -1,0 +1,201 @@
+.add-button {
+    color: #3f51b5;
+    font-size: 5ex;
+  }
+  
+  ::ng-deep .snackbar {
+    color: rgb(16, 189, 16) !important;
+  }
+  
+  ::ng-deep .snackbar span {
+    margin: auto;
+    text-align: center;
+  }
+  
+  .add-button:hover {
+    cursor: pointer;
+  }
+  
+  p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  mat-divider {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  mat-checkbox {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  tr.border_bottom td {
+    border-bottom: 1pt solid grey;
+    margin-bottom: 1rem;
+  }
+  
+  tr.border_bottom:hover {
+    background-color: lightblue;
+    opacity: 0.9;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  @media only screen and (min-width: 1101px) {
+    ::ng-deep .mat-dialog-container .ng-tns-c19-4 .ng-trigger .ng-trigger-dialogContainer .ng-star-inserted {
+      height: 20% !important;
+    }
+    ::ng-deep .cdk-overlay-pane.add-dialog {
+      max-width: 100% !important;
+      width: 60%;
+      max-height: 90%;
+    }
+    .profile {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .filter {
+      width: 20%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .basic-layout {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 1100px) {
+    ::ng-deep .cdk-overlay-pane.add-dialog {
+      max-width: 100% !important;
+      width: 80%;
+      max-height: 90%;
+    }
+    .profile {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .filter {
+      width: 20%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .basic-layout {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    ::ng-deep .cdk-overlay-pane.add-dialog {
+      max-width: 100% !important;
+      width: 80%;
+      height: 80%;
+    }
+    ::ng-deep .mat-dialog-container .ng-tns-c19-4 .ng-trigger .ng-trigger-dialogContainer .ng-star-inserted {
+      height: 20% !important;
+    }
+    .profile {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .filter {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .basic-layout {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media only screen and (min-width: 0px) and (max-width: 479px) {
+    ::ng-deep .cdk-overlay-pane.add-dialog {
+      max-width: 101% !important;
+      width: 100%;
+      height: 100%;
+    }
+    .profile {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .filter {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .basic-layout {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  .pofile:hover {
+    background-color: lightskyblue;
+    color: black;
+    cursor: pointer;
+  }
+  
+  table {
+    width: 100%;
+    float: left;
+  }
+  
+  .spinner {
+    padding-left: 45%;
+    padding-top: 20%;
+  }
+  
+  .mat-button-toggle-checked {
+    background-color: #3377FF;
+    color: white;
+  }
+  
+  mat-button-toggle-group {
+    width: 100%;
+  }
+  
+  mat-button-toggle {
+    width: 100%;
+    color: #3377FF;
+  }
+  
+  .fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .textarea-header-image {
+    background-image: url('../../assets/user.png');
+    height: 4ex;
+    width: 4ex;
+  }
+  
+  mat-divider {
+    color: black;
+  }
+  
+  .z-depth:hover {
+    background-color: lightskyblue;
+    color: black;
+    cursor: pointer;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }

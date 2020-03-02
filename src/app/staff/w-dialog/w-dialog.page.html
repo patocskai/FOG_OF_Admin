@@ -1,0 +1,14 @@
+<a *ngIf="containerName == 'staff'">
+  Szeretné a munkacsoporthoz hozzáadni <strong>{{practitionerName}}</strong> nevű felhasználót?
+</a>
+<a *ngIf="containerName != 'staff'">
+  Biztosan eltávolítja a munkacsoportból <strong>{{practitionerName}}</strong> nevű felhasználót?
+</a>
+<div style="padding-top: 5%;">
+  <div style="float:left;">
+    <button mat-raised-button (click)="saveChanges()" color="primary">Igen</button>
+  </div>
+  <div style="display: inline-block;padding-left: 2%">
+    <button mat-raised-button (click)="discardChanges()" color="warn">Nem</button>
+  </div>
+</div>

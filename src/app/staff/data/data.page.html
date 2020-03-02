@@ -1,0 +1,25 @@
+<div class="profile">
+  <mat-card>
+      <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{data.prefix}} {{data.family}} {{data.given}} {{data.suffix}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-content">
+          <mat-list>
+              <mat-list-item>
+                  <h3 style="color:#3c4043; float: right">E-mail:</h3>
+                  <p style="padding-left:1ex;">{{data.email}}</p>
+              </mat-list-item>
+              <mat-list-item>
+                  <h3 style="float:left; color:#3c4043">Csatlakozott:</h3>
+                  <p style="display:inline-block; padding-left: 1ex">{{data.registration}}</p>
+              </mat-list-item>
+          </mat-list>
+          <div style="float: right">
+              <button mat-raised-button color="primary" (click)="closeDetails()">Vissza</button>
+          </div>
+          <br>
+          <br>
+      </mat-card-content>
+  </mat-card>
+</div>

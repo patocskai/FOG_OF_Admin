@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatBottomSheetModule } from '@angular/material';
+import { MatBottomSheetModule, MatInputModule } from '@angular/material';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { MatBottomSheetModule } from '@angular/material';
     MatSelectModule,
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatInputModule
   ],
   declarations: [WallPage]
 })

@@ -1,0 +1,50 @@
+<div>
+  <div>
+    <mat-card style="width: 100%">
+      <mat-card-header>
+        <mat-card-title>
+          Munkacsoport tagok
+        </mat-card-title>
+        <div mat-card-avatar>
+          <mat-icon class="icon">group</mat-icon>
+        </div>
+      </mat-card-header>
+      <mat-card-content style="padding-top: 5%">
+        <div cdkDropList #staffList="cdkDropList" [cdkDropListData]="staff" [cdkDropListConnectedTo]="[userList]"
+          class="example-list" id="staff" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of staff" cdkDrag>
+            <p><strong>{{item.name}}</strong></p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div style="width: 100%; padding-top: 5%">
+    <mat-card style="width: 100%;">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon class="icon">group_add</mat-icon>
+        </div>
+        <mat-card-title>
+          Elérhető felhasználók
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="padding-top: 5%">
+        <div cdkDropList #userList="cdkDropList" [cdkDropListData]="availableUsers"
+          [cdkDropListConnectedTo]="[staffList]" class="example-list" id="availableUsers"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of availableUsers" cdkDrag>
+            <p><strong>{{item.name}}</strong></p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div style="padding-top: 5%">
+    <p>* fogjon meg egy tetszőleges személyt majd vigye a megfelelő helyre</p>
+  </div>
+  <div style="float: right; padding-top: 5%">
+    <button (click)="close()" style="justify-content: flex-end; display: flex;" mat-raised-button
+      color="primary">Bezár</button>
+  </div>
+</div>
