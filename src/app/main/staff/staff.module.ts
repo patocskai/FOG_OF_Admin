@@ -1,4 +1,4 @@
-import { NewsDialogPage } from './../news-dialog/news-dialog.page';
+import { NewsDialogPage } from '../../main/news-dialog/news-dialog.page';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { WDialogPage } from './w-dialog/w-dialog.page';

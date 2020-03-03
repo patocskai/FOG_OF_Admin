@@ -1,13 +1,13 @@
-import { StaffPage } from './staff/staff.page';
-import { ProfilePage } from './profile/profile.page';
+import { StaffPage } from './main/staff/staff.page';
+import { ProfilePage } from './main/profile/profile.page';
 import { LoginPage } from './login/login.page';
-import { WallPage } from './wall/wall.page';
+import { WallPage } from './main/wall/wall.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/auth.guard';
 import { MainPage } from './main/main.page';
-import { ExaminationPage } from './examination/examination.page';
-import { GroupStatisticsPage } from './group-statistics/group-statistics.page';
+import { ExaminationPage } from './main/examination/examination.page';
+import { GroupStatisticsPage } from './main/group-statistics/group-statistics.page';
 
 const routes: Routes = [
   {
@@ -31,13 +31,13 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'profile', component: MainPage, children: [
-      { path: '', component: ProfilePage, canActivate: [AuthGuard] },
+    path: 'histological', component: MainPage, children: [
+      { path: '', component: ExaminationPage, canActivate: [AuthGuard] },
     ]
   },
   {
-    path: 'histological', component: MainPage, children: [
-      { path: '', component: ExaminationPage, canActivate: [AuthGuard] },
+    path: 'profile', component: MainPage, children: [
+      { path: '', component: ProfilePage, canActivate: [AuthGuard] },
     ]
   },
   { path: 'login', component: LoginPage },

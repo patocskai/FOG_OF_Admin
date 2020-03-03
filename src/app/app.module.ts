@@ -1,13 +1,10 @@
-import { ExaminationPageModule } from './examination/examination.module';
-import { ProfilePageModule } from './profile/profile.module';
-import { WallPageModule } from './wall/wall.module';
+import { ProfilePageModule } from './main/profile/profile.module';
 import { AuthGuard } from './core/auth.guard';
 import { LoginPageModule } from './login/login.module';
-import { RouterTestingModule } from '@angular/router/testing';
 import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
