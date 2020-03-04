@@ -70,7 +70,8 @@ const routes: Routes = [
     WallPageModule,
     ExaminationPageModule,
     GroupStatisticsPageModule,
-    StaffPageModule
+    StaffPageModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     MainPage

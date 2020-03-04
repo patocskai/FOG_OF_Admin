@@ -26,8 +26,8 @@ const routes: Routes = [
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatIconModule,
     MatTableModule,
+    MatIconModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

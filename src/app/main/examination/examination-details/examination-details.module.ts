@@ -25,7 +25,8 @@ import { MatOptionModule, MatButtonModule, MatRadioModule } from '@angular/mater
     MatOptionModule,
     ReactiveFormsModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonModule
   ],
   declarations: [
     ExaminationDetailsPage
