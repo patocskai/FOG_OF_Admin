@@ -8,6 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { GroupStatisticsPage } from './group-statistics.page';
 import { MatInputModule, MatFormFieldModule, MatTableModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'group-statistics',
+    component: GroupStatisticsPage
+  }
+];
 
 @NgModule({
   imports: [
@@ -19,7 +27,8 @@ import { MatInputModule, MatFormFieldModule, MatTableModule } from '@angular/mat
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     GroupStatisticsPage,

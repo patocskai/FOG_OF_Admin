@@ -34,9 +34,7 @@ import { environment } from 'src/environments/environment';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    LoginPageModule,
-    MainPageModule,
-    ProfilePageModule
+    LoginPageModule
   ],
   providers: [
     StatusBar,

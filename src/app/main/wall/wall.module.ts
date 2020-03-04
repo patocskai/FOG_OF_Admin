@@ -11,11 +11,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBottomSheetModule, MatInputModule } from '@angular/material';
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'wall',
     component: WallPage
   }
 ];
@@ -33,7 +33,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
     MatTooltipModule,
-    MatInputModule
+    MatInputModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [WallPage]
 })

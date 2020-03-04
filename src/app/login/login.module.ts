@@ -6,6 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login.page';
 import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginPage
+  }
+];
 
 @NgModule({
   imports: [
@@ -16,7 +24,8 @@ import { MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/ma
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [LoginPage]
 })

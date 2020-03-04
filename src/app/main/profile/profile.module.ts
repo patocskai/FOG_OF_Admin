@@ -7,6 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ProfilePage } from './profile.page';
 import { MatFormFieldModule, MatOptionModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'profile',
+    component: ProfilePage
+  }
+];
 
 @NgModule({
   imports: [
@@ -17,7 +25,8 @@ import { MatFormFieldModule, MatOptionModule } from '@angular/material';
     MatFormFieldModule,
     MatListModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [ProfilePage]
 })

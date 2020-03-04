@@ -10,7 +10,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ExaminationPage } from './examination.page';
-import { MatButtonToggleModule, MatSlideToggleModule, MatOptionModule, MatExpansionModule, MatRadioModule } from '@angular/material';
+import { MatButtonToggleModule, MatSlideToggleModule, MatExpansionModule, MatRadioModule } from '@angular/material';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'examination',
+    component: ExaminationPage
+  }
+];
 
 @NgModule({
   imports: [
@@ -27,7 +35,8 @@ import { MatButtonToggleModule, MatSlideToggleModule, MatOptionModule, MatExpans
     MatListModule,
     MatProgressSpinnerModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     ExaminationPage,

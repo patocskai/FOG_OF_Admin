@@ -13,8 +13,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { StaffPage } from './staff.page';
-import { MatInputModule, MatAutocompleteModule, MatCheckboxModule, MatOptionModule } from '@angular/material';
+import { MatInputModule, MatAutocompleteModule, MatCheckboxModule, MatOptionModule, MatSnackBarModule } from '@angular/material';
 import { DataPage } from './data/data.page';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'staff',
+    component: StaffPage
+  }
+];
 
 @NgModule({
   imports: [
@@ -31,7 +39,9 @@ import { DataPage } from './data/data.page';
     MatCheckboxModule,
     DragDropModule,
     MatListModule,
-    MatOptionModule
+    MatOptionModule,
+    MatSnackBarModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [
     StaffPage,
