@@ -23,7 +23,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    ShareModule,
     CommonModule,
     FormsModule,
     IonicModule,
@@ -37,7 +36,8 @@ const routes: Routes = [
     MatTooltipModule,
     MatInputModule,
     MatButtonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ShareModule
   ],
   declarations: [WallPage]
 })

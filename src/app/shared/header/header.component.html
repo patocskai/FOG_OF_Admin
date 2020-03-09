@@ -5,14 +5,14 @@
     </button>
     <span *ngIf="sidenave">DermIQ</span>
     <span class="menu-spacer"></span>
-    <nav mat-tab-nav-bar class="center" *ngIf="!sidenave" [backgroundColor]="'#44318D'">
+    <nav mat-tab-nav-bar class="center" *ngIf="!sidenave" style="color: #44318D">
       <span style="padding-top: 1ex">DermIQ</span>
       <div style="width: 100%;padding-left: 5%">
-        <a style="color: white" mat-tab-link *ngFor="let link of dataService.navLinks; let i = index"
+        <!-- <a style="color: white" mat-tab-link *ngFor="let link of dataService.navLinks; let i = index"
           [routerLink]="link.link" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="{exact: true}"
           [active]="rla.isActive" (click)="setExamination(link)">
           {{link.label}}
-        </a>
+        </a> -->
       </div>
     </nav>
     <div *ngIf="!sidenave" style="color:white; position: absolute; top: 19px; right: 15px; font-size: medium">
@@ -26,9 +26,11 @@
           <mat-icon [matBadge]="numberOfNews" matBadgeColor="warn">new_releases</mat-icon>
         </a>
       </button>
-      <button id="logout" mat-icon-button matTooltip="Kijelentkezés"><a (click)="logout()" style="color:white;">
+      <button id="logout" mat-icon-button matTooltip="Kijelentkezés">
+        <a (click)="logout()" style="color:white;">
           <mat-icon>power_settings_new</mat-icon>
-        </a></button>
+        </a>
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

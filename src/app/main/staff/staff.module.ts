@@ -49,8 +49,7 @@ const routes: Routes = [
     AddDialogPage,
     DataPage,
     ResultPage,
-    WDialogPage,
-    NewsDialogComponent
+    WDialogPage
   ],
   entryComponents: [
     DataPage,

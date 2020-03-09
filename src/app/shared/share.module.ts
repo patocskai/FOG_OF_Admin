@@ -1,8 +1,14 @@
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { IonicModule } from '@ionic/angular';
+import { MatIconModule } from '@angular/material/icon';
 import { NewsDialogComponent } from './news-dialog/news-dialog.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule } from '@angular/material';
 
 
 
@@ -13,7 +19,19 @@ import { CommonModule } from '@angular/common';
     NewsDialogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatBadgeModule,
+    MatListModule,
+    MatCardModule,
+    MatBottomSheetModule
+  ],
+  exports: [
+    HeaderComponent,
+    SidenavMenuComponent,
+    NewsDialogComponent
   ]
 })
 export class ShareModule { }

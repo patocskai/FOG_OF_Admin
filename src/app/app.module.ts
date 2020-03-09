@@ -1,7 +1,4 @@
-import { ShareModule } from './shared/share.module';
-import { ProfilePageModule } from './main/profile/profile.module';
 import { AuthGuard } from './core/auth.guard';
-import { LoginPageModule } from './login/login.module';
 import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainPageModule } from './main/main.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
