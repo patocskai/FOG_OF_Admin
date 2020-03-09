@@ -1,3 +1,4 @@
+import { ShareModule } from './shared/share.module';
 import { ProfilePageModule } from './main/profile/profile.module';
 import { AuthGuard } from './core/auth.guard';
 import { LoginPageModule } from './login/login.module';

@@ -1,3 +1,4 @@
+import { ShareModule } from './../shared/share.module';
 import { AuthGuard } from './../core/auth.guard';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -50,6 +51,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ShareModule,
     MatInputModule,
     MatFormFieldModule,
     WallPageModule,

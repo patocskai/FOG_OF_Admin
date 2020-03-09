@@ -7,15 +7,16 @@ import { FillService } from 'src/app/services/fill.service';
 
 @Component({
   selector: 'app-news-dialog',
-  templateUrl: './news-dialog.page.html',
-  styleUrls: ['./news-dialog.page.scss'],
+  templateUrl: './news-dialog.component.html',
+  styleUrls: ['./news-dialog.component.css']
 })
-export class NewsDialogPage implements OnInit {
+export class NewsDialogComponent implements OnInit {
+
   practitioners = [];
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
-    private _bottomSheetRef: MatBottomSheetRef<NewsDialogPage>,
+    private _bottomSheetRef: MatBottomSheetRef<NewsDialogComponent>,
     private dataService: PassDataService,
     private _router: Router,
     private fillservice: FillService
@@ -33,5 +34,4 @@ export class NewsDialogPage implements OnInit {
     this._router.navigate(['examination']);
     this._bottomSheetRef.dismiss();
   }
-
 }

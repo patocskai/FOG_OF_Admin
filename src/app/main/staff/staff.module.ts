@@ -1,4 +1,4 @@
-import { NewsDialogPage } from '../../main/news-dialog/news-dialog.page';
+import { NewsDialogComponent } from './../../shared/news-dialog/news-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { WDialogPage } from './w-dialog/w-dialog.page';
@@ -50,13 +50,13 @@ const routes: Routes = [
     DataPage,
     ResultPage,
     WDialogPage,
-    NewsDialogPage
+    NewsDialogComponent
   ],
   entryComponents: [
     DataPage,
     AddDialogPage,
     WDialogPage,
-    NewsDialogPage
+    NewsDialogComponent
   ]
 })
 export class StaffPageModule { }
