@@ -1,3 +1,4 @@
+import { ShareModule } from './../../shared/share.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RankingsPage } from './rankings/rankings.page';
@@ -28,7 +29,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatTableModule,
     MatIconModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ShareModule
   ],
   declarations: [
     GroupStatisticsPage,

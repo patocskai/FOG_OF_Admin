@@ -1,6 +1,8 @@
 <div class="spinner" *ngIf="!staff">
   <mat-spinner></mat-spinner>
 </div>
+<app-header></app-header>
+<app-sidenav-menu></app-sidenav-menu>
 <div *ngIf="staff && filteredItems && !this.dataService.personDetails" style="padding-top: 2%">
   <div class="filter">
     <form class="example-form">

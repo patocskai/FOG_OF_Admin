@@ -16,10 +16,8 @@
       </div>
     </nav>
     <div *ngIf="!sidenave" style="color:white; position: absolute; top: 19px; right: 15px; font-size: medium">
-      <button mat-icon-button matTooltip="Profil">
-        <a (click)="openProfile()" style="color:white;">
+      <button (click)="openProfile()" mat-icon-button matTooltip="Profil">
           <mat-icon>person</mat-icon>
-        </a>
       </button>
       <button mat-icon-button matTooltip="Értesítések">
         <a style="color:white;" (click)="openNewsDialog()">

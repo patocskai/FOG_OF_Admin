@@ -1,3 +1,4 @@
+import { ShareModule } from './../../shared/share.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ExaminationDetailsPage } from './examination-details/examination-details.page';
@@ -36,7 +37,8 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatRadioModule,
     MatTabsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ShareModule
   ],
   declarations: [
     ExaminationPage,

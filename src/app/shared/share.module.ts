@@ -8,7 +8,7 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule } from '@angular/material';
+import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule, MatDialogModule, MatButtonModule } from '@angular/material';
 
 
 
@@ -26,7 +26,9 @@ import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule } from '@angular
     MatBadgeModule,
     MatListModule,
     MatCardModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   exports: [
     HeaderComponent,

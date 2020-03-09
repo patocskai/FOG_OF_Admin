@@ -1,3 +1,4 @@
+import { ShareModule } from './../../shared/share.module';
 import { NewsDialogComponent } from './../../shared/news-dialog/news-dialog.component';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -42,7 +43,8 @@ const routes: Routes = [
     MatOptionModule,
     MatSnackBarModule,
     RouterModule.forChild(routes),
-    MatButtonModule
+    MatButtonModule,
+    ShareModule
   ],
   declarations: [
     StaffPage,
