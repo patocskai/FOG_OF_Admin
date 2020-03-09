@@ -110,7 +110,6 @@ export class AuthService {
             docSnapshots.forEach(element => {
               this.loggedUser = element.data() as Practitioner;
               this.loggedUser.practitonerID = element.id;
-              localStorage.setItem('user', JSON.stringify(this.loggedUser));
               localStorage.setItem('loggedIn', JSON.stringify(this.loggedUser));
               // tslint:disable-next-line: max-line-length
               this.lgUserName = this.loggedUser.prefix + ' ' + this.loggedUser.family + ' ' + this.loggedUser.given + ' ' + this.loggedUser.suffix;
