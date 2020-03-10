@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   selectedVal = '';
   activeLinkIndex = -1;
-  @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
   loggedUser: Practitioner;
   lgUserName = '';
   reason = '';
@@ -40,10 +40,6 @@ export class HeaderComponent implements OnInit {
     private fillService: FillService,
     // tslint:disable-next-line: variable-name
     private _bottomSheet: MatBottomSheet) {
-  }
-
-  openProfile() {
-    this.router.navigateByUrl('/profile');
   }
 
   @HostListener('window:resize', ['$event'])
@@ -73,11 +69,11 @@ export class HeaderComponent implements OnInit {
     const promise = new Promise((resolve, reject) => {
       let fills = [];
       // tslint:disable-next-line: only-arrow-functions
-      this.fillService.getUserFills().then(function(querySnapshot) {
+      this.fillService.getUserFills().then(function (querySnapshot) {
         fills = [];
         let i = 0;
         // tslint:disable-next-line: only-arrow-functions
-        querySnapshot.forEach(function(doc) {
+        querySnapshot.forEach(function (doc) {
           const data = doc.data();
           if (data.opened !== 'yes' && data.opened !== 'none') {
             fills.push(data);

@@ -19,7 +19,7 @@ export class SidenavMenuComponent implements OnInit {
   numberOfNews = 0;
 
   constructor(private auth: AuthService, public dataService: PassDataService,
-    private fillService: FillService, private dialog: MatDialog, private router: Router, private _bottomSheet: MatBottomSheet) {
+              private fillService: FillService, private dialog: MatDialog, private router: Router, private _bottomSheet: MatBottomSheet) {
     this.navLinks = [
       {
         label: 'Fal',
@@ -51,16 +51,18 @@ export class SidenavMenuComponent implements OnInit {
   }
 
   async getUserFills() {
-    let promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       let fills = [];
-      this.fillService.getUserFills().then(function (querySnapshot) {
+      // tslint:disable-next-line: only-arrow-functions
+      this.fillService.getUserFills().then(function(querySnapshot) {
         fills = [];
         let i = 0;
-        querySnapshot.forEach(function (doc) {
+        // tslint:disable-next-line: only-arrow-functions
+        querySnapshot.forEach(function(doc) {
           if (doc.data().opened !== 'yes') {
             fills.push(doc.data());
-            fills[i].fillID = doc.id
-            i++
+            fills[i].fillID = doc.id;
+            i++;
           }
         });
         resolve(fills)

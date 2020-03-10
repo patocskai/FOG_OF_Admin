@@ -3,21 +3,45 @@
     <button mat-icon-button (click)="onToggleSidenav()" *ngIf="sidenave">
       <mat-icon>menu</mat-icon>
     </button>
-    <span *ngIf="sidenave">DermIQ</span>
+    <span *ngIf="sidenave">FOG-OF</span>
     <span class="menu-spacer"></span>
     <nav mat-tab-nav-bar class="center" *ngIf="!sidenave" style="color: #44318D">
-      <span style="padding-top: 1ex">DermIQ</span>
+      <span style="padding-top: 1ex">FOG-OF</span>
       <div style="width: 100%;padding-left: 5%">
         <!-- <a style="color: white" mat-tab-link *ngFor="let link of dataService.navLinks; let i = index"
           [routerLink]="link.link" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="{exact: true}"
           [active]="rla.isActive" (click)="setExamination(link)">
           {{link.label}}
         </a> -->
+        <div  class="navigateButton">
+          <button mat-button [routerLink]="['/wall']">
+            Wall
+          </button>
+        </div>
+
+        <div  class="navigateButton">
+          <button mat-button [routerLink]="['/examination']">
+            Examination
+          </button>
+        </div>
+
+        <div  class="navigateButton">
+          <button mat-button [routerLink]="['/group-statistics']">
+            GroupStatistics
+          </button>
+        </div>
+
+        <div  class="navigateButton">
+          <button mat-button [routerLink]="['/staff']">
+            Staff
+          </button>
+        </div>
+
       </div>
     </nav>
     <div *ngIf="!sidenave" style="color:white; position: absolute; top: 19px; right: 15px; font-size: medium">
-      <button (click)="openProfile()" mat-icon-button matTooltip="Profil">
-          <mat-icon>person</mat-icon>
+      <button [routerLink]="['/profile']" mat-icon-button matTooltip="Profil">
+        <mat-icon>person</mat-icon>
       </button>
       <button mat-icon-button matTooltip="Értesítések">
         <a style="color:white;" (click)="openNewsDialog()">

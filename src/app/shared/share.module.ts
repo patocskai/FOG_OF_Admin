@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -28,7 +29,8 @@ import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule, MatDialogModule
     MatCardModule,
     MatBottomSheetModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,
