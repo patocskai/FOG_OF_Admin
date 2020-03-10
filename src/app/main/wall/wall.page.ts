@@ -55,13 +55,15 @@ export class WallPage implements OnInit {
   public contentCtrl: FormControl = new FormControl();
   public practitionersMultiFilterCtrl: FormControl = new FormControl();
   public filteredPractitionersMulti: ReplaySubject<Practitioner[]> = new ReplaySubject<Practitioner[]>(1);
-  @ViewChild('multiSelect', {static: false}) multiSelect: MatSelect;
+  @ViewChild('multiSelect', { static: false }) multiSelect: MatSelect;
+  // tslint:disable-next-line: variable-name
   protected _onDestroy = new Subject<void>();
   @Input() placeholderLabel = 'Keresés';
 
 
   constructor(
     private dataService: PassDataService,
+    // tslint:disable-next-line: variable-name
     private _router: Router,
     private examinationService: ExaminationService,
     private practitionerService: PractitionerService,
@@ -85,10 +87,10 @@ export class WallPage implements OnInit {
 
   createNotification() {
     this.textAreaOpen = false;
-    let practID = [];
+    const practID = [];
     let i = 0;
-    let shareWith = this.practitionersMultiCtrl.value;
-    let content = this.contentCtrl.value;
+    const shareWith = this.practitionersMultiCtrl.value;
+    const content = this.contentCtrl.value;
     this.practitionersMultiCtrl.reset();
     this.contentCtrl.reset();
     const today = new Date();
@@ -100,7 +102,7 @@ export class WallPage implements OnInit {
         i++;
       });
     }
-    let notification: Noti = {
+    const notification: Noti = {
       author: this.auth.loggedUser.practitonerID,
       content: content,
       creationDate: converted,
@@ -111,11 +113,13 @@ export class WallPage implements OnInit {
   }
 
   async getExaminations() {
-    let promise = new Promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
       let examinations = [];
+      // tslint:disable-next-line: only-arrow-functions
       this.examinationService.getExaminations().onSnapshot(function (querySnapshot) {
         examinations = [];
         let i = 0;
+        // tslint:disable-next-line: only-arrow-functions
         querySnapshot.forEach(function (doc) {
           examinations.push(doc.data());
           examinations[i].examinationID = doc.id;
@@ -130,6 +134,7 @@ export class WallPage implements OnInit {
   async getExaminationsData() {
     this.todayEvents = [];
     this.calendarEvents = [];
+
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.examinations.length; i++) {
       const date = this.examinations[i].expirationDate;
@@ -145,7 +150,7 @@ export class WallPage implements OnInit {
     this.examinations.sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
     let i = 0;
     this.examinations.forEach(element => {
-      let asd = {
+      const asd = {
         title: this.examinations[i].examinationID,
         date: this.examinations[i].expirationDate
       };
@@ -174,8 +179,8 @@ export class WallPage implements OnInit {
   getNames(index: number) {
     let practitioner: Practitioner;
     let practitionerName = '';
-    let shareWithNames = [];
-    let shareWithIDs = this.notiService.notifications[index];
+    const shareWithNames = [];
+    const shareWithIDs = this.notiService.notifications[index];
     shareWithIDs.shareWith.forEach(element => {
       this.practitionerService.getPractitioners(element).subscribe(data => {
         practitioner = data as Practitioner;

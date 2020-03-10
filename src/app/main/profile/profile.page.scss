@@ -1,0 +1,37 @@
+.profile-style {
+    top: 50%;
+    left: 50%;
+    max-width:60%;
+    min-width: 40%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 8px 1px #43318d;
+    background: #fbfbfb82;
+  }
+  .list-style {
+    text-align: center;
+  }
+  .centered {
+    text-align: center;
+  }
+  .person {
+    background: #43318d00;
+    border: 2px solid #43318d;
+    border-radius: 15px;
+    width: auto;
+    display: inline-flex !important;
+  }
+  .matSelectStyle{
+      margin-left: 1em;
+  }
+  @media screen and (max-width:910px){
+      .matSelectStyle{
+          margin-left: 1em;
+      }  
+  }
+  .mat-form-field{
+  width:80px;
+  }
+  .header-style{
+    display: block;
+  }

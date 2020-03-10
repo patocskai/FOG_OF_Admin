@@ -37,6 +37,7 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     RouterModule.forChild(routes),
+    FullCalendarModule,
     ShareModule
   ],
   declarations: [WallPage]

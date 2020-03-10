@@ -1,3 +1,4 @@
+import { MatCardModule } from '@angular/material/card';
 import { ShareModule } from './../../shared/share.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
@@ -22,6 +23,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatCardModule,
     MatIconModule,
     MatFormFieldModule,
     MatListModule,
