@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ExaminationPage } from './examination.page';
-import { MatButtonToggleModule, MatSlideToggleModule, MatExpansionModule, MatRadioModule } from '@angular/material';
+import { MatButtonToggleModule, MatSlideToggleModule, MatExpansionModule, MatRadioModule, MatButtonModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -38,7 +38,8 @@ const routes: Routes = [
     MatRadioModule,
     MatTabsModule,
     RouterModule.forChild(routes),
-    ShareModule
+    ShareModule,
+    MatButtonModule
   ],
   declarations: [
     ExaminationPage,

@@ -34,6 +34,9 @@ import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule, MatDialogModule
     HeaderComponent,
     SidenavMenuComponent,
     NewsDialogComponent
+  ],
+  entryComponents: [
+    NewsDialogComponent
   ]
 })
 export class ShareModule { }

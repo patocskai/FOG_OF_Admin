@@ -1,3 +1,4 @@
+import { ShareModule } from './../../shared/share.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +27,8 @@ const routes: Routes = [
     MatListModule,
     MatOptionModule,
     MatSelectModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ShareModule
   ],
   declarations: [ProfilePage]
 })

@@ -1,3 +1,5 @@
+import { ShareModule } from './shared/share.module';
+import { WallPageModule } from './main/wall/wall.module';
 import { AuthGuard } from './core/auth.guard';
 import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -30,7 +32,9 @@ import { environment } from 'src/environments/environment';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ShareModule
+
   ],
   providers: [
     StatusBar,
