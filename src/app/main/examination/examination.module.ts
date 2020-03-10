@@ -1,3 +1,4 @@
+import { ImageViewerModule } from 'ngx-image-viewer';
 import { ShareModule } from './../../shared/share.module';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -39,7 +40,8 @@ const routes: Routes = [
     MatTabsModule,
     RouterModule.forChild(routes),
     ShareModule,
-    MatButtonModule
+    MatButtonModule,
+    ImageViewerModule.forRoot()
   ],
   declarations: [
     ExaminationPage,
