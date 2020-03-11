@@ -459,14 +459,14 @@
             </table>
             <div style=" margin-left: auto; margin-right: auto; padding-top:5%;" class="bar-chart"
               *ngIf="pieChartData.length !=0">
-              <!-- <canvas style="padding-top: 1%" [options]="pieChart1" baseChart width="100%" height="100%"
-                [data]="pieChartData" [labels]="pieChartCategories" [chartType]="pieChartType"></canvas> -->
+              <canvas style="padding-top: 1%" [options]="pieChart1" baseChart width="100%" height="100%"
+                [data]="pieChartData" [labels]="pieChartCategories" [chartType]="pieChartType"></canvas>
             </div>
             <div *ngIf="selectedExamination.diagnostics!='none'" style="margin-left: auto; margin-right: auto"
               class="bar-chart">
-              <!-- <canvas style="padding-top: 1%" baseChart width="100%" height="100%" [options]="pieChart2"
+              <canvas style="padding-top: 1%" baseChart width="100%" height="100%" [options]="pieChart2"
                 [data]="diagnosedPieChartData" [labels]="diagnosedPieChartCategories"
-                [chartType]="pieChartType"></canvas> -->
+                [chartType]="pieChartType"></canvas>
             </div>
           </div>
         </mat-card>

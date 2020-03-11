@@ -10,6 +10,7 @@ import { IonicModule } from '@ionic/angular';
 import { GroupStatisticsPage } from './group-statistics.page';
 import { MatInputModule, MatFormFieldModule, MatTableModule } from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
+import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
     MatTableModule,
     MatIconModule,
     RouterModule.forChild(routes),
-    ShareModule
+    ShareModule,
+    ChartsModule
   ],
   declarations: [
     GroupStatisticsPage,

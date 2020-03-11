@@ -3,10 +3,10 @@ import { StaffPageModule } from './main/staff/staff.module';
 import { GroupStatisticsPageModule } from './main/group-statistics/group-statistics.module';
 import { ExaminationPageModule } from './main/examination/examination.module';
 import { ShareModule } from './shared/share.module';
-import { WallPageModule } from './main/wall/wall.module';
 import { AuthGuard } from './core/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WallPageModule } from './main/wall/wall.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

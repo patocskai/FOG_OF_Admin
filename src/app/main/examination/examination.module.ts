@@ -1,3 +1,4 @@
+import { ChartsModule } from 'ng2-charts';
 import { ImageViewerModule } from 'ngx-image-viewer';
 import { ShareModule } from './../../shared/share.module';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -41,7 +42,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ShareModule,
     MatButtonModule,
-    ImageViewerModule.forRoot()
+    ImageViewerModule.forRoot(),
+    ChartsModule
   ],
   declarations: [
     ExaminationPage,
