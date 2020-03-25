@@ -1,3 +1,4 @@
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { ChartsModule } from 'ng2-charts';
 import { ImageViewerModule } from 'ngx-image-viewer';
 import { ShareModule } from './../../shared/share.module';
@@ -43,7 +44,8 @@ const routes: Routes = [
     ShareModule,
     MatButtonModule,
     ImageViewerModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    NgxMatSelectSearchModule
   ],
   declarations: [
     ExaminationPage,
