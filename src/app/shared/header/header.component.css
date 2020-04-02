@@ -1,14 +1,9 @@
-::ng-deep .mat-toolbar-row .mat-toolbar-single-row {
-    padding: 0 !important;
-}
-
-::ng-deep .mat-drawer-content {
-    background-color: white
-}
-
 .center {
     width: 100%;
     margin: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center
 }
 
 @media only screen and (min-width:501px) {
@@ -46,13 +41,33 @@ img {
     overflow-y: scroll !important;
 }
 
-::ng-deep .mat-tab-header, .mat-tab-nav-bar {
+::ng-deep .mat-tab-header,
+.mat-tab-nav-bar {
     border-bottom: none !important;
+}
+
+#title {
+    padding-top: 1.5%;
+    color: white;
+    margin-bottom: 1.5%;
+    display: inline-block;
+    font-size: 25px;
+    font-style: italic;
 }
 
 .navigateButton {
     color: white;
     margin-bottom: 1.5%;
+    margin-top: 1%;
     display: inline-block;
     font-size: 50px;
+    margin-right: 5%;
+}
+
+.navigateButton:active {
+    color: grey;
+}
+
+#dataMenu {
+    margin-top: 0.45%;
 }

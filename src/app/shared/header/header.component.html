@@ -3,55 +3,56 @@
     <button mat-icon-button (click)="onToggleSidenav()" *ngIf="sidenave">
       <mat-icon>menu</mat-icon>
     </button>
+
     <span *ngIf="sidenave">FOG-OF</span>
     <span class="menu-spacer"></span>
+
     <nav mat-tab-nav-bar class="center" *ngIf="!sidenave" style="color: #44318D">
-      <span style="padding-top: 1ex">FOG-OF</span>
-      <div style="width: 100%;padding-left: 5%">
-        <!-- <a style="color: white" mat-tab-link *ngFor="let link of dataService.navLinks; let i = index"
-          [routerLink]="link.link" routerLinkActive #rla="routerLinkActive" [routerLinkActiveOptions]="{exact: true}"
-          [active]="rla.isActive" (click)="setExamination(link)">
-          {{link.label}}
-        </a> -->
-        <div  class="navigateButton">
-          <button mat-button [routerLink]="['/wall']">
-            Wall
+      <span id="title">FOG-OF</span>
+      <div style="width: 100%;padding-left: 8%">
+        <div class="navigateButton">
+          <button mat-button [routerLink]="['/wall']" routerLinkActive="mat-accent">
+            Fal
           </button>
         </div>
 
-        <div  class="navigateButton">
-          <button mat-button [routerLink]="['/examination']">
-            Examination
+        <div class="navigateButton">
+          <button mat-button [routerLink]="['/examination']" routerLinkActive="mat-accent">
+            Vizsgálatok
           </button>
         </div>
 
-        <div  class="navigateButton">
-          <button mat-button [routerLink]="['/group-statistics']">
-            GroupStatistics
+        <div class="navigateButton">
+          <button mat-button [routerLink]="['/group-statistics']" routerLinkActive="mat-accent">
+            Csoportstatisztikák
           </button>
         </div>
 
-        <div  class="navigateButton">
-          <button mat-button [routerLink]="['/staff']">
-            Staff
+        <div class="navigateButton">
+          <button mat-button [routerLink]="['/staff']" routerLinkActive="mat-accent">
+            Munkatársak
           </button>
         </div>
 
+        <div class="navigateButton">
+          <button mat-button [routerLink]="['/histological']" routerLinkActive="mat-accent">
+            Szövettani diagnózis
+          </button>
+        </div>
       </div>
     </nav>
-    <div *ngIf="!sidenave" style="color:white; position: absolute; top: 19px; right: 15px; font-size: medium">
-      <button [routerLink]="['/profile']" mat-icon-button matTooltip="Profil">
+
+    <div *ngIf="!sidenave" id="dataMenu">
+      <button [routerLink]="['/profile']" routerLinkActive="mat-accent" mat-icon-button matTooltip="Profil">
         <mat-icon>person</mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Értesítések">
-        <a style="color:white;" (click)="openNewsDialog()">
-          <mat-icon [matBadge]="numberOfNews" matBadgeColor="warn">new_releases</mat-icon>
-        </a>
+
+      <button mat-icon-button matTooltip="Értesítések" style="color:white;" (click)="openNewsDialog()">
+        <mat-icon [matBadge]="numberOfNews" matBadgeColor="warn">new_releases</mat-icon>
       </button>
-      <button id="logout" mat-icon-button matTooltip="Kijelentkezés">
-        <a (click)="logout()" style="color:white;">
-          <mat-icon>power_settings_new</mat-icon>
-        </a>
+
+      <button id="logout" mat-icon-button matTooltip="Kijelentkezés" (click)="logout()" style="color:white;">
+        <mat-icon>power_settings_new</mat-icon>
       </button>
     </div>
   </mat-toolbar-row>

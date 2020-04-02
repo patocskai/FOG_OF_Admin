@@ -1,34 +1,33 @@
 <app-header></app-header>
-<app-sidenav-menu></app-sidenav-menu>
 <div *ngIf="loaded | async">
   <mat-card class="profile-style">
     <div class="centered">
-    <mat-list style="display:inline-block">
-      <h3 class="header-style" mat-subheader>Felhasználói adatok</h3>
-      <mat-list-item class="person">
-        <mat-icon mat-list-icon>person</mat-icon>
-        <h4 mat-line>{{userName}}</h4>
-        <p mat-line> {{user.rank}} </p>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-label center><b>Munkacsoport: </b> {{userWorkgroup}} </mat-label>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-label><b>Regisztráció: </b> {{user.registration}} </mat-label>
-      </mat-list-item>
-      <mat-list-item>
-        <mat-label><b>Dermatoszkóp használat: </b></mat-label>
+      <mat-list style="display:inline-block">
+        <h3 class="header-style" mat-subheader>Felhasználói adatok</h3>
+        <mat-list-item class="person">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h4 mat-line>{{userName}}</h4>
+          <p mat-line> {{user.rank}} </p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-label center><b>Munkacsoport: </b> {{userWorkgroup}} </mat-label>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-label><b>Regisztráció: </b> {{user.registration}} </mat-label>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-label><b>Dermatoszkóp használat: </b></mat-label>
           <mat-form-field class="matSelectStyle">
-            <mat-select [(value)]="dermatoscopeExperience" >
+            <mat-select [(value)]="dermatoscopeExperience">
               <mat-option *ngFor="let option of options" [value]="option"
                 (click)="updateDermatoscopeExperience(option)">
                 {{option}} év
               </mat-option>
             </mat-select>
           </mat-form-field>
-       
-      </mat-list-item>
-    </mat-list>
-  </div>
+
+        </mat-list-item>
+      </mat-list>
+    </div>
   </mat-card>
 </div>

@@ -1,24 +1,21 @@
-<ul>
-    <li *ngFor="let news of data; let i=index">
+<mat-chip-list class="newsChipsList">
+    <mat-chip disableRipple *ngFor="let news of data; let i=index" class="newsChip">
         <div class="text-inside-grid">
-            <mat-card>
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <strong>Értesítés típusa: </strong>
-                            <p *ngIf="news.type == 'new'" style="padding-left: 1ex;padding-top: 1.8ex">Új feltöltés</p>
-                            <p *ngIf="news.type == 'closed'" style="padding-left: 1ex;padding-top: 1.8ex">Vizsgálatot
-                                lezárták</p>
-                        </mat-list-item>
-                        <mat-list-item>
-                            <strong>Vizsgálat azonosító: </strong>
-                            <p class="fake-link" style="padding-left: 1ex;padding-top: 1.8ex" (click)="openExam(news)">
-                                {{news.examinationID}}</p>
-                        </mat-list-item>
-                        <mat-list-item> {{news.date}}</mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-            </mat-card>
+            <div  mat-card-avatar
+                class="example-header-image newsIcon">
+                <mat-icon class="biggerIcon">new_releases</mat-icon>
+            </div>
+            <mat-label>
+            <b>Értesítés típusa: </b>
+            <mat-label *ngIf="news.type == 'new'" style="padding-left: 1ex;padding-top: 1.8ex">Új feltöltés</mat-label>
+            <mat-label *ngIf="news.type == 'closed'" style="padding-left: 1ex;padding-top: 1.8ex">Vizsgálatot
+                lezárták</mat-label></mat-label>
+                <br>
+                <mat-label> <b>Vizsgálat azonosító: </b>
+            <p class="fake-link" style="padding-left: 1ex;padding-top: 1.8ex" (click)="openExam(news)">
+                {{news.examinationID}}</p></mat-label>
+                <br>
+            <mat-label> {{news.date}}</mat-label>
         </div>
-    </li>
-</ul>
+    </mat-chip>
+</mat-chip-list>

@@ -9,7 +9,7 @@ import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule, MatDialogModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule, MatDialogModule, MatButtonModule, MatFormFieldModule, MatChipsModule } from '@angular/material';
 
 
 
@@ -30,7 +30,9 @@ import { MatToolbarModule, MatBadgeModule, MatBottomSheetModule, MatDialogModule
     MatBottomSheetModule,
     MatDialogModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    MatChipsModule
   ],
   exports: [
     HeaderComponent,
