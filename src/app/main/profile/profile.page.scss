@@ -15,18 +15,24 @@
 
 .centered {
   text-align: center;
+
+  .person {
+    background: #43318d00;
+    border: 2px solid #43318d;
+    border-radius: 15px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.person {
-  background: #43318d00;
-  border: 2px solid #43318d;
-  border-radius: 15px;
-  width: auto;
-  display: inline-flex !important;
-}
 
 .matSelectStyle {
   margin-left: 1em;
+}
+
+.material-icon {
+  vertical-align: middle;
 }
 
 @media screen and (max-width:910px) {
