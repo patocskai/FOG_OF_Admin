@@ -1,5 +1,6 @@
 <app-header></app-header>
 <app-sidenav-menu></app-sidenav-menu>
+<div class="body">
 <div *ngIf="!examinationDetails && loaded | async" (window:resize)="onResize($event)">
     <div class="filterList">
         <div
@@ -13,11 +14,11 @@
                 </mat-button-toggle>
             </mat-button-toggle-group>
         </div>
-        <div
+        <!-- <div
             [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
-            <!-- <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
-            </ngx-daterangepicker> -->
-        </div>
+            <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
+            </ngx-daterangepicker>
+        </div> -->
         <div
             [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
             <mat-form-field class="filter-by-pr">
@@ -32,7 +33,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div *ngIf="selectedTab !='Vizsgálatok'" class="filterItem">
+        <div *ngIf="selectedTab !='Vizsgálatok'" class="filterItem slider">
             <mat-slide-toggle [(ngModel)]="slider" (change)="updateHistoData($event)" color="primary">Diagnosztizáltak
                 megjelenítése</mat-slide-toggle>
         </div>
@@ -60,39 +61,34 @@
                                         <strong>{{categories}}</strong>
                                     </mat-panel-title>
                                 </mat-expansion-panel-header>
-                                <mat-card-content>
-                                    <div class="examinationFlex">
-                                        <div *ngFor="let examination of getExaminationsByDiagnose(categories)">
-                                            <mat-card class="examinationsCard">
-                                                <mat-card-header>
-                                                    <div *ngIf="windowWidth > 500" mat-card-avatar
-                                                        class="example-header-image customIconWidth">
-                                                        <mat-icon>assignment</mat-icon>
-                                                    </div>
-                                                    <mat-card-subtitle style="color: black">
-                                                        <div>
-                                                            <mat-label center><b>Vizsgálat azonosító: </b>
-                                                                <p class="fake-link"
-                                                                    (click)="openVisit(examination.examinationID)">
-                                                                    {{examination.examinationID}}</p>
-                                                            </mat-label>
-                                                            <br>
-                                                            <mat-label center><b>Határidő:
-                                                                </b>{{examination.creationDate}}</mat-label>
-                                                            <br>
-                                                            <mat-label center><b>Létrehozva: </b>
-                                                                {{examination.creationDate}}</mat-label>
-                                                            <br>
-                                                            <mat-label center><b>Szövettani diagnózis: </b>
-                                                                <p class="diagnose-p">{{examination.diagnostics}}</p>
-                                                            </mat-label>
-                                                        </div>
-                                                    </mat-card-subtitle>
-                                                </mat-card-header>
-                                            </mat-card>
+                                <mat-chip-list class="examinatiosChipsList">
+                                    <mat-chip disableRipple
+                                        *ngFor="let examination of getExaminationsByDiagnose(categories)"
+                                        class="examinationChip">
+                                        <div *ngIf="windowWidth > 500" mat-card-avatar
+                                            class="example-header-image customIcon">
+                                            <mat-icon class="biggerIcon">assignment</mat-icon>
                                         </div>
-                                    </div>
-                                </mat-card-content>
+                                        <div class="infos">
+                                            <mat-label center><b>Vizsgálat azonosító: </b>
+                                                <p class="fake-link" (click)="openVisit(examination.examinationID)">
+                                                    {{examination.examinationID}}</p>
+                                            </mat-label>
+                                            <br>
+                                            <mat-label center><b>Határidő:
+                                                </b>{{examination.expirationDate}}</mat-label>
+                                            <br>
+                                            <mat-label center><b>Létrehozva: </b>
+                                                {{examination.creationDate}}</mat-label>
+                                            <br>
+                                            <mat-label center><b>Szövettani diagnózis: </b>
+                                            </mat-label>
+                                            <br>
+                                            <mat-label class="diagnosticStyle" center>
+                                                {{examination.diagnostics}}</mat-label>
+                                        </div>
+                                    </mat-chip>
+                                </mat-chip-list>
                             </mat-expansion-panel>
                         </div>
                     </div>
@@ -109,34 +105,26 @@
                     <mat-card-content style="padding-left: 40%" *ngIf="undiagnosedExaminations.length == 0">
                         <p>Nincs megejeleníthető vizsgálat</p>
                     </mat-card-content>
-                    <mat-card-content class="undiagnosedExaminations" *ngIf="undiagnosedExaminations.length != 0">
-                        <div *ngFor="let examination of undiagnosedExaminations">
-                            <div>
-                                <mat-card class="undiagnosedExaminationCard">
-                                    <mat-card-header>
-                                        <div *ngIf="windowWidth > 500" mat-card-avatar
-                                            class="customIconWidth example-header-image">
-                                            <mat-icon>assignment</mat-icon>
-                                        </div>
-                                        <mat-card-subtitle style="color: black">
-                                            <div>
-                                                <mat-label center><b>Vizsgálat azonosító: </b>
-                                                    <p class="fake-link" (click)="openVisit(examination.examinationID)">
-                                                        {{examination.examinationID}}</p>
-                                                </mat-label>
-                                                <br>
-                                                <mat-label center><b>Határidő:
-                                                    </b>{{examination.creationDate}}</mat-label>
-                                                <br>
-                                                <mat-label center><b>Létrehozva: </b>
-                                                    {{examination.creationDate}}</mat-label>
-                                            </div>
-                                        </mat-card-subtitle>
-                                    </mat-card-header>
-                                </mat-card>
+                    <mat-chip-list class="examinatiosChipsList" *ngIf="undiagnosedExaminations.length != 0">
+                        <mat-chip disableRipple *ngFor="let examination of undiagnosedExaminations"
+                            class="undiagExaminationChip">
+                            <div *ngIf="windowWidth > 500" mat-card-avatar class="customIcon example-header-image">
+                                <mat-icon class="biggerIcon">assignment</mat-icon>
                             </div>
-                        </div>
-                    </mat-card-content>
+                            <div class="infos">
+                                <mat-label center><b>Vizsgálat azonosító: </b>
+                                    <p class="fake-link" (click)="openVisit(examination.examinationID)">
+                                        {{examination.examinationID}}</p>
+                                </mat-label>
+                                <br>
+                                <mat-label center><b>Határidő:
+                                    </b>{{examination.expirationDate}}</mat-label>
+                                <br>
+                                <mat-label center><b>Létrehozva: </b>
+                                    {{examination.creationDate}}</mat-label>
+                            </div>
+                        </mat-chip>
+                    </mat-chip-list>
                 </mat-expansion-panel>
             </div>
         </div>
@@ -150,7 +138,7 @@
                     <mat-card-content>
                         <mat-list>
                             <mat-list-item>
-                                <div mat-card-avatar style="color: #44318D">
+                                <div mat-card-avatar class="mat-card-avatar-v2">
                                     <mat-icon>assignment</mat-icon>
                                 </div>
                                 <p class="fake-link" (click)="openVisit(examination.examinationID)">
@@ -159,25 +147,28 @@
                             </mat-list-item>
                             <br />
                             <mat-list-item>
-                                <strong>Határidő: </strong>
-                                <p style="padding-left: 0.5ex;"> {{examination.expirationDate}}</p>
+                                <b>Határidő: </b>
+                                <mat-label style="padding-left: 0.5ex;"> {{examination.expirationDate}}</mat-label>
                             </mat-list-item>
                             <mat-list-item>
-                                <strong>Létrehozva: </strong>
-                                <p style="padding-left: 0.5ex;"> {{examination.creationDate}}</p>
+                                <b>Létrehozva: </b>
+                                <mat-label style="padding-left: 0.5ex;"> {{examination.creationDate}}</mat-label>
                             </mat-list-item>
                             <mat-list-item>
-                                <strong>Páciens neve: </strong>
-                                <p style="padding-left: 0.5ex;"> {{examination.patientName}}</p>
+                                <b>Páciens neve: </b>
+                                <mat-label style="padding-left: 0.5ex;"> {{examination.patientName}}</mat-label>
                             </mat-list-item>
                             <mat-list-item>
-                                <strong>Tajszám: </strong>
-                                <p style="padding-left: 0.5ex;"> {{examination.patientTaj}}</p>
+                                <b>Tajszám: </b>
+                                <mat-label style="padding-left: 0.5ex;"> {{examination.patientTaj}}</mat-label>
                             </mat-list-item>
+                            <br>
                             <mat-list-item>
-                                <strong>Szövettani diagnózis: </strong>
-                                <p *ngIf="tempDiagnoses[i] =='none'">Nincs</p>
-                                <p *ngIf="tempDiagnoses[i] !='none'">{{tempDiagnoses[i]}}</p>
+                                <b>Szövettani diagnózis: </b>
+                                <mat-label style="padding-left: 0.5ex;" *ngIf="tempDiagnoses[i] =='none'"> Nincs
+                                </mat-label>
+                                <mat-label style="padding-left: 0.5ex;" *ngIf="tempDiagnoses[i] !='none'">
+                                    {{tempDiagnoses[i]}}</mat-label>
                             </mat-list-item>
                         </mat-list>
                         <div style="padding-top: 4%">
@@ -213,3 +204,4 @@
     <app-examination-details (closeExaminationDetails)="closeDetails(event)"></app-examination-details>
 </div>
 <br />
+</div>

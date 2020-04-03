@@ -1,220 +1,315 @@
+.body {
+  overflow-y: scroll !important;
+  position: relative;
+
+}
+
 .example-header-image {
-    background-size: contain;
-    padding-top: 1ex;
+  background-size: contain;
+  padding-top: 1ex;
+}
+
+.unclickable {
+  pointer-events: none;
+}
+
+.mat-card-avatar {
+  padding-top: 2.5ex;
+}
+
+@media only screen and (min-width: 1101px) {
+  .cardListItem {
+    padding-top: 2%;
+    flex: 0 1 calc(33.3% - 32px);
   }
-  .unclickable {
-    pointer-events: none;
-  }
-  .mat-card-avatar {
-    padding-top: 2.5ex;
-  }
-  @media only screen and (min-width: 1101px) {
-    .cardListItem {
-      padding-top: 2%;
-      flex: 0 1 calc(33.3% - 32px);
-    }
-    .filterItem {
-      flex: 0 1 calc(25% - 32px);
-      width: 100%;
-    }
-    .filterItem2 {
-      flex: 0 1 calc(33.3% - 32px);
-      width: 100%;
-    }
-    .filterList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 3%;
-    }
-    .filter-by-pr {
-      width: 80%;
-    }
-  }
-  @media only screen and (min-width: 881px) and (max-width: 1100) {
-    .cardListItem {
-      padding-top: 2%;
-      flex: 0 1 calc(33.3% - 32px);
-    }
-    .filterItem {
-      flex: 0 1 calc(25% - 32px);
-      width: 100%;
-    }
-    .filterItem2 {
-      flex: 0 1 calc(33.3% - 32px);
-      width: 100%;
-    }
-    .filterList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 3%;
-    }
-    .filter-by-pr {
-      width: 80%;
-    }
-    .cardList > *:not(:last-child) {
-      margin-right: 32px;
-    }
-  }
-  @media only screen and (min-width: 501px) and (max-width: 880px) {
-    .cardListItem {
-      padding-top: 2%;
-      flex: 0 1 calc(50% - 32px);
-    }
-    .filterItem {
-      flex: 0 1 calc(50% - 32px);
-      padding-top: 3%;
-      width: 100%;
-    }
-    .filterItem2 {
-      flex: 0 1 calc(50% - 32px);
-      width: 100%;
-    }
-    .filterList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .filter-by-pr {
-      width: 80%;
-    }
-    .cardList > *:not(:last-child) {
-      margin-right: 32px;
-    }
-  }
-  @media only screen and (min-width: 0px) and (max-width: 500px) {
-    .cardListItem {
-      padding-top: 2%;
-      flex: 0 1 calc(100% - 32px);
-    }
-    .filterItem {
-      flex: 0 1 calc(100% - 32px);
-      padding-top: 3%;
-      width: 100%;
-    }
-    .filterItem2 {
-      flex: 0 1 calc(100% - 32px);
-      width: 100%;
-    }
-    ::ng-deep .mat-expansion-panel-body {
-      padding: 0 2px !important;
-    }
-    ul {
-      padding: 0 !important;
-    }
-    .fake-link {
-      padding: 0 !important;
-    }
-    .diagnose-p {
-      padding: 0 !important;
-    }
-    .filterList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .filter-by-pr {
-      width: 100%;
-    }
-  }
-  .mat-tab-header {
-    background-color: white(45, 50, 62) !important;
-    color: white !important;
-  }
+
   .filterItem {
-    margin-left: auto;
-    margin-right: auto;
+    flex: 0 1 calc(25% - 32px);
+    width: 100%;
   }
-  .mat-button-toggle-checked {
-    background-color: #44318d;
-    color: white;
+
+  .filterItem2 {
+    flex: 0 1 calc(33.3% - 32px);
+    width: 100%;
   }
-  .form-control {
-    color: black;
-    cursor: pointer;
-  }
-  .cardList {
+
+  .filterList {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3%;
   }
-  .mat-list-item {
-    height: 24px !important;
+
+  .filter-by-pr {
+    width: 90%;
+    margin-left: 1ex;
   }
-  .cardList > * {
-    box-sizing: border-box;
-    margin-bottom: 2%;
-    margin-left: 1%;
+}
+
+@media only screen and (min-width: 881px) and (max-width: 1100) {
+  .cardListItem {
+    padding-top: 2%;
+    flex: 0 1 calc(33.3% - 32px);
   }
+
+  .filterItem {
+    flex: 0 1 calc(25% - 32px);
+    width: 100%;
+  }
+
+  .filterItem2 {
+    flex: 0 1 calc(33.3% - 32px);
+    width: 100%;
+  }
+
+  .filterList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3%;
+  }
+
+  .filter-by-pr {
+    width: 80%;
+  }
+
+  .cardList>*:not(:last-child) {
+    margin-right: 32px;
+  }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 880px) {
+  .cardListItem {
+    padding-top: 2%;
+    flex: 0 1 calc(50% - 32px);
+  }
+
+  .filterItem {
+    flex: 0 1 calc(50% - 32px);
+    padding-top: 3%;
+    width: 100%;
+  }
+
+  .filterItem2 {
+    flex: 0 1 calc(50% - 32px);
+    width: 100%;
+  }
+
+  .filterList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .filter-by-pr {
+    width: 80%;
+  }
+
+  .cardList>*:not(:last-child) {
+    margin-right: 32px;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+  .cardListItem {
+    padding-top: 2%;
+    flex: 0 1 calc(100% - 32px);
+  }
+
+  .filterItem {
+    flex: 0 1 calc(100% - 32px);
+    padding-top: 3%;
+    width: 100%;
+  }
+
+  .filterItem2 {
+    flex: 0 1 calc(100% - 32px);
+    width: 100%;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 2px !important;
+  }
+
+  ul {
+    padding: 0 !important;
+  }
+
   .fake-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+    padding: 0 !important;
+  }
+
+  .diagnose-p {
+    padding: 0 !important;
+  }
+
+  .filterList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .filter-by-pr {
+    width: 100%;
+  }
+}
+
+.mat-tab-header {
+  background-color: white(45, 50, 62) !important;
+  color: white !important;
+}
+
+.filterItem {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mat-button-toggle-checked {
+  background-color: #44318d;
+  color: white;
+}
+
+.form-control {
+  color: black;
+  cursor: pointer;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.mat-list-item {
+  height: 24px !important;
+}
+
+.cardList>* {
+  box-sizing: border-box;
+  margin-bottom: 2%;
+  margin-left: 1%;
+}
+
+.fake-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: 600;
+  font-size: large;
+  display: block;
+}
+
+.biggerIcon {
+  font-size: 28px;
+}
+
+.categories-button:hover {
+  cursor: pointer;
+}
+
+p {
+  margin: 0.2rem !important;
+  display: contents;
+}
+
+/*ul {
+    list-style-type: none;
     display: inline-block;
-    padding-top: 2ex;
-  }
-  .categories-button:hover {
-    cursor: pointer;
-  }
-  p {
-    margin: 0.2rem !important;
-    display: contents;
-  }
-  /*ul {
-      list-style-type: none;
-      display: inline-block;
-  }
-  */
-  mat-card {
-    min-height: 5%;
-  }
+}
+*/
+mat-card {
+  min-height: 5%;
+}
+
+@media screen and (max-width: 749px) {
   .examinationFlex {
-    display: flex;
-    flex-wrap: wrap;
+    display: block;
     justify-content: center;
   }
-  @media screen and (max-width: 749px) {
-    .examinationFlex {
-      display: block;
-      justify-content: center;
-    }
-  }
-  .customIconWidth {
-    width: unset;
-  }
-  .examinationsCard {
-    padding-top: 1ex;
-    padding: 0;
-    min-width: 26em;
-    max-width: 40em;
-    border-left: 10px solid #21aa04;
-    margin-bottom: 1ex;
-  }
-  .undiagnosedExaminations {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .undiagnosedExaminationCard {
-    width: 26em;
-    margin-bottom: 1ex;
-    border-left: 10px solid #ff8668;
-  }
+}
+
+.customIcon {
+  width: unset;
+  position: absolute;
+  top: 1px;
+}
+
+.undiagnosedExaminations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  flex: 1;
+}
+
+.undiagnosedExaminationCard {
+  min-width: 18em;
+  max-width: fit-content;
+  margin-bottom: 1ex;
+  border-left: 5px solid #ff8668;
+}
+
+.subTitle {
+  color: black;
+  margin-top: 2ex;
+}
+
+.diagnosticStyle {
+  line-height: normal;
+  font-weight: 400;
+  font-size: large;
+  font-variant: all-petite-caps;
+}
+
+.mat-card-avatar-v2 {
+  color: #44318D;
+  margin-bottom: 3ex;
+}
+
+.slider {
+  margin-top: 2.5ex;
+}
+
+.examinationChip {
+  height: fit-content;
+  flex: 0 1 calc(33.3% - 8px);
+  text-align: center;
+  box-shadow: inset 7px 0px 0px 0px #32aa07;
+  background-color: #ecececc7;
+}
+
+.undiagExaminationChip {
+  height: fit-content;
+  flex: 0 1 calc(33.3% - 8px);
+  text-align: center;
+  box-shadow: inset 7px 0px 0px 0px #f78568;
+  background-color: #ecececc7;
+}
+
+.infos {
+  padding: 0.5ex;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.avatarTextAlign {
+  display: flex;
+}

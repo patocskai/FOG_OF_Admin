@@ -14,7 +14,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ExaminationPage } from './examination.page';
-import { MatButtonToggleModule, MatSlideToggleModule, MatExpansionModule, MatRadioModule, MatButtonModule } from '@angular/material';
+import {
+  MatButtonToggleModule,
+  MatSlideToggleModule,
+  MatExpansionModule,
+  MatRadioModule,
+  MatButtonModule,
+  MatChipsModule
+} from '@angular/material';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
@@ -45,7 +52,8 @@ const routes: Routes = [
     MatButtonModule,
     ImageViewerModule.forRoot(),
     ChartsModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    MatChipsModule
   ],
   declarations: [
     ExaminationPage,

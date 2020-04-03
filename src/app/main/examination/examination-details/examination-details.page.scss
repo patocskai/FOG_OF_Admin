@@ -1,241 +1,346 @@
 @media only screen and (min-width: 1051px) {
-    .cardListItem {
-      flex: 0 1 calc(33% - 25px);
-    }
-    .cardListItemImg {
-      flex: 0 1 calc(33% - 25px);
-    }
-    .img-div {
-      width: 100%;
-      height: 50ex;
-      padding-left: 5%;
-      padding-top: 3%;
-    }
-    .details-class {
-      width: 85%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 2%;
-    }
-    .fills {
-      width: 40%;
-      padding-left: 0 !important;
-    }
-    .fill-details {
-      width: 55%;
-      display: inline-block;
-    }
-    ::ng-deep .bar-chart {
-      width: 50ex !important;
-    }
-    .cardList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    ::ng-deep .mat-tab-body {
-      min-height: 90ex !important;
-    }
+  .cardListItem {
+    flex: 0 1 calc(60% - 25px);
   }
-  
-  @media only screen and (min-width: 751px) and (max-width:1050px) {
-    .cardListItem {
-      flex: 0 1 calc(33% - 25px);
-    }
-    .cardListItemImg {
-      flex: 0 1 calc(33% - 25px);
-    }
-    .img-div {
-      width: 100%;
-      height: 50ex;
-      padding-left: 5%;
-      padding-top: 3%;
-    }
-    .details-class {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 2%;
-    }
-    .fills {
-      width: 40%;
-      padding-left: 0 !important;
-    }
-    .fill-details {
-      width: 55%;
-      display: inline-block;
-    }
-    ::ng-deep .bar-chart {
-      width: 50ex !important;
-    }
-    .cardList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    ::ng-deep .mat-tab-body {
-      min-height: 90ex !important;
-    }
+  .cardListItemImg {
+    flex: 0 1 calc(40% - 25px);
   }
-  
-  @media only screen and (min-width:500px) and (max-width:750px) {
-    .cardListItem {
-      flex: 0 1 calc(333% - 25px);
-    }
-    .details-class {
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 2%;
-    }
-    .cardListItemImg {
-      flex: 0 1 calc(333% - 25px);
-    }
-    .img-div {
-      width: 100%;
-      height: 50ex;
-      padding-left: 5%;
-      padding-top: 3%;
-    }
-    .fills {
-      width: 100%;
-      padding-left: 0 !important;
-    }
-    .fill-details {
-      width: 100%;
-    }
-    ::ng-deep .bar-chart {
-      width: 40ex !important;
-    }
-    .cardList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    mat-card {
-      float: left;
-      width: 90%
-    }
-    ::ng-deep .mat-tab-body {
-      min-height: 90ex !important;
-    }
+  .cardListItemScore {
+    flex: 0 1 calc(90% - 25px);
   }
-  
-  @media only screen and (min-width:0px) and (max-width:499px) {
-    .details-class {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      padding-top: 2%;
-    }
-    .cardListItem {
-      flex: 0 1 calc(100% - 25px);
-    }
-    .cardListItemImg {
-      flex: 0 1 calc(100% - 25px);
-    }
-    .img-div {
-      width: 100%;
-      height: 50ex;
-      padding-left: 5%;
-      padding-top: 3%;
-    }
-    .fills {
-      width: 90%;
-      padding-left: 0 !important;
-    }
-    .fill-details {
-      width: 100%;
-    }
-    ::ng-deep .bar-chart {
-      width: 30ex !important;
-    }
-    .cardList {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    mat-card {
-      float: left;
-      width: 100%
-    }
-  }
-  
-  ::ng-deep .mat-tab-header {
-    background-color: rgb(45, 50, 62) !important;
-    color: white !important;
-  }
-  
-  ::ng-deep .mat-tab-label .mat-tab-label-content {
-    color: white !important;
-  }
-  
-  .fill-details-card {
-    padding: 0;
-  }
-  
-  /* Column Gap */
-  
-  .cardList>* {
-    box-sizing: border-box;
-  }
-  
-  .cardList>*:not(:last-child) {
-    margin-right: 30px;
-  }
-  
-  .fills-tab {
+  .img-div {
     width: 100%;
+    height: 55ex;
   }
-  
-  ul {
-    list-style-type: none;
+  .details-class {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+  .fills {
+    width: 40%;
     padding-left: 0 !important;
   }
-  
-  ::ng-deep .mat-tab-group {
-    height: 100% !important;
+  .fill-details {
+    width: 55%;
+    display: inline-block;
   }
-  
-  .ng-star-inserted {
-    height: 100% !important;
+  .cardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  ::ng-deep .mat-tab-body-content {
-    height: auto !important;
-    overflow: unset !important;
+  ::ng-deep .mat-tab-body {
+    min-height: 90ex !important;
   }
-  
-  .mat-card-header {
-    justify-content: flex-end;
-    /* for right*/
+}
+@media only screen and (min-width:1050px) and (max-width:1323px) {
+  .details-class {
+    width: 90%;
   }
-  
-  .mat-radio-button~.mat-radio-button {
-    margin-left: 16px;
+}
+@media only screen and (max-width:927px) {
+  .customChip {
+    width: 49%!important;
   }
-  
-  p {
-    margin: 3px;
-    padding: 3px;
+  .customChip2 {
+    width: 49%!important;
   }
-  
-  .mat-list-base .mat-list-item {
-    height: 30px;
+  .customChip3 {
+    width: 49%!important;
   }
+}
+@media only screen and (max-width:870px) {
+  .customChip {
+    width: 100%!important;
+  }
+  .customChip2 {
+    width: 100%!important;
+  }
+  .customChip3 {
+    width: 100%!important;
+  }
+}
+@media only screen and (min-width: 751px) and (max-width:1050px) {
+  .cardListItem {
+    flex: 0 1 calc(60% - 25px);
+  }
+  .cardListItemImg {
+    flex: 0 1 calc(40% - 25px);
+  }
+  .cardListItemScore {
+    flex: 0 1 calc(100% - 25px);
+  }
+  .img-div {
+    width: 100%;
+    height: 50ex;
+  }
+  .details-class {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2%;
+  }
+  .fills {
+    width: 40%;
+    padding-left: 0 !important;
+  }
+  .fill-details {
+    width: 55%;
+    display: inline-block;
+  }
+  .cardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ::ng-deep .mat-tab-body {
+    min-height: 90ex !important;
+  }
+}
+@media only screen and (min-width:500px) and (max-width:750px) {
+  .cardListItem {
+    flex: 0 1 calc(503% - 25px);
+  }
+  .details-class {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2%;
+  }
+  .cardListItemImg {
+    flex: 0 1 calc(503% - 25px);
+  }
+  .cardListItemScore {
+    flex: 0 1 calc(100% - 25px);
+  }
+  .img-div {
+    width: 100%;
+    height: 50ex;
+  }
+  .fills {
+    width: 100%;
+    padding-left: 0 !important;
+  }
+  .fill-details {
+    width: 100%;
+  }
+  .cardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  mat-card {
+    float: left;
+    width: 90%
+  }
+  ::ng-deep .mat-tab-body {
+    min-height: 90ex !important;
+  }
+}
+@media only screen and (min-width:0px) and (max-width:499px) {
+  .details-class {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2%;
+  }
+  .cardListItem {
+    flex: 0 1 calc(100% - 25px);
+  }
+  .cardListItemImg {
+    flex: 0 1 calc(100% - 25px);
+  }
+  .cardListItemScore {
+    flex: 0 1 calc(100% - 25px);
+  }
+  .img-div {
+    width: 100%;
+    height: 50ex;
+  }
+  .fills {
+    width: 90%;
+    padding-left: 0 !important;
+  }
+  .fill-details {
+    width: 100%;
+  }
+  .cardList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  mat-card {
+    float: left;
+    width: 100%
+  }
+}
+::ng-deep .mat-tab-header {
+  background-color: rgb(45, 50, 62) !important;
+  color: white !important;
+}
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  color: white !important;
+}
+.fill-details-card {
+  padding: 0;
+}
+/* Column Gap */
+.cardList>* {
+  box-sizing: border-box;
+}
+.cardList>*:not(:last-child) {
+  margin-right: 30px;
+}
+.fills-tab {
+  width: 100%;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0 !important;
+}
+::ng-deep .mat-tab-group {
+  height: 100% !important;
+}
+.ng-star-inserted {
+  /* height: 100% !important; */
+}
+::ng-deep .mat-tab-body-content {
+  height: auto !important;
+  overflow: unset !important;
+}
+.mat-card-header {
+  justify-content: flex-end;
+  max-height: 4ex;
+  /* for right*/
+}
+.mat-radio-button~.mat-radio-button {
+  margin-left: 1px;
+  padding: 5px;
+}
+p {
+  margin: 3px;
+  padding: 3px;
+}
+.mat-list-base .mat-list-item {
+  height: auto;
+}
+.details1 {
+  box-shadow: 0px 0px 3px 1px #43318d;
+  background: #43318d1c;
+  padding: 5px;
+}
+.details2 {
+  box-shadow: 0px 0px 3px 1px #43318d;
+  background: #43318d1c;
+  padding: 2px;
+  height: fit-content;
+}
+.details3 {
+  box-shadow: 0px 0px 3px 1px #43318d;
+  background: #43318d1c;
+}
+.fakeMatCard {
+  padding-top: 0px;
+  box-shadow: none;
+}
+.noTopPadding {
+  padding-top: 1px!important;
+}
+.labelMinContent {
+  min-width: fit-content;
+}
+.bar-chart2 {
+  width: 40%!important;
+  height: 40%!important;
+}
+.customChipsList {
+  margin-left: 1ex;
+  display: inline;
+  text-align: center;
+  justify-content: flex-start;
+}
+.customChipsList2 {
+  margin-left: 1ex;
+  display: inline;
+  text-align: center;
+  justify-content: flex-start;
+}
+.customChip {
+  display: inline-grid;
+  min-height: 9vh;
+  max-height: 13vh;
+  box-shadow: 0px 0px 0px 1px #43318d;
+  width: 24%;
+  background: #43318d12;
+}
+.customChip2 {
+  display: inline-grid;
+  min-height: 13vh;
+  max-height: 15vh;
+  box-shadow: 0px 0px 0px 1px #43318d;
+  width: 24%;
+  background: #43318d12;
+}
+.customChip3 {
+  display: inline-grid;
+  min-height: 9vh;
+  max-height: 13vh;
+  box-shadow: 0px 0px 0px 1px #43318d;
+  width: 32.3%;
+  background: #43318d12;
+}
+::ng-deep .mat-chip-list-wrapper {
+  margin: unset!important;
+}
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #43318d!important;
+}
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #43318d!important;
+}
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  background-color: #43318d!important;
+}
+.psClass {
+  text-align: center;
+  width: auto;
+  margin-left: auto!important;
+  margin-right: auto!important;
+  font-family: sans-serif;
+  height: auto;
+  justify-content: center;
+  background: #43318d;
+}
+.psText {
+  color: white;
+}
+.algorithmChip {
+  max-width: 35vw;
+  min-width: 20vw;
+  height: 5vh;
+  margin-left: auto!important;
+  margin-right: auto!important;
+  font-family: sans-serif;
+  color: white;
+  justify-content: center;
+  background: #43318d;
+}
