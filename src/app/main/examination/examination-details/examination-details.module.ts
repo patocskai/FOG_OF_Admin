@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ExaminationDetailsPage } from './examination-details.page';
-import { MatOptionModule, MatButtonModule, MatRadioModule } from '@angular/material';
+import { MatOptionModule, MatButtonModule, MatRadioModule, MatChipsModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -26,7 +26,8 @@ import { MatOptionModule, MatButtonModule, MatRadioModule } from '@angular/mater
     ReactiveFormsModule,
     MatRadioModule,
     MatTabsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule
   ],
   declarations: [
     ExaminationDetailsPage

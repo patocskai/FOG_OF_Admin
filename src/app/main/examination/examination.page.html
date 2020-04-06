@@ -14,11 +14,11 @@
                 </mat-button-toggle>
             </mat-button-toggle-group>
         </div>
-        <!-- <div
+        <div
             [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
-            <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
-            </ngx-daterangepicker>
-        </div> -->
+            <!-- <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
+            </ngx-daterangepicker> -->
+        </div>
         <div
             [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
             <mat-form-field class="filter-by-pr">
@@ -94,9 +94,9 @@
                     </div>
                 </div>
             </mat-expansion-panel>
-            <div style="padding-top: 2%">
+            <div style="padding-top: 2%; margin-bottom: 10%;">
                 <mat-expansion-panel
-                    style="border-left: 15px solid #ff8668; border-right: 15px solid #ff8668; border-top: 1px solid #ff8668; ">
+                    style="border-left: 15px solid #ff8668; border-right: 15px solid #ff8668; border-top: 1px solid #ff8668;">
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             <strong>Diagnosztizálatlan</strong>
@@ -201,7 +201,7 @@
     </div>
 </div>
 <div *ngIf="examinationDetails">
-    <app-examination-details (closeExaminationDetails)="closeDetails(event)"></app-examination-details>
+    <app-examination-details (closeExaminationDetails)="closeDetails($event)"></app-examination-details>
 </div>
 <br />
 </div>
