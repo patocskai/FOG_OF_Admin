@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+  HostListener,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSidenav, MatBottomSheet } from '@angular/material';
 import { PassDataService } from 'src/app/services/pass-data.service';
@@ -11,10 +18,9 @@ import { NewsDialogComponent } from '../news-dialog/news-dialog.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-
   selectedVal = '';
   activeLinkIndex = -1;
   @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
@@ -26,12 +32,36 @@ export class HeaderComponent implements OnInit {
   lastSignIn;
   fills = [];
   loaded;
+
+  pages = [
+    {
+      title: 'Fal',
+      url: '/wall',
+    },
+    {
+      title: 'Vizsgálatok',
+      url: '/examination',
+    },
+    {
+      title: 'Csoportstatisztikák',
+      url: '/group-statistics',
+    },
+    {
+      title: 'Munkatársak',
+      url: '/staff',
+    },
+    {
+      title: 'Szövettani diagnózis',
+      url: '/histological',
+    },
+  ];
+
   @Output() public sidenavToggle = new EventEmitter();
   sidenave = false;
   numberOfNews = 0;
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
-  }
+  };
 
   constructor(
     public dataService: PassDataService,
@@ -39,8 +69,8 @@ export class HeaderComponent implements OnInit {
     public auth: AuthService,
     private fillService: FillService,
     // tslint:disable-next-line: variable-name
-    private _bottomSheet: MatBottomSheet) {
-  }
+    private _bottomSheet: MatBottomSheet
+  ) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
@@ -61,7 +91,7 @@ export class HeaderComponent implements OnInit {
   openNewsDialog(): void {
     this._bottomSheet.open(NewsDialogComponent, {
       data: this.fills,
-      panelClass: 'news-dialog'
+      panelClass: 'news-dialog',
     });
   }
 
@@ -92,7 +122,7 @@ export class HeaderComponent implements OnInit {
         resolve(fills);
       });
     });
-    this.fills = await promise as Fill[];
+    this.fills = (await promise) as Fill[];
   }
 
   setExamination(tab: any) {
@@ -112,11 +142,14 @@ export class HeaderComponent implements OnInit {
     await this.auth.getUser();
     this.dataService.checkRole();
     this.router.events.subscribe((res) => {
-      this.activeLinkIndex = this.dataService.navLinks.indexOf(this.dataService.navLinks.find(tab => tab.link === '.' + this.router.url));
+      this.activeLinkIndex = this.dataService.navLinks.indexOf(
+        this.dataService.navLinks.find(
+          (tab) => tab.link === '.' + this.router.url
+        )
+      );
     });
     await this.getUserFills();
     this.onResize();
     this.numberOfNews = this.fills.length;
   }
-
 }
