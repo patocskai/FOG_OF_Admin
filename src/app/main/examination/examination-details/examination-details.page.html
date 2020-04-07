@@ -1,7 +1,7 @@
 <div *ngIf="!selectedExamination && !practitioner && !allFill && !imgUrls">
   <mat-spinner></mat-spinner>
 </div>
-<div *ngIf="selectedExamination && practitioner && allFill && imgUrls && load | async">
+<div id="body" *ngIf="selectedExamination && practitioner && allFill && imgUrls && load | async">
   <mat-tab-group style="width:100%">
     <mat-tab label="Vizsgálat részletei" style="width:100%">
       <div class="details-class">

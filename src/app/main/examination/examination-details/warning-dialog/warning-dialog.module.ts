@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +9,8 @@ import { WarningDialogPage } from './warning-dialog.page';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    MatDialogModule
   ],
   declarations: [WarningDialogPage]
 })

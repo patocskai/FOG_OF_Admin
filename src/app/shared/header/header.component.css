@@ -62,10 +62,7 @@ img {
     display: inline-block;
     font-size: 50px;
     margin-right: 5%;
-}
-
-.navigateButton:active {
-    color: grey;
+    cursor: pointer;
 }
 
 #dataMenu {

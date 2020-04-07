@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-sidenav-menu></app-sidenav-menu>
-<mat-tab-group (selectedTabChange)="tabChanged($event)" #tabGroup color="primary">
+<mat-tab-group id="group" (selectedTabChange)="tabChanged($event)" #tabGroup color="primary">
   <mat-tab label="Elemzések" style="color: white">
     <div style="width:95%; padding-top:2%; padding-left: 5%">
       <app-analyzes></app-analyzes>

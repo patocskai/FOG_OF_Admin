@@ -1,3 +1,4 @@
+import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,10 @@ import { MatDialogModule } from '@angular/material';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    MatCardModule,
+    MatIconModule,
+    DragDropModule
   ],
   declarations: [AddDialogPage]
 })

@@ -18,7 +18,8 @@ export class DynamicFlatNode {
     public item: string,
     public level = 1,
     public expandable = false,
-    public isLoading = false) { }
+    public isLoading = false
+  ) {}
 }
 
 @Component({
@@ -55,13 +56,19 @@ export class ExaminationPage implements OnInit {
   public practitionersMultiCtrl: FormControl = new FormControl();
   public contentCtrl: FormControl = new FormControl();
   public practitionersMultiFilterCtrl: FormControl = new FormControl();
-  public filteredPractitionersMulti: ReplaySubject<Practitioner[]> = new ReplaySubject<Practitioner[]>(1);
-  @ViewChild('multiSelect', {static: false}) multiSelect: MatSelect;
+  public filteredPractitionersMulti: ReplaySubject<
+    Practitioner[]
+  > = new ReplaySubject<Practitioner[]>(1);
+  @ViewChild('multiSelect', { static: false }) multiSelect: MatSelect;
   protected _onDestroy = new Subject<void>();
   @Input() placeholderLabel = 'Keresés';
   // selected: { startDate: Moment, endDate: Moment };
   filterOptions = [];
-  dateRange = { from: new Date(), to: new Date() };
+  dateRange =
+  {
+    from: new Date(),
+    to: new Date(),
+  };
   startDate: string;
   endDate: string;
   filterDateOptions = 'creationDate';
@@ -97,17 +104,15 @@ export class ExaminationPage implements OnInit {
     //   locale: 'hu',
     //   date: this.dateRange
     // };
-
     // tslint:disable-next-line: max-line-length
-    // var basediags = ['Melanóma', 'Naevus', 'Basalioma', 'Laphámcarcinoma in situ/invazív', 'Dermatofibroma', 'Verruca seborrhoica/solaris lentigo', 'Éreredetű elváltozás', 'Egyéb-itt: fertőző betegség', 'Papulosquamosus/ekzematifotm', 'Dermatosisok', 'Egyéb malignus elváltozás', 'Egyéb jóindulatú elváltozás', 'Eltérések/mechanikus irritatio okozta eltérések', 'Fertőző betegség', 'Papulosquamosus/ekzematifotm dermatosisok', 'Pigmentációs eltérések/mechanikus irritatio okozta eltérése'];
-    // basediags.forEach((diag, index) => {
-    //   this.diagService.addDiagnosis(diag, index + 1).then((ok) => {
-    //     console.log(ok);
-    //   }).catch((error) => {
-    //     console.error(error);
-    //   });
-    // });
-
+    //  var basediags = ['Melanóma', 'Naevus', 'Basalioma', 'Laphámcarcinoma in situ/invazív', 'Dermatofibroma', 'Verruca seborrhoica/solaris lentigo', 'Éreredetű elváltozás', 'Egyéb-itt: fertőző betegség', 'Papulosquamosus/ekzematifotm', 'Dermatosisok', 'Egyéb malignus elváltozás', 'Egyéb jóindulatú elváltozás', 'Eltérések/mechanikus irritatio okozta eltérések', 'Fertőző betegség', 'Papulosquamosus/ekzematifotm dermatosisok', 'Pigmentációs eltérések/mechanikus irritatio okozta eltérése'];
+    //  basediags.forEach((diag, index) => {
+    //    this.diagService.addDiagnosis(diag, index + 1).then((ok) => {
+    //      console.log(ok);
+    //    }).catch((error) => {
+    //      console.error(error);
+    //    });
+    //  });
   }
 
   updateTempDiagnose(diagnose: string, index: number) {
@@ -115,7 +120,11 @@ export class ExaminationPage implements OnInit {
   }
 
   saveDiagnose(index: number, id: string) {
-    this.examinationService.updateExaminationDiagnose(id, this.tempDiagnoses[index], '');
+    this.examinationService.updateExaminationDiagnose(
+      id,
+      this.tempDiagnoses[index],
+      ''
+    );
   }
 
   addDiagnose(index: number) {
@@ -129,15 +138,26 @@ export class ExaminationPage implements OnInit {
 
   async filterExaminationByDate() {
     let temp = [];
-    this.exas.forEach(element => {
+    this.exas.forEach((element) => {
       if (this.filterDateOptions === 'expirationDate') {
         // tslint:disable-next-line: max-line-length
-        if ((new Date(element.expirationDate).getTime() > new Date(this.startDate).getTime()) && (new Date(element.expirationDate).getTime() < new Date(this.endDate).getTime())) {
+        if (
+          new Date(element.expirationDate).getTime() >
+            new Date(this.startDate).getTime() &&
+          new Date(element.expirationDate).getTime() <
+            new Date(this.endDate).getTime()
+        ) {
           temp.push(element);
         }
-      // tslint:disable-next-line: max-line-length
-      } else if (new Date(element.creationDate).getTime() > new Date(this.startDate).getTime() && new Date(element.creationDate).getTime() < new Date(this.endDate).getTime()) {
-        temp.push(element); {
+        // tslint:disable-next-line: max-line-length
+      } else if (
+        new Date(element.creationDate).getTime() >
+          new Date(this.startDate).getTime() &&
+        new Date(element.creationDate).getTime() <
+          new Date(this.endDate).getTime()
+      ) {
+        temp.push(element);
+        {
         }
       }
     });
@@ -157,14 +177,26 @@ export class ExaminationPage implements OnInit {
     this.dateRange.from = date;
     date2.setDate(date2.getDate() + 62);
     this.dateRange.to = date2;
-    this.startDate = this.datePipe.transform(new Date(this.dateRange.from), 'yyyy-MM-dd');
-    this.endDate = this.datePipe.transform(new Date(this.dateRange.to), 'yyyy-MM-dd');
+    this.startDate = this.datePipe.transform(
+      new Date(this.dateRange.from),
+      'yyyy-MM-dd'
+    );
+    this.endDate = this.datePipe.transform(
+      new Date(this.dateRange.to),
+      'yyyy-MM-dd'
+    );
   }
 
   public setReturnValue(dateRange: any): any {
     this.dateRange = dateRange;
-    this.startDate = this.datePipe.transform(new Date(this.dateRange.from), 'yyyy-MM-dd');
-    this.endDate = this.datePipe.transform(new Date(this.dateRange.to), 'yyyy-MM-dd');
+    this.startDate = this.datePipe.transform(
+      new Date(this.dateRange.from),
+      'yyyy-MM-dd'
+    );
+    this.endDate = this.datePipe.transform(
+      new Date(this.dateRange.to),
+      'yyyy-MM-dd'
+    );
     this.filterExaminationByDate();
   }
 
@@ -176,9 +208,16 @@ export class ExaminationPage implements OnInit {
 
   getPractitionersName() {
     let i = 0;
-    this.staff.forEach(element => {
+    this.staff.forEach((element) => {
       let name = '';
-      name = element.prefix + ' ' + element.family + ' ' + element.given + ' ' + element.suffix;
+      name =
+        element.prefix +
+        ' ' +
+        element.family +
+        ' ' +
+        element.given +
+        ' ' +
+        element.suffix;
       this.staff[i].name = name;
       i++;
     });
@@ -196,7 +235,9 @@ export class ExaminationPage implements OnInit {
       search = search.toLowerCase();
     }
     this.filteredPractitionersMulti.next(
-      this.staff.filter(practitioner => practitioner.name.toLowerCase().indexOf(search) > -1)
+      this.staff.filter(
+        (practitioner) => practitioner.name.toLowerCase().indexOf(search) > -1
+      )
     );
   }
 
@@ -228,21 +269,23 @@ export class ExaminationPage implements OnInit {
     let promise = new Promise((resolve, reject) => {
       let examinations = [];
       // tslint:disable-next-line: only-arrow-functions
-      this.examinationService.getExaminations().onSnapshot(function (querySnapshot) {
-        examinations = [];
-        let i = 0;
-        // tslint:disable-next-line: only-arrow-functions
-        querySnapshot.forEach(function (doc) {
-          examinations.push(doc.data());
-          examinations[i].examinationID = doc.id
-          i++
+      this.examinationService
+        .getExaminations()
+        .onSnapshot(function (querySnapshot) {
+          examinations = [];
+          let i = 0;
+          // tslint:disable-next-line: only-arrow-functions
+          querySnapshot.forEach(function (doc) {
+            examinations.push(doc.data());
+            examinations[i].examinationID = doc.id;
+            i++;
+          });
+          resolve(examinations);
         });
-        resolve(examinations)
-      });
     });
-    this.examinations = await promise as Examination[];
-    this.exas = await promise as Examination[];
-    this.filteredExaminations = await promise as Examination[]
+    this.examinations = (await promise) as Examination[];
+    this.exas = (await promise) as Examination[];
+    this.filteredExaminations = (await promise) as Examination[];
   }
 
   getExaCategories() {
@@ -284,7 +327,7 @@ export class ExaminationPage implements OnInit {
     for (let i = 0; i < this.examinations.length; i++) {
       if (this.examinations[i].diagnostics !== 'none') {
         q = 0;
-        this.diagnoseCategories.forEach(element => {
+        this.diagnoseCategories.forEach((element) => {
           if (element === this.examinations[i].diagnostics) {
             q++;
           }
@@ -326,15 +369,19 @@ export class ExaminationPage implements OnInit {
     if (filter === null || filter.length === 0) {
       this.examinations = this.filteredExaminations;
     }
-    if (this.filteredExaminations !== null && filter !== null && filter.length !== 0) {
+    if (
+      this.filteredExaminations !== null &&
+      filter !== null &&
+      filter.length !== 0
+    ) {
       this.examinations = [];
       let temporaryExa = [];
-      this.filteredExaminations.forEach(element => {
-        filter.forEach(filterBy => {
+      this.filteredExaminations.forEach((element) => {
+        filter.forEach((filterBy) => {
           if (element.practitionerID === filterBy.practitonerID) {
             temporaryExa.push(element);
           }
-        })
+        });
       });
       if (this.practitionersMultiCtrl === null) {
         this.examinations = this.filteredExaminations;
@@ -365,7 +412,7 @@ export class ExaminationPage implements OnInit {
     } else if (!this.slider) {
       this.histoData = this.undiagnosedExaminations;
     }
-    this.histoData.forEach(element => {
+    this.histoData.forEach((element) => {
       this.editDiagnose.push(false);
       if (element.diagnostics !== 'none') {
         this.tempDiagnoses.push(element.diagnostics);
@@ -392,7 +439,7 @@ export class ExaminationPage implements OnInit {
     this.setDateRange();
     this.filterOptions = [
       { value: 'creationDate', viewValue: 'Létrehozás dátum' },
-      { value: 'expirationDate', viewValue: 'Lejárati dátum' }
+      { value: 'expirationDate', viewValue: 'Lejárati dátum' },
     ];
     await this.auth.getUser();
     await this.getExaminations();
@@ -411,7 +458,7 @@ export class ExaminationPage implements OnInit {
         this.filterPractitionersMulti();
       });
     this.histoData = this.undiagnosedExaminations;
-    this.histoData.forEach(element => {
+    this.histoData.forEach((element) => {
       this.editDiagnose.push(false);
       if (element.diagnostics !== 'none') {
         this.tempDiagnoses.push(element.diagnostics);

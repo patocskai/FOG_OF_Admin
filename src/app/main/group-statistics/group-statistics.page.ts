@@ -33,7 +33,7 @@ export class GroupStatisticsPage implements OnInit {
 
   tabChanged(event) {
     this.dataService.selectedTab = event.tab.textLabel;
-   // this.child.setDataSource();
+    this.child.setDataSource();
   }
 
   async ngOnInit() {

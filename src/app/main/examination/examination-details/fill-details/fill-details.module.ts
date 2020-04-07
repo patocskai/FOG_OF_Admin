@@ -1,4 +1,6 @@
-import { MatButtonModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule, MatFormFieldModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +13,10 @@ import { FillDetailsPage } from './fill-details.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   declarations: [FillDetailsPage]
 })

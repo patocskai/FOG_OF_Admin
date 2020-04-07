@@ -1,4 +1,7 @@
 <div>
+  <div style="float: right; cursor: pointer;">
+      <mat-icon (click)="close()">close</mat-icon>
+  </div>
   <div>
     <mat-card style="width: 100%">
       <mat-card-header>
@@ -43,8 +46,5 @@
   <div style="padding-top: 5%">
     <p>* fogjon meg egy tetszőleges személyt majd vigye a megfelelő helyre</p>
   </div>
-  <div style="float: right; padding-top: 5%">
-    <button (click)="close()" style="justify-content: flex-end; display: flex;" mat-raised-button
-      color="primary">Bezár</button>
-  </div>
+
 </div>

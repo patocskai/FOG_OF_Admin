@@ -16,10 +16,21 @@
         </div>
         <div
             [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
+            
             <!-- <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
             </ngx-daterangepicker> -->
+            <ion-item>
+                <ion-icon name="calendar-sharp"></ion-icon>
+                <ion-label style="margin-left: 5%;">Kezdete</ion-label>
+                <ion-datetime displayFormat="YYYY MM DD" [ngModel]="dateRange.from"  (ngModelChange)="setReturnValue($event)" placeholder="Select Date"></ion-datetime>
+            </ion-item>    
+            <ion-item>
+                <ion-icon name="calendar-sharp"></ion-icon>
+                <ion-label style="margin-left: 5%;">Vége</ion-label>
+                <ion-datetime displayFormat="YYYY MM DD" [ngModel]="dateRange.from"  (ngModelChange)="setReturnValue($event)" placeholder="Select Date"></ion-datetime>
+            </ion-item>   
         </div>
-        <div
+        <div style="margin-left: 5%;"
             [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
             <mat-form-field class="filter-by-pr">
                 <mat-select (selectionChange)="addPractitionerToFilter()" [formControl]="practitionersMultiCtrl"

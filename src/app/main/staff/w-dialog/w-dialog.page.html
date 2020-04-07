@@ -1,14 +1,16 @@
+<div style="text-align: center;">
 <a *ngIf="containerName == 'staff'">
-  Szeretné a munkacsoporthoz hozzáadni <strong>{{practitionerName}}</strong> nevű felhasználót?
+ <p> Szeretné a munkacsoporthoz hozzáadni <strong>{{practitionerName}}</strong> nevű felhasználót?</p>
 </a>
 <a *ngIf="containerName != 'staff'">
-  Biztosan eltávolítja a munkacsoportból <strong>{{practitionerName}}</strong> nevű felhasználót?
+   <p>Biztosan eltávolítja a munkacsoportból <strong>{{practitionerName}}</strong> nevű felhasználót?</p>
 </a>
 <div style="padding-top: 5%;">
-  <div style="float:left;">
+  <div style="display: inline-block;">
     <button mat-raised-button (click)="saveChanges()" color="primary">Igen</button>
   </div>
   <div style="display: inline-block;padding-left: 2%">
     <button mat-raised-button (click)="discardChanges()" color="warn">Nem</button>
   </div>
+</div>
 </div>

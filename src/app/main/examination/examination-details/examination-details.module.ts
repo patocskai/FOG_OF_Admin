@@ -1,3 +1,5 @@
+import { ImageViewerModule } from 'ngx-image-viewer';
+import { ChartsModule } from 'ng2-charts';
 import { WarningDialogPage } from './warning-dialog/warning-dialog.page';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
@@ -27,7 +29,9 @@ import { MatOptionModule, MatButtonModule, MatRadioModule, MatChipsModule } from
     MatRadioModule,
     MatTabsModule,
     MatButtonModule,
-    MatChipsModule
+    MatChipsModule,
+    ChartsModule,
+    ImageViewerModule.forRoot()
   ],
   declarations: [
     ExaminationDetailsPage
