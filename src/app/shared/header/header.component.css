@@ -6,46 +6,6 @@
     justify-content: center
 }
 
-@media only screen and (min-width:501px) {
-    mat-toolbar {
-        height: 5%;
-    }
-}
-
-@media only screen and (min-width:0px) and (max-width:500px) {
-    mat-toolbar {
-        height: 10%;
-    }
-}
-
-mat-toolbar {
-    background-color: white;
-    width: 100%;
-}
-
-mat-divider {
-    width: 100%;
-}
-
-a {
-    color: black;
-}
-
-img {
-    width: 15ex;
-    height: 5ex;
-}
-
-::ng-deep .cdk-overlay-pane .news-dialog {
-    max-height: 50% !important;
-    overflow-y: scroll !important;
-}
-
-::ng-deep .mat-tab-header,
-.mat-tab-nav-bar {
-    border-bottom: none !important;
-}
-
 #title {
     padding-top: 1.5%;
     color: white;
