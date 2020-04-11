@@ -82,7 +82,7 @@ export class WallPage implements OnInit {
 
   handleDateClick(event) {
     this.dataService.selectedVisit = event.el.innerText;
-    this._router.navigateByUrl('/examination');
+    this._router.navigateByUrl('/menu/examination');
   }
 
   createNotification() {
@@ -205,14 +205,14 @@ export class WallPage implements OnInit {
 
   openVisit(id: string) {
     this.dataService.selectedVisit = id;
-    this._router.navigateByUrl('/examination');
+    this._router.navigateByUrl('/menu/examination');
   }
 
   async openStaff(id: string) {
     await this.practitionerService.getPractitioners(id).subscribe(data => {
       this.dataService.selectedStaffDetails = data as Practitioner;
       this.dataService.personDetails = true;
-      this._router.navigateByUrl('/staff');
+      this._router.navigateByUrl('/menu/staff');
     });
   }
 

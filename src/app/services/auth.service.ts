@@ -125,7 +125,7 @@ export class AuthService {
     try {
       const err = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
       await this.getUser();
-      this.router.navigateByUrl('/wall');
+      this.router.navigateByUrl('/menu/wall');
     } catch (e) {
       return e.message;
     }

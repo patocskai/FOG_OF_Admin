@@ -1,5 +1,13 @@
-<app-header></app-header>
-<app-sidenav-menu></app-sidenav-menu>
+<ion-header>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  
+      <ion-title>Wall</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
 <div class="body">
 <div *ngIf="!examinationDetails && loaded | async" (window:resize)="onResize($event)">
     <div class="filterList">

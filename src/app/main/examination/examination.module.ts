@@ -26,7 +26,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'examination',
+    path: '',
     component: ExaminationPage
   }
 ];

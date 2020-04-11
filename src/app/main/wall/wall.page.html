@@ -1,6 +1,14 @@
 <mat-spinner class="spinner" *ngIf="!load"></mat-spinner>
-<app-header></app-header>
-<app-sidenav-menu></app-sidenav-menu>
+
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Fal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <div *ngIf="load" class="body">
   <div class="header-image"></div>
   <!-- <img class="" src="assets/dermatology.jpg"> -->

@@ -1,5 +1,13 @@
-<app-header></app-header>
-<app-sidenav-menu></app-sidenav-menu>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Wall</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <mat-tab-group id="group" (selectedTabChange)="tabChanged($event)" #tabGroup color="primary">
   <mat-tab label="Elemzések" style="color: white">
     <div style="width:95%; padding-top:2%; padding-left: 5%">

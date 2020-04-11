@@ -1,5 +1,3 @@
-import { ShareModule } from './shared/share.module';
-import { WallPageModule } from './main/wall/wall.module';
 import { AuthGuard } from './core/auth.guard';
 import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -28,13 +26,11 @@ import { environment } from 'src/environments/environment';
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'dermiq-management'),
+    AngularFireModule.initializeApp(environment.firebase, 'fog-of-d'),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule,
-    ShareModule
-
+    AngularFireAuthModule
   ],
   providers: [
     StatusBar,

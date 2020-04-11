@@ -1,8 +1,17 @@
 <div class="spinner" *ngIf="!staff">
   <mat-spinner></mat-spinner>
 </div>
-<app-header></app-header>
-<app-sidenav-menu></app-sidenav-menu>
+
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Staff</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <div id= body *ngIf="staff && filteredItems && !this.dataService.personDetails" style="padding-top: 2%">
   <div class="filter">
     <form class="example-form">

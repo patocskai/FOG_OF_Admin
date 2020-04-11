@@ -14,7 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   {
-    path: 'group-statistics',
+    path: '',
     component: GroupStatisticsPage
   }
 ];
