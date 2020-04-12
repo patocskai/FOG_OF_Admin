@@ -1,6 +1,5 @@
 .body{
   overflow-y: scroll !important;
-  position: absolute;
   top: 5%;
 }
 .cardList>* {
@@ -85,7 +84,7 @@
   }
   
   .example-header-image {
-    color: #44318D;
+    color: #5260ff;
     background-size: cover;
   }
   
@@ -135,7 +134,7 @@
   }
   
   .fake-link2 {
-    color: blue;
+    color: #5260ff;
     cursor: default;
     display: inline-block;
     padding-left: 1ex;
@@ -151,7 +150,7 @@
   }
   
   .fake-link {
-    color: blue;
+    color: #5260ff;
     text-decoration: underline;
     cursor: pointer;
     display: inline-block;

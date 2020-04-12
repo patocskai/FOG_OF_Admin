@@ -6,7 +6,7 @@
   overflow-y: scroll;
 }
 .add-button {
-    color: #3f51b5;
+    color: #5260ff;
     font-size: 5ex;
   }
   
@@ -167,7 +167,7 @@
   }
   
   .mat-button-toggle-checked {
-    background-color: #3377FF;
+    background-color: #5260ff;
     color: white;
   }
   
@@ -177,11 +177,11 @@
   
   mat-button-toggle {
     width: 100%;
-    color: #3377FF;
+    color: #5260ff;
   }
   
   .fake-link {
-    color: blue;
+    color: #5260ff;
     text-decoration: underline;
     cursor: pointer;
   }
@@ -197,7 +197,7 @@
   }
   
   .z-depth:hover {
-    background-color: lightskyblue;
+    background-color: #5260ff;
     color: black;
     cursor: pointer;
   }

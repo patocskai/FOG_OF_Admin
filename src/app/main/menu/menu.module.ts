@@ -17,11 +17,13 @@ const routes: Routes = [
       },
       {
         path: 'examination',
-        loadChildren: 'src/app/main/examination/examination.module#ExaminationPageModule',
+        loadChildren:
+          'src/app/main/examination/examination.module#ExaminationPageModule',
       },
       {
         path: 'group-statistics',
-        loadChildren: 'src/app/main/group-statistics/group-statistics.module#GroupStatisticsPageModule',
+        loadChildren:
+          'src/app/main/group-statistics/group-statistics.module#GroupStatisticsPageModule',
       },
       {
         path: 'staff',
@@ -29,12 +31,12 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        loadChildren: './main/profile/profile.module#ProfilePageModule',
+        loadChildren: 'src/app/main/profile/profile.module#ProfilePageModule',
       },
       // {
       //   path: 'histological',
       //   component: ExaminationPage,
-      //   canActivate: [AuthGuard],
+      //   // canActivate: [AuthGuard],
       // },
       {
         path: '',
@@ -51,6 +53,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [MenuPage],
+  declarations: [
+    MenuPage
+  ],
 })
 export class MenuPageModule {}

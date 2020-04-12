@@ -11,28 +11,28 @@ export class MenuPage implements OnInit {
     {
       title: 'Fal',
       url: '/menu/wall',
-      icon: 'home'
+      icon: 'calendar-outline'
 
     },
     {
       title: 'Vizsgálatok',
       url: '/menu/examination',
-      icon: 'build'
+      icon: 'document-text-outline'
     },
     {
       title: 'Csoportstatisztika',
       url: '/menu/group-statistics',
-      icon: 'build'
+      icon: 'bar-chart-outline'
     },
     {
-      title: 'Munkatársak',
+      title: 'Tagok',
       url: '/menu/staff',
-      icon: 'build'
+      icon: 'people-outline'
     },
     {
       title: 'Diagnózis',
       url: '/menu/histological',
-      icon: 'build'
+      icon: 'pulse-outline'
     },
 
   ];

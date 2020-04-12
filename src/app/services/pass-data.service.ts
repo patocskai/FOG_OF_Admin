@@ -45,7 +45,7 @@ export class PassDataService {
         index: 3,
         active: false
       }, {
-        label: 'Szövettani diagnózis',
+        label: 'Diagnózis',
         link: '/histological',
         matIcon: 'assignment',
         index: 4,

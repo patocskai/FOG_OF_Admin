@@ -350,11 +350,11 @@
             </mat-card>
           </mat-card-content>
           <mat-card-actions align="end" style="padding-right: 3ex">
-            <button mat-raised-button *ngIf="selectedExamination.diagnostics == 'none'" (click)="save()"
-              color="primary">Mentés</button>
-            <button mat-raised-button *ngIf="selectedExamination.diagnostics == 'none'" (click)="closeDetails()"
-              color="warn">Elvetés</button>
-            <button mat-raised-button *ngIf="showDelete" (click)="deleteExam()" color="warn">Törlés</button>
+            <ion-button mat-raised-button *ngIf="selectedExamination.diagnostics == 'none'" (click)="save()"
+              color="primary">Mentés</ion-button>
+            <ion-button mat-raised-button *ngIf="selectedExamination.diagnostics == 'none'" (click)="closeDetails()"
+              color="warn">Elvetés</ion-button>
+            <ion-button mat-raised-button *ngIf="showDelete" (click)="deleteExam()" color="danger">Törlés</ion-button>
           </mat-card-actions>
         </mat-card>
       </div>

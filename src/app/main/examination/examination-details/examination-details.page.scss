@@ -1,7 +1,6 @@
 
 .body {
-  position: relative;
-  top: 8%;
+  position: absolute;
   width: 100%;
   height: 100%;
   overflow-y: scroll;
@@ -254,18 +253,18 @@ p {
   height: auto;
 }
 .details1 {
-  box-shadow: 0px 0px 3px 1px #43318d;
+  box-shadow: 0px 0px 3px 1px #5260ff;
   background: #43318d1c;
   padding: 5px;
 }
 .details2 {
-  box-shadow: 0px 0px 3px 1px #43318d;
+  box-shadow: 0px 0px 3px 1px #5260ff;
   background: #43318d1c;
   padding: 2px;
   height: fit-content;
 }
 .details3 {
-  box-shadow: 0px 0px 3px 1px #43318d;
+  box-shadow: 0px 0px 3px 1px #5260ff;
   background: #43318d1c;
 }
 .fakeMatCard {
@@ -298,7 +297,7 @@ p {
   display: inline-grid;
   min-height: 9vh;
   max-height: 13vh;
-  box-shadow: 0px 0px 0px 1px #43318d;
+  box-shadow: 0px 0px 0px 1px #5260ff;
   width: 24%;
   background: #43318d12;
 }
@@ -306,7 +305,7 @@ p {
   display: inline-grid;
   min-height: 13vh;
   max-height: 15vh;
-  box-shadow: 0px 0px 0px 1px #43318d;
+  box-shadow: 0px 0px 0px 1px #5260ff;
   width: 24%;
   background: #43318d12;
 }
@@ -314,7 +313,7 @@ p {
   display: inline-grid;
   min-height: 9vh;
   max-height: 13vh;
-  box-shadow: 0px 0px 0px 1px #43318d;
+  box-shadow: 0px 0px 0px 1px #5260ff;
   width: 32.3%;
   background: #43318d12;
 }
@@ -322,13 +321,13 @@ p {
   margin: unset!important;
 }
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background-color: #43318d!important;
+  background-color: #5260ff!important;
 }
 ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: #43318d!important;
+  border-color: #5260ff!important;
 }
 ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-  background-color: #43318d!important;
+  background-color: #5260ff!important;
 }
 .psClass {
   text-align: center;
@@ -338,7 +337,7 @@ p {
   font-family: sans-serif;
   height: auto;
   justify-content: center;
-  background: #43318d;
+  background: #5260ff;
 }
 .psText {
   color: white;
@@ -352,5 +351,5 @@ p {
   font-family: sans-serif;
   color: white;
   justify-content: center;
-  background: #43318d;
+  background: #5260ff;
 }

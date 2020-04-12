@@ -3,12 +3,11 @@
 </div>
 
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-
-    <ion-title>Staff</ion-title>
+    <ion-title>Tagok</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -62,18 +61,18 @@
           <p style="margin-top: 1rem">{{element.name}}</p>
         </td>
         <td align="center" style="width: 20%">
-          <mat-checkbox color="primary" disabled [(ngModel)]="roles[i].roles[0].basic"></mat-checkbox>
+          <ion-checkbox color="tertiary" disabled [(ngModel)]="roles[i].roles[0].basic"></ion-checkbox>
         </td>
         <td align="center" style="width: 20%">
-          <mat-checkbox color="primary" [disabled]="i == adminIndex" [(ngModel)]="roles[i].roles[2].administrator">
-          </mat-checkbox>
+          <ion-checkbox color="tertiary" [disabled]="i == adminIndex" [(ngModel)]="roles[i].roles[2].administrator">
+          </ion-checkbox>
         </td>
         <td align="center" style="width: 20%">
-          <mat-checkbox color="primary" [disabled]="i == adminIndex" [(ngModel)]="roles[i].roles[3].specialist">
-          </mat-checkbox>
+          <ion-checkbox color="tertiary" [disabled]="i == adminIndex" [(ngModel)]="roles[i].roles[3].specialist">
+          </ion-checkbox>
         </td>
         <td align="center" style="width: 20%">
-          <mat-checkbox color="primary" disabled [(ngModel)]="roles[i].roles[1].admin"></mat-checkbox>
+          <ion-checkbox color="tertiary" disabled [(ngModel)]="roles[i].roles[1].admin"></ion-checkbox>
         </td>
       </tr>
     </table>
@@ -83,8 +82,8 @@
       </a>
     </div>
     <div *ngIf="auth.canChangePermissions()" style="float:right; padding-top: 5%">
-      <button style="margin: 0.5rem" mat-raised-button (click)="changePermissions()" color="primary">Mentés</button>
-      <button style="margin: 0.5rem" mat-raised-button (click)="rejectPermissionChanges()">Elvetés</button>
+      <ion-button style="margin: 0.5rem" (click)="changePermissions()" color="tertiary">Mentés</ion-button>
+      <ion-button style="margin: 0.5rem" (click)="rejectPermissionChanges()" color="danger">Elvetés</ion-button>
     </div>
   </div>
 </div>
