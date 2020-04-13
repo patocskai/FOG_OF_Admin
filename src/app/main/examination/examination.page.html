@@ -11,7 +11,7 @@
 <div *ngIf="!examinationDetails && loaded | async" (window:resize)="onResize($event)">
     <div class="filterList">
         <div
-            [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
+            [ngClass]="{'filterItem' : selectedTab == 'Diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
             <mat-button-toggle-group [(ngModel)]="radioGroup">
                 <mat-button-toggle style="width:55%" (click)="updateFilterValue('creationDate')" value="creationDate">
                     Létrehozás dátuma
@@ -22,7 +22,7 @@
             </mat-button-toggle-group>
         </div>
         <div
-            [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
+            [ngClass]="{'filterItem' : selectedTab == 'Diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
             
             <!-- <ngx-daterangepicker [(ngModel)]="dateRange" [options]="options" (ngModelChange)="setReturnValue($event)">
             </ngx-daterangepicker> -->
@@ -38,7 +38,7 @@
             </ion-item>   
         </div>
         <div style="margin-left: 5%;"
-            [ngClass]="{'filterItem' : selectedTab == 'Szövettani diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
+            [ngClass]="{'filterItem' : selectedTab == 'Diagnózis','filterItem2' : selectedTab == 'Vizsgálatok' }">
             <mat-form-field class="filter-by-pr">
                 <mat-select (selectionChange)="addPractitionerToFilter()" [formControl]="practitionersMultiCtrl"
                     placeholder="Szűrés felvevő orvos alapján" [multiple]="true" #multiSelect>
@@ -56,7 +56,7 @@
                 megjelenítése</mat-slide-toggle>
         </div>
     </div>
-    <div *ngIf="selectedTab !='Szövettani diagnózis'" style="padding-top: 3%; margin-left: auto; margin-right: auto"
+    <div *ngIf="selectedTab !='Diagnózis'" style="padding-top: 3%; margin-left: auto; margin-right: auto"
         [ngStyle]="{'width': windowWidth < 1050 ? '100%' : '75%' }">
         <div class="categories">
             <mat-expansion-panel
@@ -99,7 +99,7 @@
                                             <mat-label center><b>Létrehozva: </b>
                                                 {{examination.creationDate}}</mat-label>
                                             <br>
-                                            <mat-label center><b>Szövettani diagnózis: </b>
+                                            <mat-label center><b>Diagnózis: </b>
                                             </mat-label>
                                             <br>
                                             <mat-label class="diagnosticStyle" center>
@@ -182,7 +182,7 @@
                             </mat-list-item>
                             <br>
                             <mat-list-item>
-                                <b>Szövettani diagnózis: </b>
+                                <b>Diagnózis: </b>
                                 <mat-label style="padding-left: 0.5ex;" *ngIf="tempDiagnoses[i] =='none'"> Nincs
                                 </mat-label>
                                 <mat-label style="padding-left: 0.5ex;" *ngIf="tempDiagnoses[i] !='none'">

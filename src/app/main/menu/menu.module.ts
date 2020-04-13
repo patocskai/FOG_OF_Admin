@@ -33,11 +33,11 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: 'src/app/main/profile/profile.module#ProfilePageModule',
       },
-      // {
-      //   path: 'histological',
-      //   component: ExaminationPage,
-      //   // canActivate: [AuthGuard],
-      // },
+      {
+        path: 'histological',
+        loadChildren:
+          'src/app/main/examination/examination.module#ExaminationPageModule',
+      },
       {
         path: '',
         redirectTo: '/menu/wall',

@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
       url: '/staff',
     },
     {
-      title: 'Szövettani diagnózis',
+      title: 'Diagnózis',
       url: '/histological',
     },
   ];

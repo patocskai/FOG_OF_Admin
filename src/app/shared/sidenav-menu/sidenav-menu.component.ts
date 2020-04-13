@@ -42,7 +42,7 @@ export class SidenavMenuComponent implements OnInit {
         matIcon: 'group',
         index: 3
       }, {
-        label: 'Szövettani diagnózis',
+        label: 'Diagnózis',
         link: '/histological',
         matIcon: 'assignment',
         index: 4

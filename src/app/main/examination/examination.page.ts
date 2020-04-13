@@ -395,7 +395,7 @@ export class ExaminationPage implements OnInit {
   }
 
   setLayout() {
-    if (this._router.url === '/histological') {
+    if (this._router.url === '/menu/histological') {
       this.selectedTab = 'Diagnózis';
     } else {
       this.selectedTab = 'Vizsgálatok';
