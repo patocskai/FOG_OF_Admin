@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PassDataService } from 'src/app/services/pass-data.service';
@@ -23,7 +30,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './examination-details.page.html',
   styleUrls: ['./examination-details.page.scss'],
 })
-export class ExaminationDetailsPage implements OnInit {  
+export class ExaminationDetailsPage implements OnInit {
   @Input() visit: any = {};
   @Output() public close = new EventEmitter<Boolean>();
   @Output() public updateDiagnose = new EventEmitter<any>();
@@ -42,9 +49,21 @@ export class ExaminationDetailsPage implements OnInit {
   today = new Date();
   selectedExamination: Examination;
   diagnoses: string[] = this.diagService.diagList;
-  public pieChartLabels: string[] = ['Melanóma', 'Naevus', 'Basalioma', 'Laphámcarcinoma in situ/invazív', 'Dermatofibroma'];
+  public pieChartLabels: string[] = [
+    'Melanóma',
+    'Naevus',
+    'Basalioma',
+    'Laphámcarcinoma in situ/invazív',
+    'Dermatofibroma',
+  ];
   public pieChartType = 'pie';
-  displayedColumns: string[] = ['position', 'name', 'date', 'diagnose', 'comment'];
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'date',
+    'diagnose',
+    'comment',
+  ];
   imgUrls = [];
   allFill = [];
   allFills = [];
@@ -53,7 +72,11 @@ export class ExaminationDetailsPage implements OnInit {
   pieChartCategories: string[] = [];
   pieChartData: number[] = [];
   diagnosedPieChartData = [0, 0, 0];
-  diagnosedPieChartCategories = ['Helyes', 'Helytelen', 'Nem adott meg diagnózist'];
+  diagnosedPieChartCategories = [
+    'Helyes',
+    'Helytelen',
+    'Nem adott meg diagnózist',
+  ];
   details = false;
   fillDetails = false;
   status = false;
@@ -65,20 +88,20 @@ export class ExaminationDetailsPage implements OnInit {
   load = Promise.resolve(false);
   showName = false;
   showDelete = false;
-  @ViewChild(FillDetailsPage, {static: false}) child: FillDetailsPage;
+  @ViewChild(FillDetailsPage, { static: false }) child: FillDetailsPage;
 
   pieChart1 = {
     title: {
       text: 'DIAGNÓZISOK MEGOSZLÁSA',
-      display: true
-    }
+      display: true,
+    },
   };
 
   pieChart2 = {
     title: {
       text: 'HELYES/HELYTELEN DIAGNÓZISOK ARÁNYA',
-      display: true
-    }
+      display: true,
+    },
   };
 
   scoreType: any = 'none';
@@ -86,7 +109,9 @@ export class ExaminationDetailsPage implements OnInit {
   scoreLabel: String;
   ps = 0;
 
-  constructor(private _router: Router,
+  constructor(
+    // tslint:disable-next-line: variable-name
+    private _router: Router,
     private dataService: PassDataService,
     private dialog: MatDialog,
     private examinationService: ExaminationService,
@@ -97,7 +122,7 @@ export class ExaminationDetailsPage implements OnInit {
     private auth: AuthService,
     private diagService: DiagnosisService,
     public fb: FormBuilder
-  ) { }
+  ) {}
 
   scoreAlgorithm() {
     this.resetform();
@@ -116,7 +141,7 @@ export class ExaminationDetailsPage implements OnInit {
       asy: ['', [Validators.required]],
       loc: ['', [Validators.required]],
       max_d: ['', [Validators.required]],
-      ages: ['', [Validators.required]]
+      ages: ['', [Validators.required]],
     });
   }
 
@@ -139,12 +164,11 @@ export class ExaminationDetailsPage implements OnInit {
         isps: 0,
         idgps: 0,
         rsps: 0,
-      }
+      };
       if (this.scoreForm.get('apn').value === 'yes') {
         apn = 2;
         psarray.apnps++;
-      }
-      else if (this.scoreForm.get('apn').value === 'no') {
+      } else if (this.scoreForm.get('apn').value === 'no') {
         apn = 0;
         if (psarray.apnps > 0) {
           psarray.apnps--;
@@ -153,8 +177,7 @@ export class ExaminationDetailsPage implements OnInit {
       if (this.scoreForm.get('bwv').value === 'yes') {
         bwv = 2;
         psarray.bwnps++;
-      }
-      else if (this.scoreForm.get('bwv').value === 'no') {
+      } else if (this.scoreForm.get('bwv').value === 'no') {
         bwv = 0;
         if (psarray.bwnps > 0) {
           psarray.bwnps--;
@@ -163,8 +186,7 @@ export class ExaminationDetailsPage implements OnInit {
       if (this.scoreForm.get('avp').value === 'yes') {
         avp = 2;
         psarray.avpps++;
-      }
-      else if (this.scoreForm.get('avp').value === 'no') {
+      } else if (this.scoreForm.get('avp').value === 'no') {
         avp = 0;
         if (psarray.avpps > 0) {
           psarray.avpps--;
@@ -173,8 +195,7 @@ export class ExaminationDetailsPage implements OnInit {
       if (this.scoreForm.get('ib').value === 'yes') {
         ib = 1;
         psarray.ibps++;
-      }
-      else if (this.scoreForm.get('ib').value === 'no') {
+      } else if (this.scoreForm.get('ib').value === 'no') {
         ib = 0;
         if (psarray.ibps > 0) {
           psarray.ibps--;
@@ -183,8 +204,7 @@ export class ExaminationDetailsPage implements OnInit {
       if (this.scoreForm.get('is').value === 'yes') {
         is = 1;
         psarray.isps++;
-      }
-      else if (this.scoreForm.get('is').value === 'no') {
+      } else if (this.scoreForm.get('is').value === 'no') {
         is = 0;
         if (psarray.isps > 0) {
           psarray.isps--;
@@ -193,8 +213,7 @@ export class ExaminationDetailsPage implements OnInit {
       if (this.scoreForm.get('idg').value === 'yes') {
         idg = 1;
         psarray.idgps++;
-      }
-      else if (this.scoreForm.get('idg').value === 'no') {
+      } else if (this.scoreForm.get('idg').value === 'no') {
         idg = 0;
         if (psarray.idgps > 0) {
           psarray.idgps--;
@@ -203,20 +222,25 @@ export class ExaminationDetailsPage implements OnInit {
       if (this.scoreForm.get('rs').value === 'yes') {
         rs = 1;
         psarray.rsps++;
-      }
-      else if (this.scoreForm.get('rs').value === 'no') {
+      } else if (this.scoreForm.get('rs').value === 'no') {
         rs = 0;
         if (psarray.rsps > 0) {
           psarray.rsps--;
         }
       }
       score = apn + bwv + avp + ib + is + idg + rs;
-      ps = psarray.apnps + psarray.bwnps + psarray.avpps + psarray.ibps + psarray.isps + psarray.idgps + psarray.rsps;
+      ps =
+        psarray.apnps +
+        psarray.bwnps +
+        psarray.avpps +
+        psarray.ibps +
+        psarray.isps +
+        psarray.idgps +
+        psarray.rsps;
       this.ps = ps;
       if (score < 3) {
         this.scoreLabel = 'benignus melanocytás elváltozás';
-      }
-      else {
+      } else {
         this.scoreLabel = 'melanoma malignum';
       }
     }
@@ -238,7 +262,7 @@ export class ExaminationDetailsPage implements OnInit {
         isps: 0,
         idgps: 0,
         rsps: 0,
-      }
+      };
       if (this.scoreForm.get('apn').value === 'yes') {
         apn = 1;
         psarray.apnps++;
@@ -310,12 +334,18 @@ export class ExaminationDetailsPage implements OnInit {
         }
       }
       score = apn + bwv + avp + ib + is + idg + rs;
-      ps = psarray.apnps + psarray.bwnps + psarray.avpps + psarray.ibps + psarray.isps + psarray.idgps + psarray.rsps;
+      ps =
+        psarray.apnps +
+        psarray.bwnps +
+        psarray.avpps +
+        psarray.ibps +
+        psarray.isps +
+        psarray.idgps +
+        psarray.rsps;
       this.ps = ps;
       if (score >= 1) {
         this.scoreLabel = 'excisió';
-      }
-      else {
+      } else {
         this.scoreLabel = '';
       }
     }
@@ -345,8 +375,7 @@ export class ExaminationDetailsPage implements OnInit {
       score = asy + apn + bwv;
       if (score > 1) {
         this.scoreLabel = 'lesion';
-      }
-      else {
+      } else {
         this.scoreLabel = '';
       }
     }
@@ -448,21 +477,19 @@ export class ExaminationDetailsPage implements OnInit {
     this.userFill.diagnose = diagnose;
   }
 
-  public chartClicked(e: any): void {
-  }
+  public chartClicked(e: any): void {}
 
-  public chartHovered(e: any): void {
-  }
+  public chartHovered(e: any): void {}
 
-   openFillDetails(person: any) {
-     if (this.q > 0) {
-       this.child.getSelectedPerson(person);
-     } else {
-       this.selectedPerson = person;
-     }
-     this.ocFillDetails(true);
-     this.q++;
-   }
+  openFillDetails(person: any) {
+    if (this.q > 0) {
+      this.child.getSelectedPerson(person);
+    } else {
+      this.selectedPerson = person;
+    }
+    this.ocFillDetails(true);
+    this.q++;
+  }
 
   ocFillDetails(event: boolean) {
     if (event === false) {
@@ -480,9 +507,8 @@ export class ExaminationDetailsPage implements OnInit {
   }
 
   onClickDelete() {
-    const dialogRef = this.dialog.open(WarningDialogPage, {
-    });
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogRef = this.dialog.open(WarningDialogPage, {});
+    dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         this.delete();
       }
@@ -490,7 +516,7 @@ export class ExaminationDetailsPage implements OnInit {
   }
 
   getPractitioner(id: string) {
-    this.practitionerService.getPractitioners(id).subscribe(data => {
+    this.practitionerService.getPractitioners(id).subscribe((data) => {
       this.practitioner = data as Practitioner;
       const loggedIn = JSON.parse(localStorage.getItem('loggedIn'));
 
@@ -509,7 +535,6 @@ export class ExaminationDetailsPage implements OnInit {
       } else {
         this.showName = false;
       }
-
     });
   }
 
@@ -528,7 +553,11 @@ export class ExaminationDetailsPage implements OnInit {
 
   async save() {
     this.imgUrls = [];
-    this.examinationService.updateExaminationDiagnose(this.dataService.selectedVisit, this.diagnose, this.clinicalDiagnose);
+    this.examinationService.updateExaminationDiagnose(
+      this.dataService.selectedVisit,
+      this.diagnose,
+      this.clinicalDiagnose
+    );
     this.fillService.updateFill(this.userFill.fillID, this.userFill.diagnose);
     this.diagnose = '';
     this.clinicalDiagnose = '';
@@ -543,15 +572,17 @@ export class ExaminationDetailsPage implements OnInit {
   async getUserFill() {
     let fill: Fill;
     let promise = new Promise((resolve, reject) => {
-      this.fillService.getUserFillForExamination(this.dataService.selectedVisit).then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          fill = doc.data() as Fill;
-          fill.fillID = doc.id;
+      this.fillService
+        .getUserFillForExamination(this.dataService.selectedVisit)
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            fill = doc.data() as Fill;
+            fill.fillID = doc.id;
+          });
+          resolve(fill);
         });
-        resolve(fill)
-      });
     });
-    this.userFill = await promise as Fill;
+    this.userFill = (await promise) as Fill;
   }
 
   async getFills() {
@@ -562,13 +593,13 @@ export class ExaminationDetailsPage implements OnInit {
         let i = 0;
         querySnapshot.forEach(function (doc) {
           fills.push(doc.data());
-          fills[i].fillID = doc.id
-          i++
+          fills[i].fillID = doc.id;
+          i++;
         });
-        resolve(fills)
+        resolve(fills);
       });
     });
-    this.allFills = await promise as Fill[];
+    this.allFills = (await promise) as Fill[];
   }
   async getFills2() {
     let fills = [];
@@ -577,8 +608,8 @@ export class ExaminationDetailsPage implements OnInit {
       let i = 0;
       querySnapshot.forEach(function (doc) {
         fills.push(doc.data());
-        fills[i].fillID = doc.id
-        i++
+        fills[i].fillID = doc.id;
+        i++;
       });
       this.allFills = fills;
     });
@@ -589,82 +620,109 @@ export class ExaminationDetailsPage implements OnInit {
     let practitioner: Practitioner;
     let correctDiagnose = 0;
     let uncorrectDiagnose = 0;
-    this.allFills.forEach(fill => {
+    this.allFills.forEach((fill) => {
       if (fill.examinationID === selectedExaminationID) {
         fills.push(fill);
       }
     });
-    fills.forEach(element => {
+    fills.forEach((element) => {
       correctDiagnose = 0;
       uncorrectDiagnose = 0;
-      this.practitionerService.getPractitioners(element.practitionerID).subscribe(data => {
-        practitioner = data as Practitioner;
-        const pr = {
-          practitionerName: practitioner.prefix + ' ' + practitioner.family + ' ' + practitioner.given + ' ' + practitioner.suffix,
-          practitionerDiagnose: element.diagnose
-        };
-        if (this.selectedExamination.diagnostics !== 'none') {
-          if (this.selectedExamination.diagnostics === pr.practitionerDiagnose) {
-            this.diagnosedPieChartData[0]++;
-          }
-          if (this.selectedExamination.diagnostics !== pr.practitionerDiagnose && pr.practitionerDiagnose !== 'none') {
-            this.diagnosedPieChartData[1]++;
-          } if (pr.practitionerDiagnose == 'none') {
-            this.diagnosedPieChartData[2]++;
-          }
-        }
-        if (pr.practitionerDiagnose === 'none') {
-          this.undiagnosed++;
-        } else {
-          let q = 0;
-          this.pieChartCategories.forEach(ele => {
-            if (ele === pr.practitionerDiagnose) {
-              q++;
+      this.practitionerService
+        .getPractitioners(element.practitionerID)
+        .subscribe((data) => {
+          practitioner = data as Practitioner;
+          const pr = {
+            practitionerName:
+              practitioner.prefix +
+              ' ' +
+              practitioner.family +
+              ' ' +
+              practitioner.given +
+              ' ' +
+              practitioner.suffix,
+            practitionerDiagnose: element.diagnose,
+          };
+          if (this.selectedExamination.diagnostics !== 'none') {
+            if (
+              this.selectedExamination.diagnostics === pr.practitionerDiagnose
+            ) {
+              this.diagnosedPieChartData[0]++;
             }
-          });
-          if (q === 0) {
-            let db = 0;
-            this.pieChartCategories.push(pr.practitionerDiagnose);
-            fills.forEach(elem => {
-              if (elem.diagnose === pr.practitionerDiagnose) {
-                db++;
+            if (
+              this.selectedExamination.diagnostics !==
+                pr.practitionerDiagnose &&
+              pr.practitionerDiagnose !== 'none'
+            ) {
+              this.diagnosedPieChartData[1]++;
+            }
+            if (pr.practitionerDiagnose == 'none') {
+              this.diagnosedPieChartData[2]++;
+            }
+          }
+          if (pr.practitionerDiagnose === 'none') {
+            this.undiagnosed++;
+          } else {
+            let q = 0;
+            this.pieChartCategories.forEach((ele) => {
+              if (ele === pr.practitionerDiagnose) {
+                q++;
               }
             });
-            this.pieChartData.push(db);
+            if (q === 0) {
+              let db = 0;
+              this.pieChartCategories.push(pr.practitionerDiagnose);
+              fills.forEach((elem) => {
+                if (elem.diagnose === pr.practitionerDiagnose) {
+                  db++;
+                }
+              });
+              this.pieChartData.push(db);
+            }
+            this.diagnosed++;
           }
-          this.diagnosed++;
-        }
-        this.allFill.push(pr);
-      });
+          this.allFill.push(pr);
+        });
     });
   }
 
   async getExaminationDetails() {
     return new Promise((resolve, reject) => {
       const converted = this.datepipe.transform(this.today, 'yyyy-MM-dd');
-      this.examinationService.getExaminationsByID(this.dataService.selectedVisit).subscribe(data => {
-        if (data) {
-          this.selectedExamination = data as Examination;
-          this.getPractitioner(this.selectedExamination.practitionerID);
-          if (new Date(this.selectedExamination.creationDate).getTime() < new Date(converted).getTime() && new Date(this.selectedExamination.expirationDate).getTime() >= new Date(converted).getTime()) {
-            this.status = true;
+      this.examinationService
+        .getExaminationsByID(this.dataService.selectedVisit)
+        .subscribe((data) => {
+          if (data) {
+            this.selectedExamination = data as Examination;
+            this.getPractitioner(this.selectedExamination.practitionerID);
+            if (
+              new Date(this.selectedExamination.creationDate).getTime() <
+                new Date(converted).getTime() &&
+              new Date(this.selectedExamination.expirationDate).getTime() >=
+                new Date(converted).getTime()
+            ) {
+              this.status = true;
+            }
+            for (let i = 0; i < this.selectedExamination.basicImg.length; i++) {
+              const ref = this.afStorage.ref(
+                this.selectedExamination.basicImg[i]
+              );
+              ref.getDownloadURL().subscribe((dataa) => {
+                this.imgUrls.push(dataa);
+              });
+            }
+            for (let i = 0; i < this.selectedExamination.dermaImg.length; i++) {
+              const ref2 = this.afStorage.ref(
+                this.selectedExamination.dermaImg[i]
+              );
+              ref2.getDownloadURL().subscribe((dataa) => {
+                this.imgUrls.push(dataa);
+              });
+            }
+          } else {
+            this.closeDetails();
           }
-          for (let i = 0; i < this.selectedExamination.basicImg.length; i++) {
-            const ref = this.afStorage.ref(this.selectedExamination.basicImg[i]);
-            ref.getDownloadURL().subscribe(dataa => {
-              this.imgUrls.push(dataa);
-            });
-          }
-          for (let i = 0; i < this.selectedExamination.dermaImg.length; i++) {
-            const ref2 = this.afStorage.ref(this.selectedExamination.dermaImg[i]);
-            ref2.getDownloadURL().subscribe(dataa => {
-              this.imgUrls.push(dataa);
-            });
-          }
-        } else {
-          this.closeDetails();
-        }
-      });
+        });
       resolve();
       this.getFillsData(this.dataService.selectedVisit);
     });
@@ -673,38 +731,54 @@ export class ExaminationDetailsPage implements OnInit {
   async ngOnInit() {
     await this.getFills();
     await this.getExaminationDetails();
-    await this.getUserFill().then(resolve => this.load = Promise.resolve(true))
+    await this.getUserFill().then(
+      (resolve) => (this.load = Promise.resolve(true))
+    );
     this.getFills2();
     this.resetform();
   }
 
   deleteExam() {
     if (confirm('Biztos törli?')) {
-      this.fillService.deleteFillsByExamID(this.selectedExamination.examinationID).then((deleted) => {
-        console.log(deleted, ' fills deleted');
-        this.selectedExamination.basicImg.forEach((img) => {
-          this.examinationService.deleteIMG(img).then((ok) => {
-            console.log(img, ' deleted');
-          }).catch((error) => {
-            console.error(error);
+      this.fillService
+        .deleteFillsByExamID(this.selectedExamination.examinationID)
+        .then((deleted) => {
+          console.log(deleted, ' fills deleted');
+          this.selectedExamination.basicImg.forEach((img) => {
+            this.examinationService
+              .deleteIMG(img)
+              .then((ok) => {
+                console.log(img, ' deleted');
+              })
+              .catch((error) => {
+                console.error(error);
+              });
           });
-        });
-        this.selectedExamination.dermaImg.forEach((img) => {
-          this.examinationService.deleteIMG(img).then((ok) => {
-            console.log(img, ' deleted');
-          }).catch((error) => {
-            console.error(error);
+          this.selectedExamination.dermaImg.forEach((img) => {
+            this.examinationService
+              .deleteIMG(img)
+              .then((ok) => {
+                console.log(img, ' deleted');
+              })
+              .catch((error) => {
+                console.error(error);
+              });
           });
-        });
-        this.examinationService.deleteExam(this.selectedExamination.examinationID).then((ok) => {
-          console.log(this.selectedExamination.examinationID, ' examination deleted');
-        }).catch((error) => {
+          this.examinationService
+            .deleteExam(this.selectedExamination.examinationID)
+            .then((ok) => {
+              console.log(
+                this.selectedExamination.examinationID,
+                ' examination deleted'
+              );
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        })
+        .catch((error) => {
           console.error(error);
         });
-      }).catch((error) => {
-        console.error(error);
-      });
     }
   }
-
 }

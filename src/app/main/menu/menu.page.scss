@@ -20,10 +20,17 @@ ion-split-pane {
   }
 }
 
+#user {
+  padding-left: 15%;
+  font-size: smaller;
+
+}
+
 #notification:hover {
   --ion-background-color: var(--ion-color-danger);
-  cursor:pointer;
+  cursor: pointer;
 }
+
 ion-footer {
   left: 0;
   right: 0;

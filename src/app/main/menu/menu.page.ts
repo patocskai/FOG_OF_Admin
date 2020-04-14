@@ -3,6 +3,7 @@ import { Router, RouterEvent } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
 import { NewsDialogComponent } from 'src/app/shared/news-dialog/news-dialog.component';
 import { FillService } from 'src/app/services/fill.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +11,7 @@ import { FillService } from 'src/app/services/fill.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  userName = '';
   fills = [];
   numberOfNews = 0;
   pages = [
@@ -60,6 +62,7 @@ export class MenuPage implements OnInit {
   constructor(
     private router: Router,
     private fillService: FillService,
+    private auth: AuthService,
     // tslint:disable-next-line: variable-name
     private _bottomSheet: MatBottomSheet
     ) {
@@ -77,5 +80,6 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
     this.numberOfNews = this.fills.length;
+    this.userName = this.auth.lgUserName;
   }
 }
