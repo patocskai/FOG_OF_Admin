@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
+import { MatBottomSheet } from '@angular/material';
+import { NewsDialogComponent } from 'src/app/shared/news-dialog/news-dialog.component';
+import { FillService } from 'src/app/services/fill.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,6 +10,8 @@ import { Router, RouterEvent } from '@angular/router';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  fills = [];
+  numberOfNews = 0;
   pages = [
     {
       title: 'Fal',
@@ -17,7 +22,7 @@ export class MenuPage implements OnInit {
     {
       title: 'Vizsgálatok',
       url: '/menu/examination',
-      icon: 'document-text-outline'
+      icon: 'document-text'
     },
     {
       title: 'Csoportstatisztika',
@@ -27,7 +32,7 @@ export class MenuPage implements OnInit {
     {
       title: 'Tagok',
       url: '/menu/staff',
-      icon: 'people-outline'
+      icon: 'people'
     },
     {
       title: 'Diagnózis',
@@ -37,13 +42,40 @@ export class MenuPage implements OnInit {
 
   ];
 
+  menu = [
+    {
+      title: 'Profil',
+      url: '/menu/profile',
+      icon: 'person'
+    },
+    {
+      title: 'Kijelentkezés',
+      url: '',
+      icon: 'log-out-outline'
+    }
+  ];
+
   selectedPath = '';
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private fillService: FillService,
+    // tslint:disable-next-line: variable-name
+    private _bottomSheet: MatBottomSheet
+    ) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url;
     });
   }
 
-  ngOnInit() {}
+  openNewsDialog(): void {
+    this._bottomSheet.open(NewsDialogComponent, {
+      data: this.fills,
+      panelClass: 'news-dialog',
+    });
+  }
+
+  ngOnInit() {
+    this.numberOfNews = this.fills.length;
+  }
 }

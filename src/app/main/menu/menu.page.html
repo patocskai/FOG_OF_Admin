@@ -3,7 +3,9 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>
-          <b><ion-icon name="ear-outline"></ion-icon></b>
+          <b>
+            <ion-icon name="ear-outline"></ion-icon>
+          </b>
           <i> FOG-Of</i>
         </ion-title>
       </ion-toolbar>
@@ -13,12 +15,27 @@
       <ion-list>
         <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
           <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath === p.url">
-            <ion-label>{{ p.title }}</ion-label>
+            <ion-label><b>{{ p.title }}</b></ion-label>
             <ion-icon name={{p.icon}} color="brigth"></ion-icon>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
+    <ion-footer>
+      <div>
+        <ion-item id="notification" (click)="openNewsDialog()">
+          <ion-label><b>Értesítések</b></ion-label>
+          <ion-badge color="danger">{{numberOfNews}}</ion-badge>
+        </ion-item>
+      </div>
+      <div *ngFor="let m of menu">
+        <ion-item [routerLink]="m.url" routerDirection="root" [class.active-item]="selectedPath === m.url">
+          <ion-label><b>{{ m.title }}</b></ion-label>
+          <ion-icon name={{m.icon}} color="brigth"></ion-icon>
+        </ion-item>
+
+      </div>
+    </ion-footer>
   </ion-menu>
   <ion-router-outlet id="content" main></ion-router-outlet>
 </ion-split-pane>
