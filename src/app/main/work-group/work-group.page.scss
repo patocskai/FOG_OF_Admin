@@ -1,0 +1,11 @@
+.segment {
+    top: 3%;
+    width: 80%;
+    margin: auto;
+}
+
+ion-list {
+    ion-item:hover{
+        --ion-background-color: #d7d8da!important;
+    }
+}

@@ -41,7 +41,11 @@ export class MenuPage implements OnInit {
       url: '/menu/histological',
       icon: 'pulse-outline'
     },
-
+    {
+      title: 'Munkacsoportok',
+      url: '/menu/work-group',
+      icon: 'people'
+    },
   ];
 
   menu = [

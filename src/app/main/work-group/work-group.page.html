@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Munkacsoportok</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment style="margin-bottom: 5%;" color="tertiary" value="listWorkGroups" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="listWorkGroups">
+      <ion-label>Lista</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="createWorkGroup">
+      <ion-label>Létrehozás</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="listWorkGroups">
+    <ion-card class="segment" color="tertiary">
+      <ion-title style="padding-top:1%; padding-bottom: 1%;">Munkacsoportok listája</ion-title>
+      <ion-list>
+        <ion-item (click)="klikk()" style="cursor: pointer;">
+          <ion-label>asd</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>asd</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>asd</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>asd</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+
+  <div *ngIf="createWorkGroup">
+    <ion-card class="segment" color="medium">
+      <ion-title style="padding-top:1%; text-align: center;">Munkacsoport létrehozása</ion-title>
+
+      <ion-card>
+        <ion-item>
+          <ion-label positon="floating">
+            <b>Munkacsoport neve:</b>
+          </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+          <ion-label positon="floating">
+            <b>Munkacsoport vezető:</b>
+          </ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-card>
+
+
+    </ion-card>
+  </div>
+
+</ion-content>

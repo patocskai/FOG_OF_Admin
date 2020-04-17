@@ -22,6 +22,11 @@ const routes: Routes = [
           'src/app/main/examination/examination.module#ExaminationPageModule',
       },
       {
+        path: 'work-group',
+        loadChildren:
+          'src/app/main/work-group/work-group.module#WorkGroupPageModule',
+      },
+      {
         path: 'group-statistics',
         loadChildren:
           'src/app/main/group-statistics/group-statistics.module#GroupStatisticsPageModule',
