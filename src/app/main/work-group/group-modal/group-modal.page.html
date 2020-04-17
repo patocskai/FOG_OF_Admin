@@ -1,7 +1,15 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-title>groupModal</ion-title>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="open-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
       <ion-button (click)="dismiss()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
@@ -10,5 +18,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>asd</ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
