@@ -1,6 +1,9 @@
 import { WorkgroupService } from 'src/app/services/workgroup.service';
 import { Component, OnInit } from '@angular/core';
-import { Workgroup } from 'src/app/interfaces/workgroup.interface';
+import { ModalController } from '@ionic/angular';
+import { GroupModalPage } from './group-modal/group-modal.page';
+
+
 
 @Component({
   selector: 'app-work-group',
@@ -12,12 +15,21 @@ export class WorkGroupPage implements OnInit {
   createWorkGroup = false;
 
   constructor(
+    private modalController: ModalController,
     private workGroupService: WorkgroupService
   ) {}
 
   ngOnInit() {
    }
 
+   async openModal() {
+    const modal = await this.modalController.create({
+      component: GroupModalPage,
+      swipeToClose: true,
+      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+    });
+    return await modal.present();
+  }
 
   klikk() {
     console.log();

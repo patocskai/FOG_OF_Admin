@@ -1,9 +1,9 @@
+import { GroupModalPage } from './group-modal/group-modal.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
 
 import { WorkGroupPage } from './work-group.page';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,8 +11,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    component: WorkGroupPage
-  }
+    component: WorkGroupPage,
+  },
 ];
 
 @NgModule({
@@ -20,8 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [WorkGroupPage]
+  declarations: [WorkGroupPage, GroupModalPage],
+  entryComponents: [GroupModalPage],
 })
 export class WorkGroupPageModule {}
