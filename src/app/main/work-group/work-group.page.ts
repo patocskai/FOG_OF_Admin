@@ -48,9 +48,12 @@ export class WorkGroupPage implements OnInit {
      this.workGroupService.removeWorkGroup(item.id);
    }
 
-   async openModal() {
+   async openModal(id) {
     const modal = await this.modalController.create({
       component: GroupModalPage,
+      componentProps: {
+        id
+      },
       swipeToClose: true,
       presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
     });

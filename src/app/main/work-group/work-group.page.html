@@ -23,7 +23,7 @@
       <ion-title style="padding-top:1%; padding-bottom: 1%;">Munkacsoportok listája</ion-title>
       <ion-list>
         <ion-item-sliding *ngFor="let item of workGroups">
-          <ion-item lines="inset" button (click)="openModal()">
+          <ion-item lines="inset" button (click)="openModal(item.id)">
             <ion-label>{{item.creationDate}}</ion-label>
             <ion-label>{{item.name}}</ion-label>
           </ion-item>
