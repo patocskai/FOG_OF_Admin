@@ -16,6 +16,11 @@ export class MenuPage implements OnInit {
   numberOfNews = 0;
   pages = [
     {
+      title: 'Munkacsoportok',
+      url: '/menu/work-group',
+      icon: 'people'
+    },
+    {
       title: 'Fal',
       url: '/menu/wall',
       icon: 'calendar-outline'
@@ -34,17 +39,12 @@ export class MenuPage implements OnInit {
     {
       title: 'Tagok',
       url: '/menu/staff',
-      icon: 'people'
+      icon: 'people-circle-outline'
     },
     {
       title: 'Diagnózis',
       url: '/menu/histological',
       icon: 'pulse-outline'
-    },
-    {
-      title: 'Munkacsoportok',
-      url: '/menu/work-group',
-      icon: 'people'
     },
   ];
 
