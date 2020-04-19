@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="tertiary">
-    <ion-title>groupModal</ion-title>
+    <ion-title>{{workgroup.name}}</ion-title>
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon slot="icon-only" name="open-outline"></ion-icon>
@@ -20,7 +20,40 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label>asd</ion-label>
+      <ion-label><b>Létrehozás:</b></ion-label>
+      <ion-label>{{workgroup.creationDate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><b>Csoport név:</b></ion-label>
+      <ion-label>{{workgroup.name}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><b>Intézmény:</b></ion-label>
+      <ion-label>{{workgroup.institution}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><b>Vezető:</b></ion-label>
+      <ion-label>{{workgroup.leader}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Csoport típusa:</b></ion-label>
+      <ion-label>{{workgroup.type}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-item-sliding>
+        <ion-label style="padding:2%;"><b>Tagok:</b></ion-label>
+        <ion-chip color="tertiary" *ngFor="let person of workgroup.members">
+          <ion-avatar>
+            <img src="../../assets/doctor_icon.png">
+          </ion-avatar>
+          <ion-label>{{person}}</ion-label>
+          <ion-icon name="close-circle"></ion-icon>
+        </ion-chip>
+      </ion-item-sliding>
     </ion-item>
   </ion-list>
 
