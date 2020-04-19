@@ -22,17 +22,27 @@
     <ion-card class="segment" color="tertiary">
       <ion-title style="padding-top:1%; padding-bottom: 1%;">Munkacsoportok listája</ion-title>
       <ion-list>
-        <ion-item-sliding *ngFor="let item of workGroups">
-          <ion-item lines="inset" button (click)="openModal(item.id)">
-            <ion-label>{{item.creationDate}}</ion-label>
-            <ion-label><b>{{item.name}}</b></ion-label>
-          </ion-item>
-          <ion-item-options side="end">
-            <ion-item-option (click)="removeGroup(item)" color="danger">
-              <ion-icon name="trash-outline" slot="end"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
+        <ion-radio-group color="tertiary">
+          <ion-item-sliding *ngFor="let item of workGroups">
+
+            <ion-item lines="inset">
+              <ion-radio style="margin-right: 5%;"></ion-radio>
+              <ion-label><b>{{item.name}}</b></ion-label>
+              <ion-label><i>{{item.creationDate}}</i></ion-label>
+              <ion-buttons>
+                <ion-button color="dark" (click)="openModal(item.id)">
+                  <ion-icon slot="icon-only" name="open-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+
+            <ion-item-options side="end">
+              <ion-item-option (click)="removeGroup(item)" color="danger">
+                <ion-icon name="trash-outline" slot="end"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-radio-group>
       </ion-list>
     </ion-card>
   </div>
@@ -59,7 +69,10 @@
         </ion-item>
       </ion-card>
 
-
+<div style="margin-bottom: 1%; display:flex; justify-content: center;">
+  <ion-button color="tertiary">Létrehozás</ion-button>
+  <ion-button color="danger">Elvet</ion-button>
+</div>
     </ion-card>
   </div>
 
