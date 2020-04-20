@@ -1,3 +1,4 @@
+import { PractitionerService } from 'src/app/services/practitioner.service';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -8,6 +9,7 @@ import {
 import { GroupModalPage } from './group-modal/group-modal.page';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Practitioner } from 'src/app/interfaces/practitioner.interface';
 
 @Component({
   selector: 'app-work-group',
@@ -19,12 +21,14 @@ export class WorkGroupPage implements OnInit {
   createWorkGroup = false;
 
   workGroups: Workgroup[];
+  prac: Practitioner[];
 
   private workGroup: FormGroup;
 
   constructor(
     private modalController: ModalController,
     private workGroupService: WorkgroupService,
+    private practitionerService: PractitionerService,
     private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private nav: NavController
@@ -42,6 +46,10 @@ export class WorkGroupPage implements OnInit {
   ngOnInit() {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
+    });
+    this.practitionerService.getAllPrac().subscribe((res) =>{
+      this.prac = res;
+      console.log(this.prac);
     });
   }
 

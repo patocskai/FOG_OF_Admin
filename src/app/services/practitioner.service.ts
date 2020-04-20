@@ -1,26 +1,59 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
 import { Practitioner } from '../interfaces/practitioner.interface';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PractitionerService {
-  practitioners: Practitioner[] = [];
-  constructor(private firestore: AngularFirestore, private auth: AuthService) { }
+  practitioners: Practitioner[] = []; // régi
+
+  private practitionerCollection: AngularFirestoreCollection<Practitioner>; // új
+  private prac: Observable<Practitioner[]>; // új
+
+  constructor(private firestore: AngularFirestore, private auth: AuthService) {
+    this.practitionerCollection = firestore.collection<Practitioner>('Practitioner');  // új
+
+    this.prac = this.practitionerCollection.snapshotChanges().pipe(
+      map((action) => {
+        return action.map((a) => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getAllPrac() { // új
+    return this.prac;
+  }
+
+  getPrac(id) { // új
+    return this.practitionerCollection.doc<Practitioner>(id).valueChanges();
+  }
+
+
 
   getPractitioners(id: any) {
+    // régi
     return this.firestore.collection('Practitioner').doc(id).valueChanges();
   }
 
   getAllPractitioner() {
+    // régi
     return this.firestore.collection('Practitioner').ref;
   }
 
   changePractitionersPermissions(practitionerWithPermissions: any[]) {
     const myRef = this.firestore.collection('Practitioner').ref;
-    practitionerWithPermissions.forEach(element => {
+    practitionerWithPermissions.forEach((element) => {
       const roles = [];
       if (element.roles[0].basic === true) {
         roles.push('basic');
@@ -39,7 +72,10 @@ export class PractitionerService {
   }
 
   updateDermatoscopeExperience(value: string, id: string) {
-    this.firestore.collection('Practitioner').ref.doc(id).update('dermatoscopeExperience', value);
+    this.firestore
+      .collection('Practitioner')
+      .ref.doc(id)
+      .update('dermatoscopeExperience', value);
   }
 
   removePractitionerFromWorkgroup(id: string) {
@@ -55,24 +91,33 @@ export class PractitionerService {
   }
 
   getStaff() {
-    return this.firestore.collection('Practitioner').ref.where('workgroup', '==', this.auth.loggedUser.workgroup);
+    return this.firestore
+      .collection('Practitioner')
+      .ref.where('workgroup', '==', this.auth.loggedUser.workgroup);
   }
 
   getAvailableUsers() {
-    return this.firestore.collection('Practitioner').ref.where('workgroup', '==', '').get();
+    return this.firestore
+      .collection('Practitioner')
+      .ref.where('workgroup', '==', '')
+      .get();
   }
   async getAllPractitioners() {
     let docSnapshots = [];
     this.practitioners = [];
     let i = 0;
-    await this.firestore.collection('Practitioner').ref.where('workgroup', '==', this.auth.loggedUser.workgroup).get().then(data => {
-      docSnapshots = data.docs;
-      docSnapshots.forEach(element => {
-        this.practitioners.push(element.data());
-        this.practitioners[i].practitonerID = element.id;
-        i++;
+    await this.firestore
+      .collection('Practitioner')
+      .ref.where('workgroup', '==', this.auth.loggedUser.workgroup)
+      .get()
+      .then((data) => {
+        docSnapshots = data.docs;
+        docSnapshots.forEach((element) => {
+          this.practitioners.push(element.data());
+          this.practitioners[i].practitonerID = element.id;
+          i++;
+        });
       });
-    });
     return this.practitioners;
   }
 }

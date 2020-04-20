@@ -1,14 +1,17 @@
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+} from '@angular/fire/firestore';
 import { Workgroup } from '../interfaces/workgroup.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WorkgroupService {
-  workgroups: Workgroup[] = [];
+  workgroups: Workgroup[] = []; //régi
 
   private workGroupsCollection: AngularFirestoreCollection<Workgroup>;
   private workGroups: Observable<Workgroup[]>;
@@ -17,29 +20,29 @@ export class WorkgroupService {
     this.workGroupsCollection = firestore.collection<Workgroup>('Workgroup');
 
     this.workGroups = this.workGroupsCollection.snapshotChanges().pipe(
-      map(action => {
-        return action.map( a => {
+      map((action) => {
+        return action.map((a) => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { id, ...data };
         });
       })
     );
-   }
+  }
 
-  getAllWorkGroups(){
+  getAllWorkGroups() {
     return this.workGroups;
   }
 
-  getWorkGroup(id){
+  getWorkGroup(id) {
     return this.workGroupsCollection.doc<Workgroup>(id).valueChanges();
   }
 
-  updateWorkGroup(workGroup: Workgroup, id: string){
+  updateWorkGroup(workGroup: Workgroup, id: string) {
     return this.workGroupsCollection.doc(id).update(workGroup);
   }
 
-  addWorkGroup(workGroup: Workgroup){
+  addWorkGroup(workGroup: Workgroup) {
     return this.workGroupsCollection.add(workGroup);
   }
 
@@ -47,19 +50,20 @@ export class WorkgroupService {
     return this.workGroupsCollection.doc(id).delete();
   }
 
-
-
-  getWorkgroups() {
+  getWorkgroups() { // régi
     return new Promise((resolve, reject) => {
-      this.firestore.collection('Workgroup').snapshotChanges().subscribe(data => {
-        this.workgroups = data.map(e => {
-          return {
-            id: e.payload.doc.id,
-            ...e.payload.doc.data()
-          } as Workgroup;
+      this.firestore
+        .collection('Workgroup')
+        .snapshotChanges()
+        .subscribe((data) => {
+          this.workgroups = data.map((e) => {
+            return {
+              id: e.payload.doc.id,
+              ...e.payload.doc.data(),
+            } as Workgroup;
+          });
+          resolve();
         });
-        resolve()
-      });
     });
   }
 }
