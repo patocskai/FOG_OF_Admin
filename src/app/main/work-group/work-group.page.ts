@@ -1,10 +1,13 @@
 import { WorkgroupService } from 'src/app/services/workgroup.service';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import {
+  ModalController,
+  LoadingController,
+  NavController,
+} from '@ionic/angular';
 import { GroupModalPage } from './group-modal/group-modal.page';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
-
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-work-group',
@@ -17,48 +20,72 @@ export class WorkGroupPage implements OnInit {
 
   workGroups: Workgroup[];
 
+  private workGroup: FormGroup;
+
   constructor(
     private modalController: ModalController,
-    private workGroupService: WorkgroupService
-  ) {}
+    private workGroupService: WorkgroupService,
+    private formBuilder: FormBuilder,
+    private loadingController: LoadingController,
+    private nav: NavController
+  ) {
+    this.workGroup = this.formBuilder.group({
+      creationDate: [new Date().getTime()],
+      name: ['', Validators.required],
+      institution: ['', Validators.required],
+      leader: ['', Validators.required],
+      members: ['', Validators.required],
+      type: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
-    this.workGroupService.getAllWorkGroups().subscribe( res => {
+    this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    console.log(this.workGroups);
-   }
+  }
 
-   segmentChanged(event) {
-     const segment = event.target.value;
- 
-     // tslint:disable-next-line: triple-equals
-     if (segment == 'listWorkGroups') {
-       this.createWorkGroup = false;
-       this.listWorkGroups = true;
-     }
-     // tslint:disable-next-line: triple-equals
-     if (segment == 'createWorkGroup') {
-       this.createWorkGroup = true;
-       this.listWorkGroups = false;
-     }
-   }
+  segmentChanged(event) {
+    const segment = event.target.value;
 
-   removeGroup(item) {
-     this.workGroupService.removeWorkGroup(item.id);
-   }
+    // tslint:disable-next-line: triple-equals
+    if (segment == 'listWorkGroups') {
+      this.createWorkGroup = false;
+      this.listWorkGroups = true;
+    }
+    // tslint:disable-next-line: triple-equals
+    if (segment == 'createWorkGroup') {
+      this.createWorkGroup = true;
+      this.listWorkGroups = false;
+    }
+  }
 
-   async openModal(id) {
+  async saveWorkGroup() {
+    const loading = await this.loadingController.create({
+      message: 'Munkacsoport mentése folyamatban..',
+    });
+    await loading.present();
+
+    this.workGroupService.addWorkGroup(this.workGroup.value).then(() => {
+      loading.dismiss();
+      this.workGroup.reset();
+    });
+    console.log(this.workGroup.value);
+  }
+
+  removeGroup(item) {
+    this.workGroupService.removeWorkGroup(item.id);
+  }
+
+  async openModal(id) {
     const modal = await this.modalController.create({
       component: GroupModalPage,
       componentProps: {
-        id
+        id,
       },
       swipeToClose: true,
-      presentingElement: await this.modalController.getTop() // Get the top-most ion-modal
+      presentingElement: await this.modalController.getTop(), // Get the top-most ion-modal
     });
     return await modal.present();
   }
-
-
 }

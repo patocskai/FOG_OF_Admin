@@ -47,7 +47,7 @@
     </ion-card>
   </div>
 
-  <div *ngIf="createWorkGroup">
+  <div *ngIf="createWorkGroup" [formGroup]="workGroup">
     <ion-card class="segment" color="medium">
       <ion-title style="padding-top:1%; text-align: center;">Munkacsoport létrehozása</ion-title>
 
@@ -56,23 +56,54 @@
           <ion-label positon="floating">
             <b>Munkacsoport neve:</b>
           </ion-label>
-          <ion-input></ion-input>
+          <ion-input formControlName="name"></ion-input>
         </ion-item>
       </ion-card>
 
       <ion-card>
         <ion-item>
           <ion-label positon="floating">
-            <b>Munkacsoport vezető:</b>
+            <b>Intézet:</b>
           </ion-label>
-          <ion-input></ion-input>
+          <ion-input formControlName="institution"></ion-input>
         </ion-item>
       </ion-card>
 
-<div style="margin-bottom: 1%; display:flex; justify-content: center;">
-  <ion-button color="tertiary">Létrehozás</ion-button>
-  <ion-button color="danger">Elvet</ion-button>
-</div>
+      <ion-card>
+        <ion-item>
+          <ion-label positon="floating">
+            <b>Vezető:</b>
+          </ion-label>
+          <ion-input formControlName="leader"></ion-input>
+        </ion-item>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+          <ion-label positon="floating">
+            <b>Tagok:</b>
+          </ion-label>
+          <ion-input formControlName="members"></ion-input>
+        </ion-item>
+      </ion-card>
+
+      <ion-card>
+        <ion-item>
+          <ion-label positon="floating">
+            <b>Típus:</b>
+          </ion-label>
+          <ion-input formControlName="type"></ion-input>
+        </ion-item>
+      </ion-card>
+
+
+
+
+
+      <div style="margin-bottom: 1%; display:flex; justify-content: center;">
+        <ion-button color="tertiary" type="submit" (click)="saveWorkGroup()" [disabled]="!workGroup.valid">Létrehozás</ion-button>
+        <ion-button color="danger" (click)="workGroup.reset()">Elvet</ion-button>
+      </div>
     </ion-card>
   </div>
 
