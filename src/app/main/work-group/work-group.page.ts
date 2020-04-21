@@ -8,7 +8,7 @@ import {
 } from '@ionic/angular';
 import { GroupModalPage } from './group-modal/group-modal.page';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Practitioner } from 'src/app/interfaces/practitioner.interface';
 
 @Component({
@@ -23,9 +23,9 @@ export class WorkGroupPage implements OnInit {
   workGroups: Workgroup[];
   prac: Practitioner[];
   users = [];
-
+  selectedUser = null;
   private workGroup: FormGroup;
-
+  workGroupLeader;
 
   constructor(
     private modalController: ModalController,
@@ -39,7 +39,7 @@ export class WorkGroupPage implements OnInit {
       creationDate: [new Date().getTime()],
       name: ['', Validators.required],
       institution: ['', Validators.required],
-      leader: ['', Validators.required],
+      leader: new FormControl('', Validators.required),
       members: ['', Validators.required],
       type: ['', Validators.required],
     });
@@ -51,17 +51,14 @@ export class WorkGroupPage implements OnInit {
     });
     this.practitionerService.getAllPrac().subscribe((res) => {
       this.prac = res;
-      console.log(this.prac);
       res.forEach((user) => {
-        this.users.push([{
+        this.users.push({
           id: user.id,
           name: user.prefix + ' ' + user.family + ' ' + user.given,
-          workgroup: user.workgroup
-        }]);
-        console.log(this.users);
-
+        });
       });
     });
+    console.log(this.workGroup.controls.value);
   }
 
   segmentChanged(event) {
@@ -85,6 +82,7 @@ export class WorkGroupPage implements OnInit {
     });
     await loading.present();
 
+    this.workGroup.controls.leader.setValue(this.workGroup.controls.leader.value.id);
     this.workGroupService.addWorkGroup(this.workGroup.value).then(() => {
       loading.dismiss();
       this.workGroup.reset();

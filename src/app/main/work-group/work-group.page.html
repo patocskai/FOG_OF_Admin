@@ -74,10 +74,10 @@
           <ion-label positon="floating">
             <b>Vezető:</b>
           </ion-label>
-          <ionic-selectable 
+          <ionic-selectable
+          [(ngModel)]="selectedUser"
           formControlName="leader" [items]="users"
-          itemValueField="name" itemTextfield="name">
- 
+          itemValueField="id" itemTextField="name">
           </ionic-selectable>
         </ion-item>
       </ion-card>
@@ -99,11 +99,6 @@
           <ion-input formControlName="type"></ion-input>
         </ion-item>
       </ion-card>
-
-
-
-
-
       <div style="margin-bottom: 1%; display:flex; justify-content: center;">
         <ion-button color="tertiary" type="submit" (click)="saveWorkGroup()" [disabled]="!workGroup.valid">Létrehozás</ion-button>
         <ion-button color="danger" (click)="workGroup.reset()">Elvet</ion-button>
