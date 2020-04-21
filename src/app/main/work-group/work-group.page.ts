@@ -22,8 +22,10 @@ export class WorkGroupPage implements OnInit {
 
   workGroups: Workgroup[];
   prac: Practitioner[];
+  users = [];
 
   private workGroup: FormGroup;
+
 
   constructor(
     private modalController: ModalController,
@@ -47,9 +49,18 @@ export class WorkGroupPage implements OnInit {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    this.practitionerService.getAllPrac().subscribe((res) =>{
+    this.practitionerService.getAllPrac().subscribe((res) => {
       this.prac = res;
       console.log(this.prac);
+      res.forEach((user) => {
+        this.users.push([{
+          id: user.id,
+          name: user.prefix + ' ' + user.family + ' ' + user.given,
+          workgroup: user.workgroup
+        }]);
+        console.log(this.users);
+
+      });
     });
   }
 

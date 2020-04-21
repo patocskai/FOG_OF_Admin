@@ -74,7 +74,11 @@
           <ion-label positon="floating">
             <b>Vezető:</b>
           </ion-label>
-          <ion-input formControlName="leader"></ion-input>
+          <ionic-selectable 
+          formControlName="leader" [items]="users"
+          itemValueField="name" itemTextfield="name">
+ 
+          </ionic-selectable>
         </ion-item>
       </ion-card>
 

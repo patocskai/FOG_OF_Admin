@@ -16,7 +16,7 @@ export class PractitionerService {
 
   private practitionerCollection: AngularFirestoreCollection<Practitioner>; // új
   private prac: Observable<Practitioner[]>; // új
-
+  
   constructor(private firestore: AngularFirestore, private auth: AuthService) {
     this.practitionerCollection = firestore.collection<Practitioner>('Practitioner');  // új
 
