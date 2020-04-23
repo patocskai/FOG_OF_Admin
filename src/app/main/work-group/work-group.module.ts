@@ -1,6 +1,6 @@
 import { GroupModalPage } from './group-modal/group-modal.page';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
@@ -27,5 +27,8 @@ const routes: Routes = [
   ],
   declarations: [WorkGroupPage, GroupModalPage],
   entryComponents: [GroupModalPage],
+  providers: [
+    DatePipe
+  ]
 })
 export class WorkGroupPageModule {}

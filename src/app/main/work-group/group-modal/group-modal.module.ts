@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +9,8 @@ import { GroupModalPage } from './group-modal.page';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    RouterModule
   ],
   declarations: [
     GroupModalPage

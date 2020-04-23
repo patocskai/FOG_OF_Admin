@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
 import { WorkgroupService } from './../../../services/workgroup.service';
 import { ModalController, NavParams, LoadingController } from '@ionic/angular';
@@ -23,7 +24,8 @@ export class GroupModalPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private workGroupService: WorkgroupService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -46,6 +48,12 @@ export class GroupModalPage implements OnInit {
       this.workgroup.members = res.members;
       this.workgroup.type = res.type;
     });
+
+  }
+
+  routeWorkGroup() {
+    this.router.navigateByUrl('/menu/group-statistics');
+    this.modalController.dismiss();
   }
 
   async dismiss() {

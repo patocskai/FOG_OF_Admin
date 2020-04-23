@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { PractitionerService } from 'src/app/services/practitioner.service';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -33,9 +34,7 @@ export class WorkGroupPage implements OnInit {
   selectComponent: IonicSelectableComponent;
   toggle = true;
   private workGroup: FormGroup;
-
-  currentDate = new Date();
-
+  date = new Date();
 
   constructor(
     private modalController: ModalController,
@@ -43,10 +42,11 @@ export class WorkGroupPage implements OnInit {
     private practitionerService: PractitionerService,
     private formBuilder: FormBuilder,
     private loadingController: LoadingController,
-    private nav: NavController
+    private nav: NavController,
+    private datePipe: DatePipe
   ) {
     this.workGroup = this.formBuilder.group({
-      creationDate: [],
+      creationDate: [this.datePipe.transform(this.date, 'yyyy-MM-dd')],
       name: ['', Validators.required],
       institution: ['', Validators.required],
       leader: new FormControl('', Validators.required),
@@ -68,7 +68,7 @@ export class WorkGroupPage implements OnInit {
         });
       });
     });
-    console.log(this.currentDate);
+    console.log(this.datePipe.transform(this.date, 'yyyy-MM-dd'));
     console.log(this.workGroup.controls.value);
   }
 
