@@ -48,61 +48,52 @@
   </div>
 
   <div *ngIf="createWorkGroup" [formGroup]="workGroup">
-    <ion-card class="segment" color="medium">
-      <ion-title style="padding-top:1%; text-align: center;">Munkacsoport létrehozása</ion-title>
-
-      <ion-card>
+    <ion-card class="segment" color="tertiary">
+      <ion-title style="padding-top:1%; padding-bottom: 1%; text-align: center;">Munkacsoport létrehozása</ion-title>
+      <ion-list>
         <ion-item>
-          <ion-label positon="floating">
-            <b>Munkacsoport neve:</b>
+          <ion-label positon="floating" style="margin-right: 44px;">
+            <b>Név:</b>
           </ion-label>
           <ion-input formControlName="name"></ion-input>
         </ion-item>
-      </ion-card>
 
-      <ion-card>
         <ion-item>
-          <ion-label positon="floating">
+          <ion-label positon="floating" style="margin-right: 20px;">
             <b>Intézet:</b>
           </ion-label>
-          <ion-input formControlName="institution"></ion-input>
+          <ion-input formControlName="institution" ></ion-input>
         </ion-item>
-      </ion-card>
 
-      <ion-card>
         <ion-item>
           <ion-label positon="floating">
             <b>Vezető:</b>
           </ion-label>
-          <ionic-selectable
-          [(ngModel)]="selectedUser"
-          formControlName="leader" [items]="users"
-          itemValueField="id" itemTextField="name">
+          <ionic-selectable [(ngModel)]="selectedUser" formControlName="leader" [items]="users" itemValueField="id"
+            itemTextField="name">
           </ionic-selectable>
         </ion-item>
-      </ion-card>
 
-      <ion-card>
         <ion-item>
-          <ion-label positon="floating">
+          <ion-label positon="floating" style="margin-right: 20px;">
             <b>Tagok:</b>
           </ion-label>
           <ion-input formControlName="members"></ion-input>
         </ion-item>
-      </ion-card>
 
-      <ion-card>
         <ion-item>
-          <ion-label positon="floating">
+          <ion-label positon="floating" style="margin-right: 21px;">
             <b>Típus:</b>
           </ion-label>
           <ion-input formControlName="type"></ion-input>
         </ion-item>
-      </ion-card>
-      <div style="margin-bottom: 1%; display:flex; justify-content: center;">
-        <ion-button color="tertiary" type="submit" (click)="saveWorkGroup()" [disabled]="!workGroup.valid">Létrehozás</ion-button>
-        <ion-button color="danger" (click)="workGroup.reset()">Elvet</ion-button>
-      </div>
+
+        <div style="margin-bottom: 1%; margin-top: 2%; display:flex; justify-content: center;">
+          <ion-button color="tertiary" type="submit" (click)="saveWorkGroup()" [disabled]="!workGroup.valid">Létrehozás
+          </ion-button>
+          <ion-button color="danger" (click)="workGroup.reset()">Elvet</ion-button>
+        </div>
+      </ion-list>
     </ion-card>
   </div>
 

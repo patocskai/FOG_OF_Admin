@@ -1,19 +1,15 @@
 .segment {
     top: 3%;
-    width: 70%;
+    width: 60%;
     margin: auto;
 }
 
-
-ion-list{ 
-    ion-item:hover{
-        --ion-background-color: #d7d8da!important;
+ion-list {
+    ion-item:hover {
+        --ion-background-color: #d7d8da !important;
     }
 }
+
 ion-item-sliding:active {
-    --ion-background-color: #d7d8da!important;
+    --ion-background-color: #d7d8da !important;
 }
-// ion-input {
-//     --placeholder-color: red!important;
-//     --placeholder-opacity: 1;
-// }
