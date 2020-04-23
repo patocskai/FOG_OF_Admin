@@ -71,12 +71,12 @@ export class PractitionerService {
     });
   }
 
-  updateDermatoscopeExperience(value: string, id: string) {
-    this.firestore
-      .collection('Practitioner')
-      .ref.doc(id)
-      .update('dermatoscopeExperience', value);
-  }
+  // updateDermatoscopeExperience(value: string, id: string) {
+  //   this.firestore
+  //     .collection('Practitioner')
+  //     .ref.doc(id)
+  //     .update('dermatoscopeExperience', value);
+  // }
 
   removePractitionerFromWorkgroup(id: string) {
     const myRef = this.firestore.collection('Practitioner').ref;

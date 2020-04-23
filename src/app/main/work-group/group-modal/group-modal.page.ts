@@ -1,7 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
 import { WorkgroupService } from './../../../services/workgroup.service';
-import { ModalController, NavParams, LoadingController } from '@ionic/angular';
+import {
+  ModalController,
+  NavParams,
+  LoadingController,
+  AlertController,
+} from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -19,27 +25,27 @@ export class GroupModalPage implements OnInit {
     institution: '',
     leader: '',
     members: [],
-    type: ''
+    type: '',
   };
   constructor(
     private modalController: ModalController,
     private workGroupService: WorkgroupService,
     private loadingController: LoadingController,
     private router: Router,
+    public alertController: AlertController,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
     this.loadWorkGroup();
-    console.log(this.workgroup);
-    console.log(this.id);
   }
 
   async loadWorkGroup() {
     const loading = await this.loadingController.create({
-      message: 'Munkacsoport betöltése..'
+      message: 'Munkacsoport betöltése..',
     });
     await loading.present();
-    this.workGroupService.getWorkGroup(this.id).subscribe(res => {
+    this.workGroupService.getWorkGroup(this.id).subscribe((res) => {
       loading.dismiss();
       this.workgroup.creationDate = res.creationDate;
       this.workgroup.name = res.name;
@@ -48,7 +54,6 @@ export class GroupModalPage implements OnInit {
       this.workgroup.members = res.members;
       this.workgroup.type = res.type;
     });
-
   }
 
   routeWorkGroup() {
@@ -58,5 +63,28 @@ export class GroupModalPage implements OnInit {
 
   async dismiss() {
     this.modalController.dismiss();
+  }
+
+  async removeGroup() {
+    const alert = await this.alertController.create({
+      message: 'Biztosan <strong>törli</strong>?',
+      buttons: [
+        {
+          text: 'Törlés',
+          cssClass: 'alertDanger',
+          handler: () => {
+            this.workGroupService.removeWorkGroup(this.id);
+            this.dismiss();
+            this.ngOnInit();
+          },
+        },
+        {
+          text: 'Mégse',
+          role: 'cancel',
+          cssClass: 'alertDanger',
+        },
+      ],
+    });
+    await alert.present();
   }
 }

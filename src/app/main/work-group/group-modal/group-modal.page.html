@@ -7,6 +7,9 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
+      <ion-button (click)="removeGroup()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
       <ion-button>
         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
       </ion-button>
@@ -18,7 +21,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list >
     <ion-item>
       <ion-label><b>Létrehozás:</b></ion-label>
       <ion-label>{{workgroup.creationDate}}</ion-label>
