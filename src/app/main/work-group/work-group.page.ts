@@ -1,6 +1,6 @@
 import { PractitionerService } from 'src/app/services/practitioner.service';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ModalController,
   LoadingController,
@@ -8,8 +8,14 @@ import {
 } from '@ionic/angular';
 import { GroupModalPage } from './group-modal/group-modal.page';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Practitioner } from 'src/app/interfaces/practitioner.interface';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 @Component({
   selector: 'app-work-group',
@@ -23,9 +29,13 @@ export class WorkGroupPage implements OnInit {
   workGroups: Workgroup[];
   prac: Practitioner[];
   users = [];
-  selectedUser = null;
+  @ViewChild('selectComponent', { static: false })
+  selectComponent: IonicSelectableComponent;
+  toggle = true;
   private workGroup: FormGroup;
-  workGroupLeader;
+
+  currentDate = new Date();
+
 
   constructor(
     private modalController: ModalController,
@@ -36,7 +46,7 @@ export class WorkGroupPage implements OnInit {
     private nav: NavController
   ) {
     this.workGroup = this.formBuilder.group({
-      creationDate: [new Date().getTime()],
+      creationDate: [],
       name: ['', Validators.required],
       institution: ['', Validators.required],
       leader: new FormControl('', Validators.required),
@@ -58,6 +68,7 @@ export class WorkGroupPage implements OnInit {
         });
       });
     });
+    console.log(this.currentDate);
     console.log(this.workGroup.controls.value);
   }
 
@@ -76,13 +87,30 @@ export class WorkGroupPage implements OnInit {
     }
   }
 
+  clear() {
+    this.selectComponent.clear();
+    this.selectComponent.close();
+  }
+
+  toggleItems() {
+    this.selectComponent.toggleItems(this.toggle);
+    this.toggle = !this.toggle;
+  }
+
+  confirm() {
+    this.selectComponent.confirm();
+    this.selectComponent.close();
+  }
+
   async saveWorkGroup() {
     const loading = await this.loadingController.create({
       message: 'Munkacsoport mentése folyamatban..',
     });
     await loading.present();
 
-    this.workGroup.controls.leader.setValue(this.workGroup.controls.leader.value.id);
+    this.workGroup.controls.leader.setValue(
+      this.workGroup.controls.leader.value.id
+    );
     this.workGroupService.addWorkGroup(this.workGroup.value).then(() => {
       loading.dismiss();
       this.workGroup.reset();

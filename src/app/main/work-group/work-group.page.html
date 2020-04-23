@@ -19,7 +19,7 @@
   </ion-segment>
 
   <div *ngIf="listWorkGroups">
-    <ion-card class="segment" color="tertiary">
+    <ion-card id="segmentList" color="tertiary">
       <ion-title style="padding-top:1%; padding-bottom: 1%;">Munkacsoportok listája</ion-title>
       <ion-list>
         <ion-radio-group color="tertiary">
@@ -48,41 +48,94 @@
   </div>
 
   <div *ngIf="createWorkGroup" [formGroup]="workGroup">
-    <ion-card class="segment" color="tertiary">
+    <ion-card id="segmentCreate" color="tertiary">
       <ion-title style="padding-top:1%; padding-bottom: 1%; text-align: center;">Munkacsoport létrehozása</ion-title>
       <ion-list>
         <ion-item>
-          <ion-label positon="floating" style="margin-right: 44px;">
+          <ion-label positon="floating">
             <b>Név:</b>
           </ion-label>
           <ion-input formControlName="name"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label positon="floating" style="margin-right: 20px;">
+          <ion-label positon="floating">
             <b>Intézet:</b>
           </ion-label>
-          <ion-input formControlName="institution" ></ion-input>
+          <ion-input formControlName="institution"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label positon="floating">
             <b>Vezető:</b>
           </ion-label>
-          <ionic-selectable [(ngModel)]="selectedUser" formControlName="leader" [items]="users" itemValueField="id"
-            itemTextField="name">
-          </ionic-selectable>
+          <ionic-selectable 
+            formControlName="leader"
+            headerColor="tertiary"
+            searchFailText="Nem található ilyen nevű felhasználó."
+            [items]="users"
+            itemValueField="id"
+            itemTextField="name"
+            [canSearch]="true">
+          <ng-template ionicSelectableCloseButtonTemplate>
+            <ion-icon name="close"></ion-icon>
+          </ng-template>
+          <ng-template ionicSelectableTitleTemplate>
+            Válasszon vezetőt!
+          </ng-template>
+        
+        </ionic-selectable>
         </ion-item>
 
         <ion-item>
-          <ion-label positon="floating" style="margin-right: 20px;">
+          <ion-label positon="floating">
             <b>Tagok:</b>
           </ion-label>
-          <ion-input formControlName="members"></ion-input>
+          <ionic-selectable 
+          #selectComponent
+          formControlName="members"
+          headerColor= "tertiary"
+          searchFailText="Nem található ilyen nevű felhasználó."
+          [isMultiple] = true
+          [items]="users"
+          itemValueField="id"
+          itemTextField="name"
+          [canSearch]="true">   
+
+        <ng-template ionicSelectableCloseButtonTemplate>
+          <ion-icon name="close"></ion-icon>
+        </ng-template>
+
+        <ng-template ionicSelectableTitleTemplate>
+          Vegye fel a tagokat!
+        </ng-template>
+
+        <ng-template ionicSelectableFooterTemplate>
+          <ion-footer>
+            <ion-toolbar>
+              <ion-row text-center>
+                <ion-col size="4">
+                  <ion-button fill="clear" color="danger" (click)="clear()">Visszavon</ion-button>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button fill="clear" color="tertiary" (click)="toggleItems()">
+                    Kijelöl
+                    <ion-icon name="repeat-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button fill="clear" color="tertiary" (click)="confirm()">Felvétel</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-toolbar>
+          </ion-footer>
+        </ng-template>
+
+      </ionic-selectable>
         </ion-item>
 
         <ion-item>
-          <ion-label positon="floating" style="margin-right: 21px;">
+          <ion-label positon="floating">
             <b>Típus:</b>
           </ion-label>
           <ion-input formControlName="type"></ion-input>
