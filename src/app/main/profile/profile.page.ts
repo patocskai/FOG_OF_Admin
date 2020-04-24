@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
     await this.auth.getUser();
-    await this.workgroupService.getWorkgroups();
+    this.workgroupService.getWorkgroups();
     this.workgroups = this.workgroupService.workgroups;
     this.user = this.auth.loggedUser;
     this.userName = this.auth.lgUserName;
@@ -45,5 +45,7 @@ export class ProfilePage implements OnInit {
       }
     });
     this.loaded = Promise.resolve(true);
+    console.log(this.userWorkgroup);
+    console.log(this.user.workgroup);
   }
 }
