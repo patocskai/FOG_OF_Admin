@@ -10,7 +10,7 @@
       <ion-button (click)="removeGroup()">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button (click)="editMode()">
         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
       </ion-button>
       <ion-button (click)="dismiss()">
@@ -21,7 +21,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list >
+  <ion-list *ngIf="edit === false">
     <ion-item>
       <ion-label><b>Létrehozás:</b></ion-label>
       <ion-label>{{workgroup.creationDate}}</ion-label>
@@ -38,12 +38,13 @@
     </ion-item>
 
     <ion-item>
-      <ion-label><b>Vezető:</b></ion-label>
-      <ion-label>{{workgroup.leader}}</ion-label>
-    </ion-item>
-    <ion-item>
       <ion-label><b>Csoport típusa:</b></ion-label>
       <ion-label>{{workgroup.type}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><b>Vezető:</b></ion-label>
+      <ion-label>{{workgroup.leader}}</ion-label>
     </ion-item>
 
     <ion-item>
@@ -58,6 +59,89 @@
         </ion-chip>
       </ion-item-sliding>
     </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="edit === true">
+    <div id="editList">
+      <ion-item>
+        <ion-label><b>Létrehozás:</b></ion-label>
+        <ion-input disabled="true" [(ngModel)]="workgroup.creationDate"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Csoport név:</b></ion-label>
+        <ion-input [(ngModel)]="workgroup.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Intézmény:</b></ion-label>
+        <ion-input [(ngModel)]="workgroup.institution"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Csoport típusa:</b></ion-label>
+        <ion-input [(ngModel)]="workgroup.type"></ion-input>
+      </ion-item>
+    </div>
+
+    <ion-item>
+      <ion-label positon="floating">
+        <b>Vezető:</b>
+      </ion-label>
+      <ionic-selectable headerColor="tertiary" searchFailText="Nem található ilyen nevű felhasználó." [items]="users"
+        itemValueField="id" itemTextField="name" [canSearch]="true">
+
+        <ng-template ionicSelectableCloseButtonTemplate>
+          <ion-icon name="close"></ion-icon>
+        </ng-template>
+
+        <ng-template ionicSelectableTitleTemplate>
+          Válasszon vezetőt!
+        </ng-template>
+      </ionic-selectable>
+    </ion-item>
+
+    <ion-item>
+      <ion-label positon="floating">
+        <b>Tagok:</b>
+      </ion-label>
+      <ionic-selectable #selectComponent headerColor="tertiary" searchFailText="Nem található ilyen nevű felhasználó."
+        [isMultiple]=true [items]="users" itemValueField="id" itemTextField="name" [canSearch]="true">
+
+        <ng-template ionicSelectableCloseButtonTemplate>
+          <ion-icon name="close"></ion-icon>
+        </ng-template>
+
+        <ng-template ionicSelectableTitleTemplate>
+          Vegye fel a tagokat!
+        </ng-template>
+
+        <ng-template ionicSelectableFooterTemplate>
+          <ion-footer>
+            <ion-toolbar>
+              <ion-row text-center>
+                <ion-col size="4">
+                  <ion-button fill="clear" color="danger" (click)="clear()">Visszavon</ion-button>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button fill="clear" color="tertiary" (click)="toggleItems()">
+                    Kijelöl
+                    <ion-icon name="repeat-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-button fill="clear" color="tertiary" (click)="confirm()">Felvétel</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-toolbar>
+          </ion-footer>
+        </ng-template>
+      </ionic-selectable>
+    </ion-item>
+    <div style="margin-top: 5%; text-align: right;">
+      <ion-button color="tertiary">Módosít</ion-button>
+      <ion-button color="danger" (click)="dismiss()">Elvet</ion-button>
+    </div>
   </ion-list>
 
 </ion-content>

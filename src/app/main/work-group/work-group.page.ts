@@ -29,20 +29,18 @@ export class WorkGroupPage implements OnInit {
   createWorkGroup = false;
 
   workGroups: Workgroup[];
-  prac = {
 
-  };
-  users = [];
-  @ViewChild('selectComponent', { static: false })
-  selectComponent: IonicSelectableComponent;
-  toggle = true;
+  // users = [];
+  //  @ViewChild('selectComponent', { static: false })
+  // selectComponent: IonicSelectableComponent;
+  // toggle = true;
   private workGroup: FormGroup;
   date = new Date();
 
   constructor(
     private modalController: ModalController,
     private workGroupService: WorkgroupService,
-    private practitionerService: PractitionerService,
+    // private practitionerService: PractitionerService,
     private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     // private nav: NavController,
@@ -53,8 +51,8 @@ export class WorkGroupPage implements OnInit {
       creationDate: [this.datePipe.transform(this.date, 'yyyy-MM-dd')],
       name: ['', Validators.required],
       institution: ['', Validators.required],
-      leader: new FormControl('', Validators.required),
-      members: ['', Validators.required],
+      leader: [''],
+      members: [[]],
       type: ['', Validators.required],
     });
   }
@@ -63,14 +61,14 @@ export class WorkGroupPage implements OnInit {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    this.practitionerService.getAllPrac().subscribe((res) => {
-      res.forEach((user) => {
-        this.users.push({
-          id: user.id,
-          name: user.prefix + ' ' + user.family + ' ' + user.given,
-        });
-      });
-    });
+    // this.practitionerService.getAllPrac().subscribe((res) => {
+    //   res.forEach((user) => {
+    //     this.users.push({
+    //       id: user.id,
+    //       name: user.prefix + ' ' + user.family + ' ' + user.given,
+    //     });
+    //   });
+    // });
   }
 
   segmentChanged(event) {
@@ -88,20 +86,20 @@ export class WorkGroupPage implements OnInit {
     }
   }
 
-  clear() {
-    this.selectComponent.clear();
-    this.selectComponent.close();
-  }
+  // clear() {
+  //   this.selectComponent.clear();
+  //   this.selectComponent.close();
+  // }
 
-  toggleItems() {
-    this.selectComponent.toggleItems(this.toggle);
-    this.toggle = !this.toggle;
-  }
+  // toggleItems() {
+  //   this.selectComponent.toggleItems(this.toggle);
+  //   this.toggle = !this.toggle;
+  // }
 
-  confirm() {
-    this.selectComponent.confirm();
-    this.selectComponent.close();
-  }
+  // confirm() {
+  //   this.selectComponent.confirm();
+  //   this.selectComponent.close();
+  // }
 
   async saveWorkGroup() {
     const loading = await this.loadingController.create({
@@ -109,14 +107,13 @@ export class WorkGroupPage implements OnInit {
     });
     await loading.present();
 
-    this.workGroup.controls.leader.setValue(
-      this.workGroup.controls.leader.value.id
-    );
+    // this.workGroup.controls.leader.setValue(
+    //   this.workGroup.controls.leader.value.id
+    // );
     this.workGroupService.addWorkGroup(this.workGroup.value).then(() => {
       loading.dismiss();
       this.workGroup.reset();
     });
-    console.log(this.workGroup.value);
   }
 
   async removeGroup(item) {
@@ -128,14 +125,14 @@ export class WorkGroupPage implements OnInit {
           cssClass: 'alertDanger',
           handler: () => {
             this.workGroupService.removeWorkGroup(item.id);
-          }
+          },
         },
         {
           text: 'Mégse',
           role: 'cancel',
-          cssClass: 'alertDanger'
-        }
-      ]
+          cssClass: 'alertDanger',
+        },
+      ],
     });
 
     await alert.present();
@@ -148,7 +145,7 @@ export class WorkGroupPage implements OnInit {
         id,
       },
       swipeToClose: true,
-      presentingElement: await this.modalController.getTop(), // Get the top-most ion-modal
+      presentingElement: await this.modalController.getTop(),
     });
     return await modal.present();
   }

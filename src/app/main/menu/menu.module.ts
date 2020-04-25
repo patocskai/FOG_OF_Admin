@@ -13,6 +13,11 @@ const routes: Routes = [
     component: MenuPage,
     children: [
       {
+        path: 'work-group',
+        loadChildren:
+          'src/app/main/work-group/work-group.module#WorkGroupPageModule',
+      },
+      {
         path: 'wall',
         loadChildren: 'src/app/main/wall/wall.module#WallPageModule',
       },
@@ -20,11 +25,6 @@ const routes: Routes = [
         path: 'examination',
         loadChildren:
           'src/app/main/examination/examination.module#ExaminationPageModule',
-      },
-      {
-        path: 'work-group',
-        loadChildren:
-          'src/app/main/work-group/work-group.module#WorkGroupPageModule',
       },
       {
         path: 'group-statistics',
@@ -46,7 +46,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/menu/wall',
+        redirectTo: '/menu/work-group',
       },
     ],
   },

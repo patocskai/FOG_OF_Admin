@@ -1,3 +1,5 @@
+import { Workgroup } from './../../../interfaces/workgroup.interface';
+import { PractitionerService } from './../../../services/practitioner.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
@@ -8,7 +10,8 @@ import {
   LoadingController,
   AlertController,
 } from '@ionic/angular';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 @Component({
   selector: 'app-group-modal',
@@ -17,7 +20,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GroupModalPage implements OnInit {
   @Input() id: number;
-
   workgroup: Workgroup = {
     id: '',
     creationDate: '',
@@ -27,9 +29,17 @@ export class GroupModalPage implements OnInit {
     members: [],
     type: '',
   };
+
+  edit = false;
+  @ViewChild('selectComponent', { static: false })
+  selectComponent: IonicSelectableComponent;
+  toggle = true;
+  users = [];
+
   constructor(
     private modalController: ModalController,
     private workGroupService: WorkgroupService,
+    private practitionerService: PractitionerService,
     private loadingController: LoadingController,
     private router: Router,
     public alertController: AlertController,
@@ -38,6 +48,36 @@ export class GroupModalPage implements OnInit {
 
   ngOnInit() {
     this.loadWorkGroup();
+    this.practitionerService.getAllPrac().subscribe((res) => {
+      res.forEach((user) => {
+        if (user.workgroup === '') {
+          this.users.push({
+            id: user.id,
+            name: user.prefix + ' ' + user.family + ' ' + user.given,
+            workgroup: user.workgroup,
+          });
+        }
+      });
+    });
+  }
+
+  editMode() {
+    this.edit = true;
+  }
+
+  clear() {
+    this.selectComponent.clear();
+    this.selectComponent.close();
+  }
+
+  toggleItems() {
+    this.selectComponent.toggleItems(this.toggle);
+    this.toggle = !this.toggle;
+  }
+
+  confirm() {
+    this.selectComponent.confirm();
+    this.selectComponent.close();
   }
 
   async loadWorkGroup() {
