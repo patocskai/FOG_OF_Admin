@@ -39,7 +39,9 @@ export class PractitionerService {
     return this.practitionerCollection.doc<Practitioner>(id).valueChanges();
   }
 
-
+  updatePrac(prac: Practitioner, id: string) {
+    return this.practitionerCollection.doc(id).update(prac);
+  }
 
   getPractitioners(id: any) {
     // régi

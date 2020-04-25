@@ -2,7 +2,6 @@ import { Workgroup } from './../../../interfaces/workgroup.interface';
 import { PractitionerService } from './../../../services/practitioner.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { Workgroup } from 'src/app/interfaces/workgroup.interface';
 import { WorkgroupService } from './../../../services/workgroup.service';
 import {
   ModalController,
@@ -19,9 +18,8 @@ import { IonicSelectableComponent } from 'ionic-selectable';
   styleUrls: ['./group-modal.page.scss'],
 })
 export class GroupModalPage implements OnInit {
-  @Input() id: number;
+  @Input() id: string;
   workgroup: Workgroup = {
-    id: '',
     creationDate: '',
     name: '',
     institution: '',
@@ -53,11 +51,44 @@ export class GroupModalPage implements OnInit {
         if (user.workgroup === '') {
           this.users.push({
             id: user.id,
-            name: user.prefix + ' ' + user.family + ' ' + user.given,
-            workgroup: user.workgroup,
+            name: user.prefix + ' ' + user.family + ' ' + user.given
           });
         }
       });
+    });
+  }
+
+  async loadWorkGroup() {
+    const loading = await this.loadingController.create({
+      message: 'Munkacsoport betöltése..',
+    });
+    await loading.present();
+    this.workGroupService.getWorkGroup(this.id).subscribe((res) => {
+      loading.dismiss();
+      this.workgroup.creationDate = res.creationDate;
+      this.workgroup.name = res.name;
+      this.workgroup.institution = res.institution;
+      this.workgroup.leader = res.leader;
+      this.workgroup.members = res.members;
+      this.workgroup.type = res.type;
+    });
+  }
+
+  updateWorkGroup() {
+    // this.users.forEach((user) => {
+    //   if (this.workgroup.leader === user) {
+    //     this.workgroup.leader = user.id;
+    //   }
+    //   if (this.workgroup.members === user) {
+    //     this.workgroup.members = user.id;
+    //   }
+    // });
+    console.log(this.workgroup.leader);
+    this.workGroupService.updateWorkGroup(this.workgroup, this.id).then(() => {
+       console.log('update');
+       console.log(this.id);
+       console.log(this.workgroup);
+       this.edit = false;
     });
   }
 
@@ -78,22 +109,6 @@ export class GroupModalPage implements OnInit {
   confirm() {
     this.selectComponent.confirm();
     this.selectComponent.close();
-  }
-
-  async loadWorkGroup() {
-    const loading = await this.loadingController.create({
-      message: 'Munkacsoport betöltése..',
-    });
-    await loading.present();
-    this.workGroupService.getWorkGroup(this.id).subscribe((res) => {
-      loading.dismiss();
-      this.workgroup.creationDate = res.creationDate;
-      this.workgroup.name = res.name;
-      this.workgroup.institution = res.institution;
-      this.workgroup.leader = res.leader;
-      this.workgroup.members = res.members;
-      this.workgroup.type = res.type;
-    });
   }
 
   routeWorkGroup() {

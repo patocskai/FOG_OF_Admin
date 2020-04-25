@@ -1,5 +1,5 @@
 export interface Workgroup {
-    id: string;
+    id?: string;
     creationDate: string;
     name: string;
     institution: string;
