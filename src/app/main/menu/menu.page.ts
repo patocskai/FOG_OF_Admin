@@ -1,10 +1,11 @@
-import { Workgroup } from './../../interfaces/workgroup.interface';
-import { Component, OnInit, Input } from '@angular/core';
+import { PassDataService } from 'src/app/services/pass-data.service';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent, ActivatedRoute } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
 import { NewsDialogComponent } from 'src/app/shared/news-dialog/news-dialog.component';
 import { FillService } from 'src/app/services/fill.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -15,6 +16,11 @@ export class MenuPage implements OnInit {
   userName = '';
   fills = [];
   numberOfNews = 0;
+  workGroup = [];
+  displayWorkGroup = false;
+
+  workGroupId;
+  subscription: Subscription;
 
   pages = [
     {
@@ -65,11 +71,26 @@ export class MenuPage implements OnInit {
     private fillService: FillService,
     private auth: AuthService,
     // tslint:disable-next-line: variable-name
-    private _bottomSheet: MatBottomSheet
+    private _bottomSheet: MatBottomSheet,
+    private dataService: PassDataService,
+    private route: ActivatedRoute
   ) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url;
     });
+
+    this.subscription = this.dataService.getMessage().subscribe((message) => {
+      if (message) {
+        this.workGroupId = message;
+        this.displayWorkGroup = true;
+      }
+      console.log(message);
+    });
+  }
+
+  ngOnInit() {
+    this.numberOfNews = this.fills.length;
+    this.userName = this.auth.lgUserName;
   }
 
   openNewsDialog(): void {
@@ -77,10 +98,5 @@ export class MenuPage implements OnInit {
       data: this.fills,
       panelClass: 'news-dialog',
     });
-  }
-
-  ngOnInit() {
-    this.numberOfNews = this.fills.length;
-    this.userName = this.auth.lgUserName;
   }
 }

@@ -1,6 +1,9 @@
+import { MenuPage } from './../menu/menu.page';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PassDataService } from 'src/app/services/pass-data.service';
 import { DatePipe } from '@angular/common';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import {
   ModalController,
   LoadingController,
@@ -20,8 +23,11 @@ export class WorkGroupPage implements OnInit {
   createWorkGroup = false;
   workGroups: Workgroup[];
   workGroup: FormGroup;
+  passWorkGroup = {
+    id: '',
+    display: true
+  };
   date = new Date();
-  radioId;
 
   constructor(
     private modalController: ModalController,
@@ -29,7 +35,10 @@ export class WorkGroupPage implements OnInit {
     private formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private datePipe: DatePipe,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private dataService: PassDataService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.workGroup = this.formBuilder.group({
       creationDate: [this.datePipe.transform(this.date, 'yyyy-MM-dd')],
@@ -42,14 +51,33 @@ export class WorkGroupPage implements OnInit {
   }
 
   ngOnInit() {
+    // tslint:disable-next-line: no-string-literal
+    if (this.route.snapshot.data['special']) {
+      // tslint:disable-next-line: no-string-literal
+      this.workGroup = this.route.snapshot.data['special'];
+    }
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
   }
 
   chooseWorkGroup(id) {
-    this.radioId = id;
-    console.log(this.radioId);
+    this.dataService.sendMessage(id);
+    this.passWorkGroup.id = id;
+    this.dataService.setWorkGroup(id, this.passWorkGroup);
+    this.router.navigate(['/menu/work-group', id]);
+  }
+
+  async information() {
+    const alert = await this.alertController.create({
+      header: 'Információ',
+      message:
+        'Válasszon a listából, a megfelelő adatok megjelenítése érdekében.',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+    console.log('it works');
   }
 
   segmentChanged(event) {

@@ -1,3 +1,4 @@
+import { DataResolverService } from './../../services/data-resolver.service';
 import { ShareModule } from './../../shared/share.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +15,14 @@ const routes: Routes = [
     children: [
       {
         path: 'work-group',
+        loadChildren:
+          'src/app/main/work-group/work-group.module#WorkGroupPageModule',
+      },
+      {
+        path: 'work-group/:id',
+        resolve: {
+          special: DataResolverService
+        },
         loadChildren:
           'src/app/main/work-group/work-group.module#WorkGroupPageModule',
       },

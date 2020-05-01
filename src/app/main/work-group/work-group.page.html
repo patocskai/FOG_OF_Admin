@@ -20,13 +20,21 @@
 
   <div *ngIf="listWorkGroups">
     <ion-card id="segmentList" color="tertiary">
-      <ion-title style="padding-top:1%; padding-bottom: 1%;">Munkacsoportok listája</ion-title>
+      <ion-title style="position: absolute; padding-top: 2.2%;">
+        Munkacsoportok listája
+      </ion-title>
+        <ion-buttons style="display: flex; justify-content: flex-end;" type="small">
+          <ion-button (click)="information()" style=" justify-content: right;">
+            <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+     
       <ion-list>
         <ion-radio-group color="tertiary">
           <ion-item-sliding *ngFor="let item of workGroups">
 
             <ion-item lines="inset">
-              <ion-radio style="margin-right: 5%;" (click)="chooseWorkGroup(item.id)"></ion-radio>
+              <ion-radio (click)="chooseWorkGroup(item.id)" style="margin-right: 5%;" ></ion-radio>
               <ion-label><b>{{item.name}}</b></ion-label>
               <ion-label><i>{{item.creationDate}}</i></ion-label>
               <ion-buttons>
