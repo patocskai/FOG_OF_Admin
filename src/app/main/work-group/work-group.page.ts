@@ -1,23 +1,14 @@
 import { DatePipe } from '@angular/common';
-import { PractitionerService } from 'src/app/services/practitioner.service';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ModalController,
   LoadingController,
-  NavController,
   AlertController,
 } from '@ionic/angular';
 import { GroupModalPage } from './group-modal/group-modal.page';
 import { Workgroup } from 'src/app/interfaces/workgroup.interface';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
-import { Practitioner } from 'src/app/interfaces/practitioner.interface';
-import { IonicSelectableComponent } from 'ionic-selectable';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-work-group',
@@ -27,23 +18,16 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 export class WorkGroupPage implements OnInit {
   listWorkGroups = true;
   createWorkGroup = false;
-
   workGroups: Workgroup[];
-
-  // users = [];
-  //  @ViewChild('selectComponent', { static: false })
-  // selectComponent: IonicSelectableComponent;
-  // toggle = true;
-  private workGroup: FormGroup;
+  workGroup: FormGroup;
   date = new Date();
+  radioId;
 
   constructor(
     private modalController: ModalController,
     private workGroupService: WorkgroupService,
-    // private practitionerService: PractitionerService,
     private formBuilder: FormBuilder,
     private loadingController: LoadingController,
-    // private nav: NavController,
     private datePipe: DatePipe,
     public alertController: AlertController
   ) {
@@ -61,14 +45,11 @@ export class WorkGroupPage implements OnInit {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    // this.practitionerService.getAllPrac().subscribe((res) => {
-    //   res.forEach((user) => {
-    //     this.users.push({
-    //       id: user.id,
-    //       name: user.prefix + ' ' + user.family + ' ' + user.given,
-    //     });
-    //   });
-    // });
+  }
+
+  chooseWorkGroup(id) {
+    this.radioId = id;
+    console.log(this.radioId);
   }
 
   segmentChanged(event) {
@@ -86,30 +67,12 @@ export class WorkGroupPage implements OnInit {
     }
   }
 
-  // clear() {
-  //   this.selectComponent.clear();
-  //   this.selectComponent.close();
-  // }
-
-  // toggleItems() {
-  //   this.selectComponent.toggleItems(this.toggle);
-  //   this.toggle = !this.toggle;
-  // }
-
-  // confirm() {
-  //   this.selectComponent.confirm();
-  //   this.selectComponent.close();
-  // }
-
   async saveWorkGroup() {
     const loading = await this.loadingController.create({
       message: 'Munkacsoport mentése folyamatban..',
     });
     await loading.present();
 
-    // this.workGroup.controls.leader.setValue(
-    //   this.workGroup.controls.leader.value.id
-    // );
     this.workGroupService.addWorkGroup(this.workGroup.value).then(() => {
       loading.dismiss();
       this.workGroup.reset();

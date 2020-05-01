@@ -1,6 +1,6 @@
 export interface Practitioner {
     id?: string;
-    practitonerID: string;
+    practitonerID?: string;
     email: string;
     family: string;
     given: string;

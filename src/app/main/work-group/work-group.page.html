@@ -26,7 +26,7 @@
           <ion-item-sliding *ngFor="let item of workGroups">
 
             <ion-item lines="inset">
-              <ion-radio style="margin-right: 5%;"></ion-radio>
+              <ion-radio style="margin-right: 5%;" (click)="chooseWorkGroup(item.id)"></ion-radio>
               <ion-label><b>{{item.name}}</b></ion-label>
               <ion-label><i>{{item.creationDate}}</i></ion-label>
               <ion-buttons>
@@ -64,75 +64,6 @@
           </ion-label>
           <ion-input formControlName="institution"></ion-input>
         </ion-item>
-
-        <!-- <ion-item>
-          <ion-label positon="floating">
-            <b>Vezető:</b>
-          </ion-label>
-          <ionic-selectable 
-            formControlName="leader"
-            headerColor="tertiary"
-            searchFailText="Nem található ilyen nevű felhasználó."
-            [items]="users"
-            itemValueField="id"
-            itemTextField="name"
-            [canSearch]="true">
-          <ng-template ionicSelectableCloseButtonTemplate>
-            <ion-icon name="close"></ion-icon>
-          </ng-template>
-          <ng-template ionicSelectableTitleTemplate>
-            Válasszon vezetőt!
-          </ng-template>
-        
-        </ionic-selectable>
-        </ion-item> -->
-
-        <!-- <ion-item>
-          <ion-label positon="floating">
-            <b>Tagok:</b>
-          </ion-label>
-          <ionic-selectable 
-          #selectComponent
-          formControlName="members"
-          headerColor= "tertiary"
-          searchFailText="Nem található ilyen nevű felhasználó."
-          [isMultiple] = true
-          [items]="users"
-          itemValueField="id"
-          itemTextField="name"
-          [canSearch]="true">   
-
-        <ng-template ionicSelectableCloseButtonTemplate>
-          <ion-icon name="close"></ion-icon>
-        </ng-template>
-
-        <ng-template ionicSelectableTitleTemplate>
-          Vegye fel a tagokat!
-        </ng-template>
-
-        <ng-template ionicSelectableFooterTemplate>
-          <ion-footer>
-            <ion-toolbar>
-              <ion-row text-center>
-                <ion-col size="4">
-                  <ion-button fill="clear" color="danger" (click)="clear()">Visszavon</ion-button>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-button fill="clear" color="tertiary" (click)="toggleItems()">
-                    Kijelöl
-                    <ion-icon name="repeat-outline"></ion-icon>
-                  </ion-button>
-                </ion-col>
-                <ion-col size="4">
-                  <ion-button fill="clear" color="tertiary" (click)="confirm()">Felvétel</ion-button>
-                </ion-col>
-              </ion-row>
-            </ion-toolbar>
-          </ion-footer>
-        </ng-template>
-
-      </ionic-selectable>
-        </ion-item> -->
 
         <ion-item>
           <ion-label positon="floating">

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterEvent } from '@angular/router';
+import { Workgroup } from './../../interfaces/workgroup.interface';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, RouterEvent, ActivatedRoute } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
 import { NewsDialogComponent } from 'src/app/shared/news-dialog/news-dialog.component';
 import { FillService } from 'src/app/services/fill.service';
@@ -14,37 +15,32 @@ export class MenuPage implements OnInit {
   userName = '';
   fills = [];
   numberOfNews = 0;
+
   pages = [
-    {
-      title: 'Munkacsoportok',
-      url: '/menu/work-group',
-      icon: 'people'
-    },
     {
       title: 'Fal',
       url: '/menu/wall',
-      icon: 'calendar-outline'
-
+      icon: 'calendar-outline',
     },
     {
       title: 'Vizsgálatok',
       url: '/menu/examination',
-      icon: 'document-text'
+      icon: 'document-text',
     },
     {
       title: 'Csoportstatisztika',
       url: '/menu/group-statistics',
-      icon: 'bar-chart-outline'
+      icon: 'bar-chart-outline',
     },
     {
       title: 'Tagok',
       url: '/menu/staff',
-      icon: 'people-circle-outline'
+      icon: 'people-circle-outline',
     },
     {
       title: 'Diagnózis',
       url: '/menu/histological',
-      icon: 'pulse-outline'
+      icon: 'pulse-outline',
     },
   ];
 
@@ -52,16 +48,17 @@ export class MenuPage implements OnInit {
     {
       title: 'Profil',
       url: '/menu/profile',
-      icon: 'person'
+      icon: 'person',
     },
     {
       title: 'Kijelentkezés',
       url: '',
-      icon: 'log-out-outline'
-    }
+      icon: 'log-out-outline',
+    },
   ];
 
   selectedPath = '';
+  selected = '/menu/work-group';
 
   constructor(
     private router: Router,
@@ -69,7 +66,7 @@ export class MenuPage implements OnInit {
     private auth: AuthService,
     // tslint:disable-next-line: variable-name
     private _bottomSheet: MatBottomSheet
-    ) {
+  ) {
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url;
     });

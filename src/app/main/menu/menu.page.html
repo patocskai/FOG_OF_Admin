@@ -17,12 +17,18 @@
 
     <ion-content>
       <ion-list>
+        <ion-item [routerLink]="['/menu/work-group']" routerDirection="root" [class.active-item]="selectedPath ===selected">
+          <ion-label><b>Munkacsoportok</b></ion-label>
+          <ion-icon name='people' color="brigth"></ion-icon>
+        </ion-item>
+        <div *ngIf="">
         <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
           <ion-item [routerLink]="p.url" routerDirection="root" [class.active-item]="selectedPath === p.url">
             <ion-label><b>{{ p.title }}</b></ion-label>
             <ion-icon name={{p.icon}} color="brigth"></ion-icon>
           </ion-item>
         </ion-menu-toggle>
+        </div>
       </ion-list>
     </ion-content>
     <ion-footer>
