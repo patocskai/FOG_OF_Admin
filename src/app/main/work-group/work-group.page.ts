@@ -1,9 +1,8 @@
-import { MenuPage } from './../menu/menu.page';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PassDataService } from 'src/app/services/pass-data.service';
 import { DatePipe } from '@angular/common';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ModalController,
   LoadingController,
@@ -24,7 +23,7 @@ export class WorkGroupPage implements OnInit {
   workGroups: Workgroup[];
   workGroup: FormGroup;
   date = new Date();
-  isCheck = false;
+  isCheck;
 
   constructor(
     private modalController: ModalController,
@@ -56,16 +55,19 @@ export class WorkGroupPage implements OnInit {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
+    console.log(this.dataService.getId());
+    if (this.dataService.getId() !== '') {
+      console.log(this.dataService.getId());
+      this.isCheck = true;
+      console.log(this.isCheck);
+    }
   }
 
-  async chooseWorkGroup(id) {
+  chooseWorkGroup(id) {
+    this.dataService.setId(id);
+    console.log(this.dataService.getId());
     this.dataService.sendMessage(id);
-    await this.router.navigate(['/menu/work-group', id]);
-    await this.setTrue();
-  }
-
-  setTrue() {
-    this.isCheck = true;
+    this.router.navigate(['/menu/work-group', id]);
   }
 
   async information() {

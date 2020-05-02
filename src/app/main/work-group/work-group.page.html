@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-<div *ngIf="!isCheck">
+<div *ngIf="isCheck === undefined">
   <ion-segment style="margin-bottom: 5%;" color="tertiary" value="listWorkGroups" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="listWorkGroups">
       <ion-label>Lista</ion-label>
@@ -32,9 +32,9 @@
       <ion-list>
         <ion-item-sliding *ngFor="let item of workGroups">
           
-          <ion-radio-group >
+          <ion-radio-group>
             <ion-item lines="inset">
-                <ion-radio (click)="chooseWorkGroup(item.id)" style="margin-left:1%; margin-right: 4%;" ></ion-radio>
+                <ion-radio [(ngModel)]="isCheck" (click)="chooseWorkGroup(item.id)" style="margin-left:1%; margin-right: 4%;" ></ion-radio>
                 <ion-label><b>{{item.name}}</b></ion-label>
                 <ion-label><i>{{item.creationDate}}</i></ion-label>
                 <ion-buttons>
@@ -90,7 +90,7 @@
   </div>
 </div>
 
-<div *ngIf="isCheck">
+<div *ngIf="isCheck === true">
 works!
 </div>
 </ion-content>
