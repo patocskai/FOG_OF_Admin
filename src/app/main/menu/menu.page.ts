@@ -93,6 +93,10 @@ export class MenuPage implements OnInit {
     this.userName = this.auth.lgUserName;
   }
 
+  setMenu(){
+    this.displayWorkGroup = false;
+  }
+
   openNewsDialog(): void {
     this._bottomSheet.open(NewsDialogComponent, {
       data: this.fills,

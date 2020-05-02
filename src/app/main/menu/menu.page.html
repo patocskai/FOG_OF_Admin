@@ -17,7 +17,7 @@
 
     <ion-content>
       <ion-list>
-        <ion-item [routerLink]="['/menu/work-group']" routerDirection="root" [class.active-item]="selectedPath ===selected">
+        <ion-item (click)="setMenu()" [routerLink]="['/menu/work-group']" routerDirection="root" [class.active-item]="selectedPath ===selected">
           <ion-label><b>Munkacsoportok</b></ion-label>
           <ion-icon name='people' color="brigth"></ion-icon>
         </ion-item>

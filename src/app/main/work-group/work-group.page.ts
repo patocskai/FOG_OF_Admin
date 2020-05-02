@@ -23,11 +23,8 @@ export class WorkGroupPage implements OnInit {
   createWorkGroup = false;
   workGroups: Workgroup[];
   workGroup: FormGroup;
-  passWorkGroup = {
-    id: '',
-    display: true
-  };
   date = new Date();
+  isCheck = false;
 
   constructor(
     private modalController: ModalController,
@@ -61,11 +58,14 @@ export class WorkGroupPage implements OnInit {
     });
   }
 
-  chooseWorkGroup(id) {
+  async chooseWorkGroup(id) {
     this.dataService.sendMessage(id);
-    this.passWorkGroup.id = id;
-    this.dataService.setWorkGroup(id, this.passWorkGroup);
-    this.router.navigate(['/menu/work-group', id]);
+    await this.router.navigate(['/menu/work-group', id]);
+    await this.setTrue();
+  }
+
+  setTrue() {
+    this.isCheck = true;
   }
 
   async information() {
