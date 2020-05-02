@@ -61,6 +61,7 @@ export class WorkGroupPage implements OnInit {
       this.isCheck = true;
       console.log(this.isCheck);
     }
+    this.dataService.getCheckFalse();
   }
 
   chooseWorkGroup(id) {

@@ -23,6 +23,7 @@ export class PassDataService {
 
   workGroup = [];
   workGroupId = '';
+  isCheck = true;
 
 
 
@@ -83,7 +84,13 @@ export class PassDataService {
   setId(id) {
     this.workGroupId = id;
   }
+  setCheckFalse(isCheck) {
+    this.isCheck = isCheck;
+  }
 
+  getCheckFalse(){
+    return this.isCheck;
+  }
   getId() {
     console.log(this.workGroupId);
     return this.workGroupId;
