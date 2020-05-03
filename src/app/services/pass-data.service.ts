@@ -22,7 +22,7 @@ export class PassDataService {
   numberOfNews = 0;
 
   workGroup = [];
-  workGroupId = '';
+  workGroupId;
   isCheck = true;
 
 
@@ -70,7 +70,7 @@ export class PassDataService {
   private subject = new Subject<any>();
 
   sendMessage(message: string) {
-      this.subject.next({ text: message });
+      this.subject.next({message});
   }
 
   clearMessages() {
@@ -84,7 +84,7 @@ export class PassDataService {
   setId(id) {
     this.workGroupId = id;
   }
-  
+
   setCheckFalse(isCheck) {
     this.isCheck = isCheck;
   }

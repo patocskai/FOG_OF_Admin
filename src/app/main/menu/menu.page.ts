@@ -18,8 +18,9 @@ export class MenuPage implements OnInit {
   numberOfNews = 0;
   workGroup = [];
   displayWorkGroup = false;
-
   workGroupId;
+  workGroupName;
+  actualWorkGroup: any[] = [];
   subscription: Subscription;
 
   pages = [
@@ -65,6 +66,7 @@ export class MenuPage implements OnInit {
 
   selectedPath = '';
   selected = '/menu/work-group';
+  selectedID = '';
 
   constructor(
     private router: Router,
@@ -81,9 +83,13 @@ export class MenuPage implements OnInit {
 
     this.subscription = this.dataService.getMessage().subscribe((message) => {
       if (message) {
-        this.workGroupId = message;
+        this.actualWorkGroup.push(message);
         this.displayWorkGroup = true;
       }
+      this.workGroupId = this.actualWorkGroup[0];
+      this.workGroupName = this.actualWorkGroup[1];
+      console.log(this.workGroupId);
+      console.log(this.workGroupName);
     });
   }
 
@@ -92,10 +98,13 @@ export class MenuPage implements OnInit {
     this.userName = this.auth.lgUserName;
   }
 
+  routeActualWorkGroup() {
+    this.router.navigate(['/menu/work-group', this.workGroupId.message]);
+  }
+
   setMenu() {
     // this.displayWorkGroup = false;
     // this.dataService.setCheckFalse(false);
-
   }
 
   openNewsDialog(): void {

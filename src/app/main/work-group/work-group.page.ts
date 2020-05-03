@@ -55,13 +55,13 @@ export class WorkGroupPage implements OnInit, OnChanges {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    if (this.dataService.getId() !== '') {
+    if (this.dataService.getId() !== undefined) {
       this.isCheck = true;
       console.log(this.dataService.getId());
       console.log(this.isCheck);
     }
     // this.dataService.getCheckFalse();
-    if (this.dataService.getId() === '') {
+    if (this.dataService.getId() === undefined) {
       this.dataService.setCheckFalse(false);
       console.log(this.dataService.getId());
       this.isCheck = false;
@@ -76,10 +76,15 @@ export class WorkGroupPage implements OnInit, OnChanges {
     this.dataService.setId(id);
     this.dataService.sendMessage(id);
     this.router.navigate(['/menu/work-group', id]);
+    this.workGroups.forEach((actual) => {
+      if (id === actual.id) {
+        this.dataService.sendMessage(actual.name);
+      }
+    });
   }
 
   backList() {
-    this.dataService.setId('');
+    this.dataService.setId(undefined);
     console.log(this.dataService.getId());
     this.ngOnInit();
   }
