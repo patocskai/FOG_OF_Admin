@@ -17,13 +17,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './work-group.page.html',
   styleUrls: ['./work-group.page.scss'],
 })
-export class WorkGroupPage implements OnInit {
+export class WorkGroupPage implements OnInit, OnChanges {
   listWorkGroups = true;
   createWorkGroup = false;
   workGroups: Workgroup[];
   workGroup: FormGroup;
   date = new Date();
-  isCheck;
+  isCheck = false;
 
   constructor(
     private modalController: ModalController,
@@ -55,20 +55,33 @@ export class WorkGroupPage implements OnInit {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    console.log(this.dataService.getId());
     if (this.dataService.getId() !== '') {
-      console.log(this.dataService.getId());
       this.isCheck = true;
+      console.log(this.dataService.getId());
       console.log(this.isCheck);
     }
-    this.dataService.getCheckFalse();
+    // this.dataService.getCheckFalse();
+    if (this.dataService.getId() === '') {
+      this.dataService.setCheckFalse(false);
+      console.log(this.dataService.getId());
+      this.isCheck = false;
+      console.log(this.isCheck);
+    }
+    console.log(this.isCheck);
   }
+
+  ngOnChanges() {}
 
   chooseWorkGroup(id) {
     this.dataService.setId(id);
-    console.log(this.dataService.getId());
     this.dataService.sendMessage(id);
     this.router.navigate(['/menu/work-group', id]);
+  }
+
+  backList() {
+    this.dataService.setId('');
+    console.log(this.dataService.getId());
+    this.ngOnInit();
   }
 
   async information() {
@@ -78,9 +91,7 @@ export class WorkGroupPage implements OnInit {
         'Válasszon a listából, a megfelelő adatok megjelenítése érdekében.',
       buttons: ['OK'],
     });
-
     await alert.present();
-    console.log('it works');
   }
 
   segmentChanged(event) {

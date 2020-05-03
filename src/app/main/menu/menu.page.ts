@@ -84,7 +84,6 @@ export class MenuPage implements OnInit {
         this.workGroupId = message;
         this.displayWorkGroup = true;
       }
-      console.log(message);
     });
   }
 
@@ -94,8 +93,8 @@ export class MenuPage implements OnInit {
   }
 
   setMenu() {
-    this.displayWorkGroup = false;
-    this.dataService.setCheckFalse(false);
+    // this.displayWorkGroup = false;
+    // this.dataService.setCheckFalse(false);
 
   }
 

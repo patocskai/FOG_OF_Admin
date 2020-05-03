@@ -2,13 +2,14 @@
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/menu/work-group" (click)="backList()"></ion-back-button>
     </ion-buttons>
     <ion-title>Munkacsoportok</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div *ngIf="isCheck === undefined">
+<div *ngIf="!isCheck">
   <ion-segment style="margin-bottom: 5%;" color="tertiary" value="listWorkGroups" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="listWorkGroups">
       <ion-label>Lista</ion-label>
@@ -31,10 +32,8 @@
      
       <ion-list>
         <ion-item-sliding *ngFor="let item of workGroups">
-          
-          <ion-radio-group>
             <ion-item lines="inset">
-                <ion-radio [(ngModel)]="isCheck" (click)="chooseWorkGroup(item.id)" style="margin-left:1%; margin-right: 4%;" ></ion-radio>
+                <ion-checkbox [(ngModel)]="isCheck" (click)="chooseWorkGroup(item.id)" style="margin-left:1%; margin-right: 4%;" ></ion-checkbox>
                 <ion-label><b>{{item.name}}</b></ion-label>
                 <ion-label><i>{{item.creationDate}}</i></ion-label>
                 <ion-buttons>
@@ -43,7 +42,6 @@
                   </ion-button>
                 </ion-buttons>
               </ion-item>
-            </ion-radio-group>
 
             <ion-item-options side="end">
               <ion-item-option (click)="removeGroup(item)" color="danger">
@@ -90,7 +88,7 @@
   </div>
 </div>
 
-<div *ngIf="isCheck === true">
+<div *ngIf="isCheck">
 works!
 </div>
 </ion-content>

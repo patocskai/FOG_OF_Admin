@@ -84,17 +84,19 @@ export class PassDataService {
   setId(id) {
     this.workGroupId = id;
   }
+  
   setCheckFalse(isCheck) {
     this.isCheck = isCheck;
   }
 
-  getCheckFalse(){
+  getCheckFalse() {
     return this.isCheck;
   }
+
   getId() {
-    console.log(this.workGroupId);
     return this.workGroupId;
   }
+
   setWorkGroup(id, workGroup) {
     this.workGroup[id] = workGroup;
   }
