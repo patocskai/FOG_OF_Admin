@@ -17,13 +17,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './work-group.page.html',
   styleUrls: ['./work-group.page.scss'],
 })
-export class WorkGroupPage implements OnInit, OnChanges {
+export class WorkGroupPage implements OnInit {
   listWorkGroups = true;
   createWorkGroup = false;
   workGroups: Workgroup[];
   workGroup: FormGroup;
   date = new Date();
   isCheck = false;
+  actualGroup = {};
 
   constructor(
     private modalController: ModalController,
@@ -55,38 +56,22 @@ export class WorkGroupPage implements OnInit, OnChanges {
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });
-    if (this.dataService.getId() !== undefined) {
-      this.isCheck = true;
-      console.log(this.dataService.getId());
-      console.log(this.isCheck);
-    }
-    // this.dataService.getCheckFalse();
-    if (this.dataService.getId() === undefined) {
-      this.dataService.setCheckFalse(false);
-      console.log(this.dataService.getId());
-      this.isCheck = false;
-      console.log(this.isCheck);
-    }
-    console.log(this.isCheck);
   }
-
-  ngOnChanges() {}
 
   chooseWorkGroup(id) {
     this.dataService.setId(id);
     this.dataService.sendMessage(id);
-    this.router.navigate(['/menu/work-group', id]);
+    this.router.navigate(['/menu/actual', id]);
     this.workGroups.forEach((actual) => {
       if (id === actual.id) {
         this.dataService.sendMessage(actual.name);
+        this.actualGroup = {
+          id: actual.id,
+          name: actual.name,
+        };
+        this.dataService.setWorkGroup(id, this.actualGroup);
       }
     });
-  }
-
-  backList() {
-    this.dataService.setId(undefined);
-    console.log(this.dataService.getId());
-    this.ngOnInit();
   }
 
   async information() {

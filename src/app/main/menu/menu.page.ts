@@ -85,11 +85,13 @@ export class MenuPage implements OnInit {
       if (message) {
         this.actualWorkGroup.push(message);
         this.displayWorkGroup = true;
+      } else {
+        this.actualWorkGroup = [];
+        this.displayWorkGroup = false;
       }
+
       this.workGroupId = this.actualWorkGroup[0];
       this.workGroupName = this.actualWorkGroup[1];
-      console.log(this.workGroupId);
-      console.log(this.workGroupName);
     });
   }
 
@@ -99,7 +101,7 @@ export class MenuPage implements OnInit {
   }
 
   routeActualWorkGroup() {
-    this.router.navigate(['/menu/work-group', this.workGroupId.message]);
+    this.router.navigate(['/menu/actual', this.workGroupId.message]);
   }
 
   setMenu() {

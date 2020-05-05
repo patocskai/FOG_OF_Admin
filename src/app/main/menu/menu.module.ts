@@ -19,12 +19,11 @@ const routes: Routes = [
           'src/app/main/work-group/work-group.module#WorkGroupPageModule',
       },
       {
-        path: 'work-group/:id',
+        path: 'actual/:id',
         resolve: {
           special: DataResolverService
         },
-        loadChildren:
-          'src/app/main/work-group/work-group.module#WorkGroupPageModule',
+        loadChildren: 'src/app/main/actual/actual.module#ActualPageModule'
       },
       {
         path: 'wall',
