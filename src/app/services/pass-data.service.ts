@@ -23,7 +23,7 @@ export class PassDataService {
 
   workGroup = [];
   workGroupId;
-  isCheck = true;
+  isCheck = false;
 
 
 

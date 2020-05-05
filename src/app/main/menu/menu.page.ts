@@ -66,7 +66,7 @@ export class MenuPage implements OnInit {
 
   selectedPath = '';
   selected = '/menu/work-group';
-  selectedID = '';
+  selectedID = '/menu/actual/:id';
 
   constructor(
     private router: Router,

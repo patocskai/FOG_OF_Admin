@@ -26,6 +26,5 @@ export class ActualPage implements OnInit {
   backList() {
     this.dataService.clearMessages();
     this.router.navigateByUrl('/menu/work-group');
-    console.log(this.dataService.getMessage());
   }
 }

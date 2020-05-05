@@ -23,7 +23,7 @@ export class WorkGroupPage implements OnInit {
   workGroups: Workgroup[];
   workGroup: FormGroup;
   date = new Date();
-  isCheck = false;
+ // isCheck = false;
   actualGroup = {};
 
   constructor(
