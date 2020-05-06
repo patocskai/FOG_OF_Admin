@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header style="margin-bottom: 5%;">
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -9,5 +9,58 @@
 </ion-header>
 
 <ion-content>
-  <ion-label>it works</ion-label>
+  <ion-card style="width: 50%; margin:auto; ">
+    <ion-list *ngIf="!edit">
+      <ion-title color="tertiary" id="title">
+        Munkacsoportok listája
+      </ion-title>
+      <ion-buttons style="display: flex; justify-content: flex-end;" type="small">
+        <ion-button (click)="editMode()"color="tertiary" style=" justify-content: right;">
+          <ion-icon slot="icon-only"  name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-item>
+        <ion-label><b>Létrehozás:</b></ion-label>
+        <ion-label>{{workgroup.creationDate}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Csoport név:</b></ion-label>
+        <ion-label>{{workgroup.name}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Intézmény:</b></ion-label>
+        <ion-label>{{workgroup.institution}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Csoport típusa:</b></ion-label>
+        <ion-label>{{workgroup.type}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><b>Vezető:</b></ion-label>
+        <ion-label>{{workgroup.leader["name"]}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-item-sliding>
+          <ion-label style="padding:2%;"><b>Tagok:</b></ion-label>
+          <ion-chip color="tertiary" *ngFor="let person of workgroup.members">
+          <ion-avatar>
+            <img src="../../assets/doctor_icon.png">
+          </ion-avatar>
+          <ion-label>{{person["name"]}}</ion-label>
+        </ion-chip>
+        </ion-item-sliding>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngIf="edit">
+      <ion-item>
+        It works!
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

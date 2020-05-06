@@ -1,11 +1,6 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-title>{{workgroup.name}}</ion-title>
-    <ion-buttons slot="start">
-      <ion-button (click)="routeWorkGroup()">
-        <ion-icon slot="icon-only" name="open-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="removeGroup()">
         <ion-icon name="trash-outline"></ion-icon>
@@ -21,7 +16,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="edit === false">
+  <ion-list *ngIf="!edit">
     <ion-item>
       <ion-label><b>Létrehozás:</b></ion-label>
       <ion-label>{{workgroup.creationDate}}</ion-label>
@@ -60,7 +55,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-list *ngIf="edit === true">
+  <ion-list *ngIf="edit">
     <div id="editList">
       <ion-item>
         <ion-label><b>Létrehozás:</b></ion-label>

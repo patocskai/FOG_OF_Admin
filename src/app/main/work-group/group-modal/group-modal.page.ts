@@ -111,11 +111,6 @@ export class GroupModalPage implements OnInit {
     this.selectComponent.close();
   }
 
-  routeWorkGroup() {
-    this.router.navigateByUrl('/menu/group-statistics');
-    this.modalController.dismiss();
-  }
-
   async dismiss() {
     this.modalController.dismiss();
   }
