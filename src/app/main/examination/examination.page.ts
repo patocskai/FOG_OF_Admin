@@ -84,36 +84,7 @@ export class ExaminationPage implements OnInit {
     private auth: AuthService,
     private datePipe: DatePipe,
     private diagService: DiagnosisService
-  ) {
-    // this.options = {
-    //   theme: 'default',
-    //   labels: ['Kezdete', 'Vége'],
-    //   menu: [
-    //     { alias: 'td', text: 'Ma', operation: '0d' },
-    //     { alias: 'tw', text: 'Ezen a héten', operation: '0w' },
-    //     { alias: 'lw', text: 'Múlt héten', operation: '-1w' },
-    //     { alias: 'tm', text: 'Ebben a hónapban', operation: '0m' },
-    //     { alias: 'lm', text: 'Múlt hónapban', operation: '-1m' },
-    //     { alias: 'ty', text: 'Ebben az évben', operation: '0y' },
-    //     { alias: 'ly', text: 'Előző évben', operation: '-1y' }
-    //   ],
-    //   dateFormat: 'YYYY-MM-DD',
-    //   outputFormat: 'YYYY-MM-DD',
-    //   startOfWeek: 0,
-    //   outputType: 'object',
-    //   locale: 'hu',
-    //   date: this.dateRange
-    // };
-    // tslint:disable-next-line: max-line-length
-    //  var basediags = ['Melanóma', 'Naevus', 'Basalioma', 'Laphámcarcinoma in situ/invazív', 'Dermatofibroma', 'Verruca seborrhoica/solaris lentigo', 'Éreredetű elváltozás', 'Egyéb-itt: fertőző betegség', 'Papulosquamosus/ekzematifotm', 'Dermatosisok', 'Egyéb malignus elváltozás', 'Egyéb jóindulatú elváltozás', 'Eltérések/mechanikus irritatio okozta eltérések', 'Fertőző betegség', 'Papulosquamosus/ekzematifotm dermatosisok', 'Pigmentációs eltérések/mechanikus irritatio okozta eltérése'];
-    //  basediags.forEach((diag, index) => {
-    //    this.diagService.addDiagnosis(diag, index + 1).then((ok) => {
-    //      console.log(ok);
-    //    }).catch((error) => {
-    //      console.error(error);
-    //    });
-    //  });
-  }
+  ) {  }
 
   updateTempDiagnose(diagnose: string, index: number) {
     this.tempDiagnoses[index] = diagnose;

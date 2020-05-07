@@ -15,7 +15,6 @@ export class ProfilePage implements OnInit {
   workgroups: Workgroup[] = [];
   userWorkgroup;
   options = ['1', '2', '3', '3+'];
-  // dermatoscopeExperience = '';
   loaded = Promise.resolve(false);
 
   constructor(
@@ -24,21 +23,12 @@ export class ProfilePage implements OnInit {
     private practitionerService: PractitionerService
   ) {}
 
-  // updateDermatoscopeExperience(value: any) {
-  //   this.dermatoscopeExperience = value;
-  //   this.practitionerService.updateDermatoscopeExperience(
-  //     value,
-  //     this.user.practitonerID
-  //   );
-  // }
-
   async ngOnInit() {
     await this.auth.getUser();
     this.workgroupService.getWorkgroups();
     this.workgroups = this.workgroupService.workgroups;
     this.user = this.auth.loggedUser;
     this.userName = this.auth.lgUserName;
-    // this.dermatoscopeExperience = this.user.dermatoscopeExperience;
     this.workgroups.forEach((workgroup) => {
       if (workgroup.id === this.user.workgroup) {
         this.userWorkgroup = workgroup.name;

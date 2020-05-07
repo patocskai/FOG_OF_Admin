@@ -23,7 +23,7 @@ export class StaffPage implements OnInit {
   dataForm: FormGroup;
   myControl = new FormControl();
   filteredOptions: Observable<any[]>;
-  columnsToDisplay = ['Alap felhasználó', 'Szövettani adminisztrátor', 'Szakorvos', 'Admin'];
+  columnsToDisplay = ['Alap felhasználó', 'Rezidens', 'Szakorvos', 'Admin'];
   loadSite = '';
   dataBoolean = true;
   selectedStaff = {};
@@ -62,7 +62,7 @@ export class StaffPage implements OnInit {
       return 'Az általános felhasználó, tud kitöltést megadni vagyis saját nevében diagnosztizálni és látja a saját eredményeit/statisztikáit'
     } else if (index === 1) {
       // tslint:disable-next-line: max-line-length
-      return 'A szövettani adminisztrátor a szövettani diagnózist tudja megadni, továbbá saját nevében tud kitöltést megadni, valamit látja a beteg adatait'
+      return 'A rezidens orvos  a  diagnózist tudja megadni, továbbá saját nevében tud kitöltést megadni, valamit látja a beteg adatait'
     } else if (index === 2) {
       return 'A szakorvos mindent lát, továbbá tud klinikai diagnózist felvenni';
     } else if (index === 3) {
