@@ -12,7 +12,7 @@
   <ion-card style="width: 50%; margin:auto; ">
     <ion-list *ngIf="!edit">
       <ion-title color="tertiary" class="title">
-        Munkacsoportok listája
+        {{actualWorkGroupName.name}} adatai
       </ion-title>
       <ion-buttons style="display: flex; justify-content: flex-end;" type="small">
         <ion-button (click)="editMode()" color="tertiary" style=" justify-content: right;">
@@ -59,7 +59,7 @@
 
     <ion-list *ngIf="edit">
       <ion-title color="tertiary" class="title">
-        Munkacsoportok szerkesztése
+        {{actualWorkGroupName.name}} szerkesztése
       </ion-title>
       <ion-buttons style="display: flex; justify-content: flex-end;" type="small">
         <ion-button color="tertiary" style=" justify-content: right;">
