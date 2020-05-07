@@ -11,12 +11,12 @@
 <ion-content>
   <ion-card style="width: 50%; margin:auto; ">
     <ion-list *ngIf="!edit">
-      <ion-title color="tertiary" id="title">
+      <ion-title color="tertiary" class="title">
         Munkacsoportok listája
       </ion-title>
       <ion-buttons style="display: flex; justify-content: flex-end;" type="small">
-        <ion-button (click)="editMode()"color="tertiary" style=" justify-content: right;">
-          <ion-icon slot="icon-only"  name="create-outline"></ion-icon>
+        <ion-button (click)="editMode()" color="tertiary" style=" justify-content: right;">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
       <ion-item>
@@ -48,19 +48,106 @@
         <ion-item-sliding>
           <ion-label style="padding:2%;"><b>Tagok:</b></ion-label>
           <ion-chip color="tertiary" *ngFor="let person of workgroup.members">
-          <ion-avatar>
-            <img src="../../assets/doctor_icon.png">
-          </ion-avatar>
-          <ion-label>{{person["name"]}}</ion-label>
-        </ion-chip>
+            <ion-avatar>
+              <img src="../../assets/doctor_icon.png">
+            </ion-avatar>
+            <ion-label>{{person["name"]}}</ion-label>
+          </ion-chip>
         </ion-item-sliding>
       </ion-item>
     </ion-list>
 
     <ion-list *ngIf="edit">
+      <ion-title color="tertiary" class="title">
+        Munkacsoportok szerkesztése
+      </ion-title>
+      <ion-buttons style="display: flex; justify-content: flex-end;" type="small">
+        <ion-button color="tertiary" style=" justify-content: right;">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <div id="editList">
+        <ion-item>
+          <ion-label><b>Létrehozás:</b></ion-label>
+          <ion-input disabled="true" [(ngModel)]="workgroup.creationDate"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Csoport név:</b></ion-label>
+          <ion-input [(ngModel)]="workgroup.name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Intézmény:</b></ion-label>
+          <ion-input [(ngModel)]="workgroup.institution"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label><b>Csoport típusa:</b></ion-label>
+          <ion-input [(ngModel)]="workgroup.type"></ion-input>
+        </ion-item>
+      </div>
+
       <ion-item>
-        It works!
+        <ion-label positon="floating">
+          <b>Vezető:</b>
+        </ion-label>
+        <ionic-selectable [(ngModel)]="workgroup.leader" headerColor="tertiary"
+          searchFailText="Nem található ilyen nevű felhasználó." [items]="users" itemValueField="id"
+          itemTextField="name" [canSearch]="true">
+
+          <ng-template ionicSelectableCloseButtonTemplate>
+            <ion-icon name="close"></ion-icon>
+          </ng-template>
+
+          <ng-template ionicSelectableTitleTemplate>
+            Válasszon vezetőt!
+          </ng-template>
+        </ionic-selectable>
       </ion-item>
+
+      <ion-item>
+        <ion-label positon="floating">
+          <b>Tagok:</b>
+        </ion-label>
+        <ionic-selectable #selectComponent [(ngModel)]="workgroup.members" headerColor="tertiary"
+          searchFailText="Nem található ilyen nevű felhasználó." [isMultiple]=true [items]="users" itemValueField="id"
+          itemTextField="name" [canSearch]="true">
+
+          <ng-template ionicSelectableCloseButtonTemplate>
+            <ion-icon name="close"></ion-icon>
+          </ng-template>
+
+          <ng-template ionicSelectableTitleTemplate>
+            Vegye fel a tagokat!
+          </ng-template>
+
+          <ng-template ionicSelectableFooterTemplate>
+            <ion-footer>
+              <ion-toolbar>
+                <ion-row text-center>
+                  <ion-col size="4">
+                    <ion-button fill="clear" color="danger" (click)="clear()">Visszavon</ion-button>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button fill="clear" color="tertiary" (click)="toggleItems()">
+                      Kijelöl
+                      <ion-icon name="repeat-outline"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button fill="clear" color="tertiary" (click)="confirm()">Felvétel</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-toolbar>
+            </ion-footer>
+          </ng-template>
+        </ionic-selectable>
+      </ion-item>
+      <div style="margin-top: 5%; text-align: right;">
+        <ion-button color="tertiary" (click)="updateWorkGroup()">Módosít</ion-button>
+        <ion-button color="danger" (click)="dismiss()">Elvet</ion-button>
+      </div>
     </ion-list>
   </ion-card>
 </ion-content>
