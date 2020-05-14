@@ -49,10 +49,10 @@ export class WorkGroupPage implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line: no-string-literal
-    if (this.route.snapshot.data['special']) {
+    // if (this.route.snapshot.data['special']) {
       // tslint:disable-next-line: no-string-literal
-      this.workGroup = this.route.snapshot.data['special'];
-    }
+      // this.workGroup = this.route.snapshot.data['special'];
+    // }
     this.workGroupService.getAllWorkGroups().subscribe((res) => {
       this.workGroups = res;
     });

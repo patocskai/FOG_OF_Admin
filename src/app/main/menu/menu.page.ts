@@ -1,5 +1,5 @@
 import { PassDataService } from 'src/app/services/pass-data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterEvent, ActivatedRoute } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
 import { NewsDialogComponent } from 'src/app/shared/news-dialog/news-dialog.component';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
 })
-export class MenuPage implements OnInit {
+export class MenuPage implements OnInit, OnDestroy {
   userName = '';
   fills = [];
   numberOfNews = 0;
@@ -99,6 +99,10 @@ export class MenuPage implements OnInit {
     this.numberOfNews = this.fills.length;
     this.userName = this.auth.lgUserName;
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+}
 
   routeActualWorkGroup() {
     this.router.navigate(['/menu/actual', this.workGroupId.message]);

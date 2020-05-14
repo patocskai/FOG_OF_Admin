@@ -36,7 +36,7 @@
               <ion-label><b>{{item.name}}</b></ion-label>
               <ion-label><i>{{item.creationDate}}</i></ion-label>
               <ion-buttons>
-                <ion-button color="dark" (click)="openModal(item.id)">
+                <ion-button id="open" color="dark"  (click)="openModal(item.id)">
                   <ion-icon slot="icon-only" name="open-outline"></ion-icon>
                 </ion-button>
               </ion-buttons>
