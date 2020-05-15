@@ -1,3 +1,4 @@
+import { PassDataService } from './pass-data.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -15,11 +16,12 @@ export class ExaminationService {
     private firestore: AngularFirestore,
     private auth: AuthService,
     private fillService: FillService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private dataService: PassDataService
   ) { }
 
   getExaminations() {
-    return this.firestore.collection('Examination').ref.where('workgroup', '==', this.auth.loggedUser.workgroup);
+    return this.firestore.collection('Examination').ref.where('workgroup', '==', this.dataService.getId());
   }
 
   getAllExaminations() {
