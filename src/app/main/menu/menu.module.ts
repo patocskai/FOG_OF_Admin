@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../core/auth.guard';
 import { DataResolverService } from './../../services/data-resolver.service';
 import { ShareModule } from './../../shared/share.module';
 import { NgModule } from '@angular/core';
@@ -16,45 +17,45 @@ const routes: Routes = [
       {
         path: 'work-group',
         loadChildren:
-          'src/app/main/work-group/work-group.module#WorkGroupPageModule',
+          'src/app/main/work-group/work-group.module#WorkGroupPageModule', canActivate: [AuthGuard]
       },
       {
         path: 'actual/:id',
         resolve: {
           special: DataResolverService
         },
-        loadChildren: 'src/app/main/actual/actual.module#ActualPageModule'
+        loadChildren: 'src/app/main/actual/actual.module#ActualPageModule', canActivate: [AuthGuard]
       },
       {
         path: 'wall',
-        loadChildren: 'src/app/main/wall/wall.module#WallPageModule',
+        loadChildren: 'src/app/main/wall/wall.module#WallPageModule', canActivate: [AuthGuard]
       },
       {
         path: 'examination',
         loadChildren:
-          'src/app/main/examination/examination.module#ExaminationPageModule',
+          'src/app/main/examination/examination.module#ExaminationPageModule', canActivate: [AuthGuard]
       },
       {
         path: 'group-statistics',
         loadChildren:
-          'src/app/main/group-statistics/group-statistics.module#GroupStatisticsPageModule',
+          'src/app/main/group-statistics/group-statistics.module#GroupStatisticsPageModule', canActivate: [AuthGuard]
       },
       {
         path: 'staff',
-        loadChildren: 'src/app/main/staff/staff.module#StaffPageModule',
+        loadChildren: 'src/app/main/staff/staff.module#StaffPageModule', canActivate: [AuthGuard]
       },
       {
         path: 'profile',
-        loadChildren: 'src/app/main/profile/profile.module#ProfilePageModule',
+        loadChildren: 'src/app/main/profile/profile.module#ProfilePageModule', canActivate: [AuthGuard]
       },
       {
         path: 'histological',
         loadChildren:
-          'src/app/main/examination/examination.module#ExaminationPageModule',
+          'src/app/main/examination/examination.module#ExaminationPageModule', canActivate: [AuthGuard]
       },
       {
         path: '',
-        redirectTo: '/menu/work-group',
+        redirectTo: '/menu/work-group'
       },
     ],
   },
