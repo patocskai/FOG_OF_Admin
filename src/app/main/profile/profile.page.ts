@@ -1,3 +1,4 @@
+import { PassDataService } from './../../services/pass-data.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { WorkgroupService } from 'src/app/services/workgroup.service';
@@ -20,7 +21,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private auth: AuthService,
     private workgroupService: WorkgroupService,
-    private practitionerService: PractitionerService
+    private practitionerService: PractitionerService,
+    private dataService: PassDataService
   ) {}
 
   async ngOnInit() {
@@ -30,7 +32,7 @@ export class ProfilePage implements OnInit {
     this.user = this.auth.loggedUser;
     this.userName = this.auth.lgUserName;
     this.workgroups.forEach((workgroup) => {
-      if (workgroup.id === this.user.workgroup) {
+      if (workgroup.id === this.dataService.getId()) {
         this.userWorkgroup = workgroup.name;
       }
     });
