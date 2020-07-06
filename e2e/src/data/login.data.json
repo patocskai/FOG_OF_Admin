@@ -1,0 +1,10 @@
+{
+    "correctLogin": {
+        "email": "pr2@prmail.com",
+        "password": "123456"
+    },
+    "wrongLogin": {
+        "email": "nemjo@prmail.com",
+        "password": "123456"
+    }
+}
